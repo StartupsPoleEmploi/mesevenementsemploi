@@ -1,0 +1,239 @@
+<app-header [minified]="true"></app-header>
+<div class="banner" *ngIf="event">
+    <div class="banner-left">
+        <a class="back-link" *ngIf="isSmallScreen | async" [routerLink]="['/evenements']">< Retour</a>
+        <div class="event-date">
+            <span class="event-day">{{event.dateISO | date: 'dd'}}</span>
+            <span *ngIf="isWideScreen | async"
+                  class="event-month">{{event.dateISO | date: 'MMM' : 'Europe/Paris' : 'fr' }}</span>
+            <span *ngIf="isSmallScreen | async"
+                  class="event-month">{{event.dateISO | date: 'MMMM' : 'Europe/Paris' : 'fr' }}</span>
+        </div>
+        <div class="banner-logo">
+            <img *ngIf="afficherImageTousMobilises" src="./assets/img/850x360_logo_tous_mobilises.png" alt="logo Tous Mobilisés"/>
+        </div>
+    </div>
+    <div class="banner-center">
+        <h1 class="event-title">{{event.titre}}</h1>
+        <div *ngFor="let objectif of publicObjectivesList" class="tags-container">
+            <p class="tags">
+                {{objectif.libelle}}
+            </p>
+        </div>
+    </div>
+    <div class="banner-right" >
+        <ng-container
+            *ngIf="!isEventFull(event); then canRegister; else canNotRegister" >
+        </ng-container>
+        <ng-template #canRegister>
+            <button class="btn"
+                    (click)="connexionConfirmation()"
+                    *ngIf="!this.candidatConnectedService.isLoggedIn()"
+                    attr.aria-label="Je m'inscris à l'évènement {{event.titre}}">
+                Je m'inscris
+            </button>
+            <button *ngIf="this.showButtonSign()"
+                    attr.aria-label="Je m'inscris à l'évènement {{event.titre}}"
+                    class="btn"
+                    routerLink="/prerequis">
+                Je m'inscris
+            </button>
+            <button (click)="annulerInscription($event.target)"
+                    *ngIf="this.showButtonCancel()"
+                    class="btn-annulation"
+                    attr.aria-label="Je m'inscris à l'évènement {{event.titre}}">
+                J'annule mon inscription
+            </button>
+            <button (click)="annulerInscription($event.target)"
+                    *ngIf="this.showButtonAnnulation()"
+                    attr.aria-label="Je m'inscris à l'évènement {{event.titre}}"
+                    class="btn-annulation">
+                J'annule mon inscription
+            </button>
+
+
+            <span *ngIf="inscriptionAnnulee"
+                  class="annulationConfirmation"> Vous avez annulé votre participation !</span>
+            <span *ngIf="!inscriptionAnnulee && this.showButtonCancel()"
+                  class="annulationConfirmation"> Vous êtes inscrit !</span>
+        </ng-template>
+        <ng-template #canNotRegister>
+            <button class="btn" [disabled]="true" attr.aria-label="L'évènement {{event.titre}} est complet">
+                Complet
+            </button>
+        </ng-template>
+    </div>
+</div>
+<body>
+<nav *ngIf="event" aria-label="Breadcrumb">
+    <ul class="breadcrumb-trail" *ngIf="isWideScreen | async">
+        <li class="first-thread">
+            <a [routerLink]="['/evenements']">Accueil</a>
+        </li>
+            <li class="second-thread">
+                <span aria-current="page" >{{event.titre}}</span>
+            </li>
+        </ul>
+    </nav>
+    <div *ngIf="event" class="content-details">
+        <div class="inscription-mobile" *ngIf="isSmallScreen | async">
+            <ng-container *ngIf="!isEventFull(event); then canRegister; else canNotRegister" >
+            </ng-container>
+            <ng-template #canRegister>
+                <button class="btn"
+                        (click)="connexionConfirmation()"
+                        *ngIf="!this.candidatConnectedService.isLoggedIn()"
+                        attr.aria-label="Je m'inscris à l'évènement {{event.titre}}">
+                    Je m'inscris
+                </button>
+                <button class="btn"
+                        *ngIf="this.candidatConnectedService.isLoggedIn()"
+                        routerLink="/prerequis"
+                        attr.aria-label="Je m'inscris à l'évènement {{event.titre}}">
+                    Je m'inscris
+                </button>
+            </ng-template>
+            <ng-template #canNotRegister>
+                <button class="btn" [disabled]="true" attr.aria-label="L'évènement {{event.titre}} est complet">
+                    Complet
+                </button>
+            </ng-template>
+        </div>
+        <div class="main-content" >
+            <div>
+                <img *ngIf="afficherImageRecrutement"
+                     class="img-objectif"
+                     src="./assets/img/Recrutement.png"
+                     alt="image d'évènement lié au recrutement" />
+                <img *ngIf="afficherImageDecouverteMetier"
+                     class="img-objectif"
+                     src="./assets/img/decouverte_secteur_metier.png"
+                     alt="image d'évènement lié à découverte secteur ou métier" />
+                <img *ngIf="afficherImageFormation"
+                     class="img-objectif"
+                     src="./assets/img/Formation.png"
+                     alt="image d'évènement lié à la formation" />
+            </div>
+            <p class="subtitles">Public(s)</p>
+            <div class="public-labels">
+                <p *ngFor="let publicCible of publicCiblesList">
+                    <span class="labels"># {{publicCible.libelle}}</span>
+                </p>
+            </div>
+            <p class="subtitles">Description</p>
+            <p class="description-label">{{event.description}}</p>
+            <div *ngIf="beneficesList.length > 0" class="benefices-container">
+                <p class="subtitles">Bénéfices</p>
+                <div class="benefices-items">
+                    <div *ngFor="let benefice of beneficesList" class="item">
+                        <span class="benefices-labels">
+                            {{benefice.libelle}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <p *ngIf="event?.intervenants?.length" class="subtitles">Recruteur(s)/Intervenant(s)</p>
+            <div *ngFor="let intervenant of event?.intervenants">
+                <p class="recruiter-name">{{intervenant.libelle}}</p>
+                <div *ngIf="intervenant.siteWeb" class="link-zone">
+                    <a (click)="goToLinkUrl(intervenant.siteWeb)" class="link-label">Voir le site</a>
+                </div>
+            </div>
+            <p *ngIf="offerTab.length > 0" class="subtitles">Offre(s) d’emploi</p>
+            <div class="offers" *ngFor="let offer of offerTab"  >
+                <p class="titre-offre-emploi titre-bold">{{offer?.intitule}}</p>
+                <p class="titre-offre-emploi">
+                    <span *ngIf="offer?.entreprise?.nom">{{offer?.entreprise?.nom}}
+                        - </span> {{offer?.lieuTravail?.libelle}}
+                </p>
+                <p class="titre-offre-emploi">{{offer?.typeContrat}}
+                    <span class="dureeContrat">{{offer?.dureeTravailLibelle}}</span>
+                </p>
+                <img class="img-offer" src="./assets/img/circle-arrow-right_violet.svg" alt=""/>
+                <a (click)="goToLinkUrl(offer?.origineOffre.urlOrigine)" class="voir-loffre-demplo">
+                    Voir l’offre d’emploi
+                </a>
+            </div>
+            <p *ngIf="event?.libelleLienPlusInformation" class="subtitles">En savoir +</p>
+            <div *ngIf="event?.lienPlusInformation" class="video-link">
+                <img *ngIf="event?.libelleLienPlusInformation" alt="icone en savoir plus"
+                     src="./assets/img/circle-arrow-right_violet.svg"/>
+                <a (click)="goToLinkUrl(event.lienPlusInformation)" class="video-link">
+                    {{event.libelleLienPlusInformation}}
+                </a>
+            </div>
+            
+            <div class="social-media-container">
+                <p class="social-media-title">Partager cet événement</p>
+                <div class="social-media-icons">
+                    <button class="social-media-link"
+                       (click)="shareWithTwitter()"
+                       onclick="window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=700');return false;"
+                       rel="nofollow"
+                       title="Partager l'évènement {{event.titre}} sur Twitter"
+                       attr.aria-label="Partager l'évènement {{event.titre}} sur Twitter - ouvre une nouvelle fenêtre">
+                        <img alt="Twitter" src="./assets/img/ant-design_twitter-circle-filled.svg"/>
+                    </button>
+                    <button class="social-media-link"
+                       (click)="shareWithLinkedin()"
+                       onclick="window.open(this.href, '','menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=450,width=650');return false;"
+                       rel="nofollow"
+                       title="Partager l'évènement {{event.titre}} sur Linkedin"
+                       attr.aria-label="Partager l'évènement {{event.titre}} sur Linkedin - ouvre une nouvelle fenêtre">
+                        <img alt="Linkedin" src="./assets/img/linkedin.svg" alt="icone Linkedin" />
+                    </button>
+                    <button class="social-media-link"
+                       (click)="shareWithFacebook()"
+                       onclick="window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=500,width=700');return false;"
+                       rel="nofollow"
+                       title="Partager l'évènement {{event.titre}} sur Facebook"
+                       attr.aria-label="Partager l'évènement {{event.titre}} sur Facebook - ouvre une nouvelle fenêtre">
+                        <img alt="Facebook" src="./assets/img/bx_bxl-facebook-circle.svg" />
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="side-content">
+            <div class="general-informations" >
+                <p class="subtitles">Informations générales</p>
+                <div class="info-date">
+                    <span class="date">{{event.dateISO | date: 'longDate' : 'Europe/Paris' : 'fr' }}</span>
+                    <span class="time">{{event.heureDebut}} - {{event.heureFin}}</span>
+                </div>
+                <div class="event-location" *ngIf="eventLocation">
+                    <span class="location-label">{{this.eventLocation}}</span>
+                </div>
+                <div class="availability">
+                    <span class="availability-label">Places restantes</span>
+                    <ng-container *ngIf="isEventFull(event); then full; else available" ></ng-container>
+                    <ng-template #full >
+                        <span class="available-places" >Complet</span>
+                    </ng-template>
+                    <ng-template #available>
+                        <span class="available-places" *ngIf="getOnSitePlaces(event) > 0 && getRemotePlaces(event) === 0">
+                            {{ getOnSitePlaces(event) }} en présentiel
+                        </span>
+                        <span class="available-places" *ngIf="getRemotePlaces(event) > 0 && getOnSitePlaces(event) === 0">
+                            {{ getRemotePlaces(event) }} à distance
+                        </span>
+                        <span class="available-places" *ngIf="getOnSitePlaces(event) > 0 && getRemotePlaces(event) > 0">
+                            {{ getOnSitePlaces(event) }} en présentiel / {{ getRemotePlaces(event) }} à distance
+                        </span>
+                    </ng-template>
+                </div>
+            </div>
+
+            <div class="prerequisites" >
+                <p class="subtitles">Pré-requis de participation</p>
+                <div *ngFor="let prerequis of event?.prerequis" class="prerequisites-bloc">
+                    <span>{{prerequis.libelle}}</span>
+                </div>
+            </div>
+            <div *ngIf="event?.deroulement" class="process">
+                <p class="subtitles">Déroulement</p>
+                <p class="process-details">{{event.deroulement}}</p>
+            </div>
+        </div>
+    </div>
+    <app-footer class="footer"></app-footer>
+</body>

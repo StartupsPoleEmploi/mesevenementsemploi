@@ -1,0 +1,450 @@
+@import "../../../sass/component-imports.scss";
+
+body {
+  .content {
+    background-repeat: no-repeat;
+    flex: 1 0 auto;
+    background-color: #EBEDF8;
+    position: relative;
+    padding-top: 2rem;
+    z-index: 0;
+    @include rwd(background-image, url('../../../../assets/img/Happy Bunch - Party of Three (1).svg'), (
+            $mobile: url('../../../../assets/img/Happy Bunch - Party of Three (1).svg'),
+            $tablet: url('../../../../assets/img/background_group_larger.svg'),
+            $desktop: url('../../../../assets/img/background_group_larger.svg'))
+    );
+    @include rwd(background-position-x, 0, ($mobile: 0, $tablet: -5rem, $desktop: -5rem));
+    @include rwd(background-position-y, 20rem, ($mobile: 20rem, $tablet: -3rem, $desktop: -3rem));
+    @include rwd(background-size, 100%, ($mobile: 100%, $tablet: 100%, $desktop: 100%));
+   .img-back {
+     position: absolute;
+     top: -3rem;
+     width: 110%;
+     height: 50em;
+     z-index: 0;
+     left: -10rem;
+    }
+    .img-back-mobile {
+      position: absolute;
+      top: 20rem;
+      width: 100%;
+    }
+    .baseline-container {
+      .titles {
+        position: relative;
+        z-index: 10;
+        font-family: $poppins;
+        @include rwd(margin-bottom, 15%, ($mobile: 15%, $tablet: 0, $desktop: 0));
+        .baseline {
+          display: flex;
+          flex-direction: column;
+          color: $texte;
+          font-family: $poppins;
+          font-weight: bold;
+          @include rwd(margin, 0 auto 1rem, ($mobile: 0 auto 1rem, $tablet: 0 2.3rem, $desktop: 0 auto));
+          @include rwd(width, 21rem, ($mobile: 21rem, $tablet: 45rem, $desktop: 65.5625rem));
+          @include rwd(font-size, 1.5rem, ($mobile: 1.5rem, $tablet: 1.75rem, $desktop: 2.25rem));
+          @include rwd(line-height, 2.25rem, ($mobile: 2.25rem, $tablet: 3rem, $desktop: 3.375rem));
+        }
+        .definition {
+          display: flex;
+          flex-direction: column;
+          height: 3rem;
+          color: $texte;
+          font-family: $poppins;
+          font-weight: normal;
+          @include rwd(margin, 0 auto 1rem, ($mobile: 0 auto 1rem, $tablet: 0 2.3rem 3rem, $desktop: 1rem auto 2rem));
+          @include rwd(width, 21rem, ($mobile: 21rem, $tablet: 45rem, $desktop: 65.5625rem));
+          @include rwd(font-size, 1rem, ($mobile: 1rem, $tablet: 1rem, $desktop: 1rem));
+          @include rwd(line-height, 1.33333333, ($mobile: 1.33333333, $tablet: 1.33333333, $desktop: 1));
+          span {
+            @include rwd(padding-bottom, 2%, ($mobile: 2%, $tablet: 2%, $desktop: 1%));
+            strong {
+              font-weight: $medium;
+            }
+          }
+        }
+        .filters {
+          position: relative;
+          display: flex;
+          @include rwd(width, 90%, ($mobile: 90%, $tablet: 65.5625rem, $desktop: 65.5625rem));
+          @include rwd(margin, 22em auto 2rem auto, ($mobile: 22em auto 2rem auto, $tablet: 2rem auto 2rem, $desktop: 2rem auto 2rem));
+          .removeSelected {
+            position: absolute;
+            top: calc(50% - 0.75rem);
+            @include rwd(left, 13rem, ($mobile: 13rem, $tablet: 28rem, $desktop: 28rem));
+          }
+        }
+      }
+      .event-search-results {
+        color: $texte;
+        font-family: $rubik;
+        font-size: 1rem;
+        font-weight: $semi-bold;
+        letter-spacing: 0;
+        line-height: 1.26315789;
+        z-index: 10;
+        margin: 3.78947368rem auto 1rem;
+        position: relative;
+        @include rwd(width, 22.5625rem, ($mobile: 22.5625rem, $tablet: 44rem, $desktop: 65.5625rem));
+        @include rwd(margin, 0 auto 2rem, ($mobile: 0 auto 2rem, $tablet: 30rem auto 2rem, $desktop: 3.78947368rem auto 2rem));
+        @include rwd(text-align, center, ($mobile: center, $tablet: center, $desktop: left));
+        .events-number {
+          margin-right: 5px;
+        }
+      }
+    }
+    .event-list {
+      margin: 0 auto;
+      @include rwd(width, 20.7rem, ($mobile: 20.7rem, $tablet: 65.5rem, $desktop: 65.5rem));
+      .event-card {
+        display: flex;
+        align-items: center;
+        position: relative;
+        border-radius: 4px;
+        background-color: #FFFFFF;
+        box-shadow: 0 2px 4px 0 rgba(145,141,141,0.5);
+        margin-bottom: 1rem;
+        @include rwd(flex-direction, column, ($mobile: column, $tablet: row, $desktop: row));
+        @include rwd(padding-right, 0, ($mobile: 0, $tablet: 1rem, $desktop: 1rem));
+        @include rwd(height, 14.8rem, ($mobile: 14.8rem, $tablet: 17.8rem, $desktop: 17.8rem));
+        .event-time {
+          background-color: $vert;
+          color: $texte;
+          font-family: $poppins;
+          font-weight: bold;
+          display: flex;
+          flex-shrink: 0;
+          align-items: center;
+          @include rwd(width, 100%, ($mobile: 100%, $tablet: 10%, $desktop: 5.938rem));
+          @include rwd(height, 2.5rem, ($mobile: 2.5rem, $tablet: 100%, $desktop: 100%));
+          @include rwd(flex-direction, row, ($mobile: row, $tablet: column, $desktop: column));
+          @include rwd(justify-content, space-between, ($mobile: space-between, $tablet: unset, $desktop: unset));
+          .date {
+            display: flex;
+            height: 50%;
+            justify-content: flex-end;
+            @include rwd(flex-direction, row, ($mobile: row, $tablet: column, $desktop: column));
+            @include rwd(margin-left, 1rem, ($mobile: 1rem, $tablet: 0, $desktop: 0));
+            @include rwd(align-items, center, ($mobile: center, $tablet: unset, $desktop: unset));
+            .day-label {
+              line-height: 1;
+              @include rwd(font-size, 1rem, ($mobile: 1rem, $tablet: 1.25rem, $desktop: 2.2rem));
+              @include rwd(margin-right, 0.2rem, ($mobile: 0.2rem, $tablet: 0, $desktop: 0));
+            }
+            .month-label {
+              @include rwd(font-size, 1rem, ($mobile: 1rem, $tablet: 1.3rem, $desktop: 1.3rem));
+            }
+            .month-label:first-letter {
+              text-transform: uppercase;
+            }
+          }
+          .hour {
+            height: 20%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            @include rwd(margin-right, 1rem, ($mobile: 1rem, $tablet: 0, $desktop: 0));
+
+            .hour-label {
+              font-size: 0.9rem;
+            }
+          }
+        }
+        .event-content {
+          font-family: $poppins;
+          letter-spacing: 0;
+          @include rwd(padding, 1rem, ($mobile: 1rem, $tablet: 2rem 0 2rem 2rem, $desktop: 2rem 0 2rem 2rem));
+          @include rwd(margin, 0, ($mobile: 0, $tablet: auto, $desktop: auto));
+          @include rwd(width, 18.6rem, ($mobile: 18.6rem, $tablet: 58.6rem, $desktop: 58.6rem));
+          .event-title {
+            color: $texte;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            text-transform: lowercase;
+            line-height: 1.5;
+            font-family: $poppins;
+            @include rwd(width, 19.4rem, ($mobile: 19.4rem, $tablet: 42rem, $desktop: 42rem));
+            @include rwd(font-size, 1rem, ($mobile: 1rem, $tablet: 1.24rem, $desktop: 1.24rem));
+          }
+          .event-title:first-letter {
+            text-transform: uppercase;
+          }
+          .central-block {
+            display: flex;
+            @include rwd(flex-direction, column-reverse, ($mobile: column-reverse, $tablet: row, $desktop: row));
+            @include rwd(margin-bottom, 0, ($mobile: 0, $tablet: 1rem, $desktop: 1rem));
+            .places {
+              background-image: url('../../../../assets/img/profil-multi.svg');
+              background-repeat: no-repeat;
+              background-position: left top;
+              background-size: 1.6rem 1.6rem;
+              font-family: $rubik;
+              font-size: 1.1rem;
+              line-height: 1.7;
+              color: #000000;
+              padding-left: 2.5rem;
+              min-width: 55%;
+              .places-label {
+                font-weight: $medium;
+                margin-bottom: 0;
+              }
+              .available-places {
+                font-style: normal;
+                margin-bottom: 0;
+              }
+            }
+            .location {
+              background-image: url('../../../../assets/img/pinmap-location.svg');
+              background-repeat: no-repeat;
+              background-size: 1rem 1.4rem;
+              font-family: $rubik;
+              font-size: 1.1rem;
+              line-height: 1.7;
+              color: #000000;
+              padding-left: 2.5rem;
+              @include rwd(background-position, 0.3rem top, ($mobile: 0.3rem top, $tablet: left top, $desktop: left top));
+              .location-label {
+                font-weight: $medium;
+              }
+            }
+          }
+          .public {
+            background-image: url('../../../../assets/img/Public.svg');
+            background-repeat: no-repeat;
+            background-position: left top;
+            background-size: 1.6rem 1.6rem;
+            font-family: $rubik;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #000000;
+            padding-left: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            .public-label {
+              font-weight: $medium;
+              margin-bottom: 0;
+            }
+            .public-list {
+              color: #4833E3;
+              display: flex;
+              flex-wrap: wrap;
+              width: 130%;
+              .public-element {
+                color: #4833E3!important;
+                margin-right: 1rem;
+              }
+            }
+          }
+        }
+        .event-btn {
+          margin: auto;
+          border-radius: 4px;
+          background-color: #4833E3;
+          color: white;
+          border-style: none;
+          cursor: pointer;
+          justify-content: center;
+          align-items: center;
+          height: 3.8rem;
+          min-width: 13.3rem;
+          @include rwd(display, none, ($mobile: none, $tablet: flex, $desktop: flex));
+          .event-btn-label {
+            color: #FFFFFF;
+            font-family: $rubik;
+            font-size: 1.12rem;
+            font-weight: $medium;
+            letter-spacing: 0;
+            line-height: 1;
+          }
+        }
+        .link-event-details {
+          width: 1.4rem;
+          height: 1.5rem;
+          position: absolute;
+          bottom: 0.5rem;
+          right: 0.5rem;
+          @include rwd(display, flex, ($mobile: flex, $tablet: none, $desktop: none));
+        }
+      }
+    }
+    .pagination-container {
+      display: flex;
+      justify-content: center;
+      position: relative;
+      padding: 2.5rem 0 5rem;
+      .pagination {
+        ::ng-deep .ngx-pagination {
+          padding-inline-start: inherit;
+          display: flex;
+          align-items: center;
+          list-style: none;
+
+          a {padding: 0;}
+
+          .pagination-actual-page {
+            color: $texte;
+            font-size: 1.125rem;
+          }
+
+          li.pagination-previous,
+          li.pagination-next {
+            display: inline-flex;
+            align-items: center;
+            cursor: pointer!important;
+            &::before, &::after {
+              content: none;
+            }
+            &.disabled {
+              opacity: 0.6;
+              cursor: none;
+            }
+            .ng-star-inserted {
+              color: $texte;
+              font-size: 1.125rem;
+            }
+          }
+
+          li.pagination-previous {
+            padding-left: 0;
+            padding-right: 5.5rem;
+            .ng-star-inserted {
+              display: inline-flex;
+              align-items: center;
+              opacity: 1;
+              &::before {
+                content: "";
+                display: inline-flex;
+                width: 1.875rem;
+                height: 1.875rem;
+                margin-right: 0.625rem;
+                background: url("../../../../assets/img/circle-arrow-left-black.svg") no-repeat left center;
+                background-size: contain;
+              }
+            }
+          }
+
+          li.pagination-next {
+            padding-right: 0;
+            padding-left: 5.5rem;
+            .ng-star-inserted {
+              display: inline-flex;
+              align-items: center;
+              opacity: 1;
+              &::after {
+                content: "";
+                display: inline-flex;
+                width: 1.875rem;
+                height: 1.875rem;
+                margin-left: 0.625rem;
+                background: url("../../../../assets/img/circle-arrow-right-black.svg") no-repeat right center;
+                background-size: contain;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/****** ANGULAR MATERIAL STYLE OVERLOAD *********/
+$mat-select-trigger-height-desktop: 4.5rem;
+$mat-select-trigger-height-mobile: 3.5rem;
+$mat-select-trigger-width: 30.125rem;
+
+:host {
+  ::ng-deep {
+    
+    .mat-select {
+      width: auto;
+      font-family: $rubik;
+      @include rwd(font-size, 0.625rem, ($mobile:  0.625rem, $tablet: 1rem, $desktop: 1rem));
+      @include rwd(width, 100%, ($mobile:  100%, $tablet: auto, $desktop: auto));
+    }
+
+    .mat-select-trigger {
+      display: flex;
+      border-radius: 0.25rem;
+      overflow: hidden;
+      @include rwd(height, 3.5rem, ($mobile:  $mat-select-trigger-height-mobile, $tablet:  4rem, $desktop: $mat-select-trigger-height-desktop));
+      // @include rwd(width, 91%, ($mobile:  91%, $tablet: auto, $desktop: auto));
+    }
+  
+    .mat-select-value {
+      display: flex;
+      align-items: center;
+      max-width: none;
+      background-color: #ffffff;
+      @include rwd(width, 100%, ($mobile: 100%, $tablet: $mat-select-trigger-width, $desktop: $mat-select-trigger-width));
+      @include rwd(padding-left, 0.313rem, ($mobile: 0.313rem, $tablet: 0.625rem, $desktop: 0.625rem));
+      @include rwd(padding-right, 0.313rem, ($mobile: 0.313rem, $tablet: 0.625rem, $desktop: 0.625rem));
+    }
+
+    .mat-select-arrow-wrapper {
+      display: flex;
+      flex-shrink: 0;
+      background: $vert url("../../../../assets/img/chevron-down.svg") no-repeat center center;
+      @include rwd(background-size, 15px 7px, ($mobile: 15px 7px, $tablet: auto, $desktop: auto));
+      @include rwd(width, 2.25rem, ($mobile: 2.25rem, $tablet: 4.938rem, $desktop: 4.938rem));
+    }
+
+    .mat-select-arrow {
+      display: none;
+    }
+
+    .mat-select-placeholder {
+      color: $violet-placeholder;
+    }
+
+    .mat-select-value {
+      color: $texte;
+    }
+    
+  }
+}
+
+::ng-deep {
+  // Classe CSS utilisée pour éviter le CSS d'être appliqué sur la modale mat-dialog
+  .cdk-overlay-connected-position-bounding-box {
+    .cdk-overlay-pane {
+      min-width: auto !important;
+      overflow-y: hidden;
+      overflow-x: hidden;
+      font-family: $rubik;
+      border-bottom-left-radius: 0.25rem;
+      border-bottom-right-radius: 0.25rem;
+      box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.24);
+      transform: none !important;
+      @include rwd(width, auto, ($mobile: auto, $tablet: $mat-select-trigger-width, $desktop: $mat-select-trigger-width));
+      @include rwd(margin-top, calc(#{$mat-select-trigger-height-mobile} + 0.125rem), ($mobile: calc(#{$mat-select-trigger-height-mobile} + 0.125rem), $tablet: calc(#{$mat-select-trigger-height-desktop} + 0.125rem), $desktop: calc(#{$mat-select-trigger-height-desktop} + 0.125rem)));
+    }
+
+    .mat-select-panel {
+      border-radius: 0 !important;
+      max-width: unset !important;
+    }
+
+    .mat-option {
+      padding: 0 1.75rem !important;
+      font-family: $rubik;
+      font-weight: normal;
+      font-size: 1rem !important;
+      &.mat-active {
+        background-color: $mauve;
+        font-weight: $medium;
+        &:first-child {
+          background-color: #ffffff;
+        }
+      }
+    }
+
+    .mat-option:hover:not(.mat-option-disabled),
+    .mat-option:focus:not(.mat-option-disabled),
+    .mat-select-panel .mat-option.mat-selected:not(.mat-option-multiple) {
+      background-color: $mauve;
+    }
+  }
+}
+
+

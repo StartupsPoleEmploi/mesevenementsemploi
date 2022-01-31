@@ -1,0 +1,130 @@
+.header {
+  position: relative;
+  z-index: 10;
+  background: #ffffff;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.17);
+  @include rwd(
+    height,
+    3.75rem,
+    (
+      $mobile: 3.75rem,
+      $tablet: 7.313rem,
+      $desktop: 7.313rem,
+    )
+  );
+
+  .container,
+  .container-xl {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  .block-logo {
+    display: flex;
+    align-items: center;
+    .logo-republique-francaise {
+      @include rwd(
+        width,
+        3.125rem,
+        (
+          $mobile: 3.125rem,
+          $tablet: 5.125rem,
+          $desktop: 5.125rem,
+        )
+      );
+    }
+
+    .logo-pe-actions {
+      display: inline-block;
+      @include rwd(
+        margin-left,
+        0.56rem,
+        (
+          $mobile: 0.56rem,
+          $tablet: 1.25rem,
+          $desktop: 1.25rem,
+        )
+      );
+
+      img {
+        @include rwd(
+          width,
+          6.125rem,
+          (
+            $mobile: 6.125rem,
+            $tablet: 10.43rem,
+            $desktop: 10.43rem,
+          )
+        );
+      }
+    }
+  }
+  .block-deconnexion {
+    @include rwd(
+      position,
+      relative,
+      (
+        $mobile: relative,
+        $tablet: absolute,
+        $desktop: absolute,
+      )
+    );
+    @include rwd(
+      right,
+      auto,
+      (
+        $mobile: auto,
+        $tablet: 1rem,
+        $desktop: 1rem,
+      )
+    );
+
+    .logout-link {
+      display: flex;
+      align-items: center;
+      img {
+        margin-right: 1rem;
+        width: 1.375rem;
+      }
+
+      span {
+        font-family: $rubik;
+        font-size: 1rem;
+        @include rwd(
+          display,
+          none,
+          (
+            $mobile: none,
+            $tablet: block,
+            $desktop: block,
+          )
+        );
+      }
+    }
+  }
+
+  &--minified {
+    box-shadow: 0 0.5rem 1rem rgba(167, 175, 183, 0.33);
+    @include rwd(
+      height,
+      3.75rem,
+      (
+        $mobile: 3.75rem,
+        $tablet: 5rem,
+        $desktop: 5rem,
+      )
+    );
+    .block-logo {
+      .logo-republique-francaise {
+        width: 3.125rem;
+      }
+      .logo-pe-actions {  
+        img {
+          width: 6.125rem;
+        }
+      }
+    }
+  }
+}

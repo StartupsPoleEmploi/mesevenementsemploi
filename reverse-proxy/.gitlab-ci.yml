@@ -1,0 +1,62 @@
+stages:
+  - install
+  - deploy
+
+
+renew production tls:
+  stage: install
+  before_script:
+    - apt-get update -qq
+    - apt-get install -y -qq openssh-client
+    # add ssh_private_key in agent store
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PROD_SERVER_PRIVATE_KEY")
+    - mkdir -p ~/.ssh
+  script:
+    - echo "$SSL_dhparam_pem" > nginx/ssl/dhparam.pem
+    - echo "$SSL_entrustpeactionsback_poleemploi_frkey_pem" > nginx/ssl/entrustpeactionsback_poleemploi_frkey_pem
+    - echo "$SSL_peactionsback_poleemploi_fr_crt" > nginx/ssl/SSL_peactionsback_poleemploi_fr_crt
+    - echo "$SSL_entrustpeactions_poleemploi_frkey_pem" > nginx/ssl/SSL_entrustpeactions_poleemploi_frkey_pem
+    - echo "$SSL_peactions_poleemploi_fr_crt" > nginx/ssl/SSL_peactions_poleemploi_fr_crt
+    - scp -o StrictHostKeyChecking=no $CI_PROJECT_DIR/docker-compose-reverse-proxy.yaml gitlab@$PROD_SERVER_IP:/home/docker/pe-actions-reverse-proxy/
+    - ssh -o StrictHostKeyChecking=no gitlab@$PROD_SERVER_IP "
+      cd /home/docker/pe-actions-reverse-proxy &&
+                chmod 640 nginx/ssl/* &&
+                docker-compose -f docker-compose-reverse-proxy.yaml exec -T pe-actions-reverse-proxy bash -c 'nginx -t && nginx -s reload'"
+    
+  when: manual
+  environment:
+    name: production
+    url: https://peactions-back.pole-emploi.fr
+
+
+deploy-to-production:
+  stage: deploy
+  before_script:
+    - apt-get update -qq
+    - apt-get install -y -qq openssh-client
+    # add ssh_private_key in agent store
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PROD_SERVER_PRIVATE_KEY")
+    - mkdir -p ~/.ssh
+
+  script:
+    - echo "$SSL_dhparam_pem" > nginx/ssl/dhparam.pem
+    - echo "$SSL_entrustpeactionsback_poleemploi_frkey_pem" > nginx/ssl/entrustpeactionsback_poleemploi_frkey_pem
+    - echo "$SSL_peactionsback_poleemploi_fr_crt" > nginx/ssl/SSL_peactionsback_poleemploi_fr_crt
+    - echo "$SSL_entrustpeactions_poleemploi_frkey_pem" > nginx/ssl/SSL_entrustpeactions_poleemploi_frkey_pem
+    - echo "$SSL_peactions_poleemploi_fr_crt" > nginx/ssl/SSL_peactions_poleemploi_fr_crt
+    - ssh -o StrictHostKeyChecking=no gitlab@$PROD_SERVER_IP "docker login $CI_REGISTRY -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD"
+    - scp -o StrictHostKeyChecking=no -r nginx/ssl gitlab@$PROD_SERVER_IP:/home/docker/pe-actions-reverse-proxy/nginx
+    - scp -o StrictHostKeyChecking=no -r $CI_PROJECT_DIR/nginx/conf gitlab@$PROD_SERVER_IP:/home/docker/pe-actions-reverse-proxy/nginx
+    - scp -o StrictHostKeyChecking=no $CI_PROJECT_DIR/docker-compose-reverse-proxy.yaml gitlab@$PROD_SERVER_IP:/home/docker/pe-actions-reverse-proxy/
+    - ssh -o StrictHostKeyChecking=no gitlab@$PROD_SERVER_IP "cd /home/docker/pe-actions-reverse-proxy/ && docker-compose -f docker-compose-reverse-proxy.yaml down --rmi all"
+    - ssh -o StrictHostKeyChecking=no gitlab@$PROD_SERVER_IP "cd /home/docker/pe-actions-reverse-proxy/ && docker-compose -f docker-compose-reverse-proxy.yaml up -d"
+    - ssh -o StrictHostKeyChecking=no gitlab@$PROD_SERVER_IP "docker logout $CI_REGISTRY_USER"
+  only:
+    - master
+  when: manual
+  environment:
+    name: production
+    url: https://peactions-back.pole-emploi.fr
+

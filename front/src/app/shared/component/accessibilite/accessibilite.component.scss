@@ -1,0 +1,17 @@
+@import "../../../sass/component-imports.scss";
+
+main {
+  padding: 1.75rem 0 10rem 0;
+}
+
+h2 {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  font-size: 1.75rem;
+  line-height: 2.625rem;
+  color: $violet;
+}
+
+p {
+  margin-bottom: 2rem;
+}

@@ -1,0 +1,161 @@
+@import 'src/sass/styles';
+
+.prerequisites {
+  height: fit-content;
+  width: 60rem;
+  background-color: $white;
+  box-shadow: $shadow;
+  padding: 20px;
+
+  .alert {
+    color: #AE170D;
+    font-family: $rubik;
+    font-size: 18px;
+    letter-spacing: 0;
+    line-height: 22px;
+    background-color: #FCF6F6;
+    padding: 20px 0;
+    display: flex;
+    margin-top: -20px;
+    margin-left: -20px;
+    width: 900px;
+
+    img {
+      margin: 0 1%;
+    }
+  }
+
+  .sub-title {
+    color: $black;
+    font-family: $sans-serif;
+    font-size: $block-title;
+    font-weight: $bold;
+    letter-spacing: 0;
+    line-height: 28px;
+  }
+
+  p {
+    font-family: $sans-serif;
+    font-size: 14px;
+  }
+  ul {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 5%;
+    li {
+      font-family: $sans-serif;
+      font-size: $label;
+      letter-spacing: 0;
+      line-height: 19px;
+      text-align: center;
+      margin-right: 20px;
+      a {
+        text-decoration: none;
+        cursor: pointer;
+      }
+    }
+  }
+  .prerequisites-form {
+    margin-top: 40px;
+    mat-radio-group {
+      ::ng-deep .mat-radio-outer-circle {
+        border: solid 1px $blue-app;
+      }
+      ::ng-deep .mat-radio-inner-circle {
+        background-color: $blue-app;
+      }
+    }
+    .age {
+      display: flex;
+      flex-direction: column;
+      .age-label {
+        color: $black;
+        font-family: $sans-serif;
+        font-size: $label;
+        font-weight: $semi-bold;
+        letter-spacing: 0;
+        line-height: 19px;
+        margin-bottom: 10px;
+      }
+      .age-radio-button {
+        display: flex;
+        justify-content: space-between;
+        mat-label {
+          color: $black;
+          font-family: $sans-serif;
+          font-size: $label;
+          font-weight: $semi-bold;
+          letter-spacing: 0;
+          line-height: 19px;
+          margin-bottom: 10px;
+        }
+      }
+    }
+    .licence {
+      display: flex;
+      flex-direction: column;
+      .licence-label {
+        color: $black;
+        font-family: $sans-serif;
+        font-size: $label;
+        font-weight: $semi-bold;
+        letter-spacing: 0;
+        line-height: 19px;
+        margin-bottom: 10px;
+      }
+      .licence-select {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        ::ng-deep .mat-checkbox-frame {
+          border: 1px solid $blue-app;
+        }
+      }
+    }
+    ::ng-deep .ng-star-inserted {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      min-width: 340px;
+      margin-bottom: 20px;
+    }
+    .box {
+      align-items: center;
+      min-height: 40px;
+      border: 1px solid $blue-app;
+      border-radius: 12px;
+      background-color: $white;
+      padding: 3%;
+      color: $blue-app;
+      max-width: 35%;
+      ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+        background-color: $blue-app;
+      }
+      ::ng-deep .mat-checkbox-layout {
+        white-space: break-spaces;
+      }
+      ::ng-deep .mat-radio-label {
+        white-space: break-spaces;
+      }
+      ::ng-deep .mat-checkbox-frame {
+        border: 1px solid $blue-app;
+      }
+    }
+  }
+  ::ng-deep .mat-form-field-outline {
+     background: $input-color;
+   }
+}
+
+.selected {
+  color: $blue-app;
+  font-weight: $bold;
+}
+
+.not-selected {
+  color: $black;
+  font-weight: $normal;
+}

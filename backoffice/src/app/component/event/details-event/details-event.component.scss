@@ -1,0 +1,164 @@
+@import 'src/sass/styles';
+
+td {
+  border-right: hidden;
+  height: 1.3rem;
+  color: #22333B;
+  font-family: $rubik;
+  font-size: 1.1rem;
+  letter-spacing: 0;
+  line-height: 1;
+}
+.event-title {
+  font-weight: 500;
+  color: #000000;
+  font-family: $rubik;
+  letter-spacing: 0;
+  padding-left: 4.1rem;
+  width: 22rem;
+  padding-right: 2.86rem;
+  line-height: 1.4;
+}
+.event-type {
+  text-align: center;
+  width: 7.28rem;
+  padding-right: 2.86rem;
+  .tag-box {
+    border-radius: 1.4rem;
+    height: 2.35rem;
+    color: #22333B;
+    font-family: $rubik;
+    line-height: 1.2;
+    text-align: center;
+    padding: 0 0.85rem;
+    background-color: #EBEDF8;
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    .tag-label {
+      color: #4833E3;
+      font-family: $rubik;
+      font-size: 0.9rem;
+      text-align: center;
+      margin: 0 0.2rem;
+    }
+  }
+}
+.event-date {
+  width: 6.8rem;
+  padding-right: 3.43rem;
+  font-size: 1rem;
+}
+.event-hour {
+  width: 2.43rem;
+  padding-right: 3.43rem;
+}
+.event-modality {
+  width: 11rem;
+  padding-right: 2.43rem;
+  p {
+    span {
+      .registered {
+        color: #4833E2;
+        font-weight: $bold;
+        font-family: $rubik;
+      }
+    }
+  }
+}
+.event-status {
+  padding-right: 3.28rem;
+  div {
+    display: flex;
+    padding-top: 7%;
+    .dot-status {
+      color: #22333B;
+      font-family: $rubik;
+      font-size: $label;
+      letter-spacing: 0;
+      height: 0.6rem;
+      width: 0.6rem;
+      border-radius: 50%;
+      margin-top: 0.3rem;
+      margin-right: 1rem;
+    }
+    .draft {
+      background-color: #4E5B62;
+    }
+    .private {
+      background-color: #2A5CDF;
+    }
+    .published {
+      background-color: #78EAB1;
+    }
+    .done {
+      background-color: red;
+    }
+  }
+}
+
+.event-actions {
+  text-align: left;
+}
+
+.btn-menu {
+  img {
+    display: block;
+  }
+}
+
+// Menu
+
+::ng-deep {
+  .menu {
+    &.mat-menu-panel {
+      overflow: visible;
+      border-radius: 0.5rem;
+      box-shadow: 0rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+    }
+    .mat-menu-content:not(:empty) {
+      position: relative;
+      padding: 0;
+    }
+    button.menu__closeBtn {
+      position: absolute;
+      right: -0.375rem;
+      top: -1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.875rem;
+      height: 1.875rem;
+      background-color: #4833E3;
+      border-radius: 50%;
+      z-index: 1;
+    }
+    &__btn.mat-menu-item {
+      display: flex;
+      align-items: center;
+      padding: 0 1.5rem;
+      font-family: $rubik;
+      font-size: 1rem;
+      color: #22333B;
+      &:disabled {
+        color: #22333B;
+        opacity: 0.5;
+        .menu__icon {
+          filter: grayscale(100%);
+        }
+      }
+    }
+    &__icon {
+      margin-right: 0.5rem;
+    }
+  }
+
+  // Classe CSS utilisée pour éviter le CSS d'être appliqué sur la modale mat-dialog
+  .cdk-overlay-connected-position-bounding-box {
+    .cdk-overlay-pane {
+      margin-right: 0.25rem;
+      margin-top: -0.75rem;
+    }
+  }
+}
+

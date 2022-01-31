@@ -1,0 +1,249 @@
+@import 'src/sass/styles';
+
+.rectangle {
+  height: 100px;
+  width: 100%;
+  background-color: #22333B;
+  box-shadow: 0 4px 16px 0 rgb(167 175 183 / 33%);
+
+  .rectangle-noir {
+    display: flex;
+    width: 42%;
+    margin-left: 7em;
+    padding-top: 1rem;
+  }
+
+  .back {
+    padding-left: 16%;
+    margin-top: 1rem;
+    cursor: pointer;
+  }
+
+  .event-name {
+    line-height: 1.4;
+    color: #FFFFFF;
+    margin-left: 3%;
+    margin-top: 1.2rem;
+    font-family: $poppins;
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: 0;
+    line-height: 1.2;
+  }
+}
+
+.buttons {
+  justify-content: space-between;
+  float: right;
+  margin-top: -2%;
+  margin-right: 15.2%;
+  right: 0;
+  top: 9rem;
+  position: absolute;
+
+  .exporter {
+    height: 40px;
+    width: 245px;
+    background-color: #EBEDF8;
+    cursor: pointer;
+  }
+
+  .add-candidat {
+    margin-right: 1.4rem;
+    background-color: #4833E3;
+    color: white;
+    font-family: $rubik;
+    font-size: 16px;
+    letter-spacing: 0;
+    line-height: 29px;
+    text-align: center;
+    margin-left: -0.8rem;
+    box-sizing: border-box;
+    height: 41px;
+    width: 15.7rem;
+    border: 0;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px 0 rgb(78 36 188 / 40%);
+    cursor: pointer;
+
+    span {
+      margin-right: 0.7rem;
+    }
+  }
+
+  .img-exporter {
+    vertical-align: top;
+    margin-right: 1rem;
+  }
+
+  .text {
+    color: #4833E3;
+    font-family: $rubik;
+    font-size: 16px;
+    letter-spacing: 0;
+    line-height: 29px;
+    text-align: center;
+    margin-left: -0.8rem;
+    box-sizing: border-box;
+    height: 41px;
+    width: 15.7rem;
+    border: 0;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px 0 rgb(78 36 188 / 40%);
+  }
+}
+
+.alert-danger {
+  left: 0;
+  color: black;
+  font-family: $rubik;
+  font-size: 1.2rem;
+  letter-spacing: 0;
+  line-height: 1.4;
+  background-color: #DDDDFF;
+  width: 100%;
+  padding: 17px 0;
+  display: flex;
+
+  img {
+    margin: 0 1rem 0 17rem;
+  }
+}
+
+.rectangle-flex {
+  display: flex;
+  width: 80rem;
+  margin: auto;
+  justify-content: space-between;
+
+  .inscrits {
+    color: #000;
+    font-size: 1.125rem;
+    font-family: $poppins;
+    display: flex;
+    align-items: center;
+  }
+
+  .rectangle-modalite {
+    height: 56px;
+    background-color: #dad9f5;
+    margin-top: 1.4rem;
+    display: flex;
+
+    .img-modalite {
+      display: flex;
+      margin-left: 1rem;
+
+      img {
+        width: 1.5rem;
+      }
+
+      .img-location {
+        width: 1.2rem;
+      }
+
+      .text-modalite {
+        padding-right: 2rem;
+        padding-top: 0.2rem;
+        margin-left: 8px;
+        height: 19px;
+        width: 200%;
+        color: #4833e3;
+        font-family: $rubik;
+        font-size: 1rem;
+        font-weight: $semi-bold;
+        letter-spacing: 0;
+        line-height: 1.2;
+      }
+    }
+
+  }
+}
+
+.table-center {
+  text-align: center;
+  padding-top: 3rem;
+  width: 80rem;
+  margin: auto;
+
+  #candidats {
+    width: 100%;
+  }
+
+  .gfg {
+    border-collapse: separate;
+    border-spacing: 0 15px;
+  }
+
+  th {
+    padding: 0 1rem;
+    font-weight: normal;
+    color: #22333B;
+    font-family: $rubik;
+    font-size: 1rem;
+    line-height: 1.2;
+    &:first-child {
+      padding-left: 9.25rem;
+    }
+    &.align-left {
+      text-align: left;
+    }
+  }
+}
+
+/* .ide-colonne {
+  padding-left: 3rem;
+}
+
+.nom-colonne {
+  margin-right: 5%;
+}
+
+.email {
+  padding-right: 10rem;
+}
+
+.modalite-colonne {
+  padding-right: 1rem;
+}
+
+.supp {
+  padding-left: 1.5rem;
+}
+
+td {
+  padding: 7px 6px 4px 52px;
+  border-right: hidden;
+} */
+
+.e-card {
+  height: 100px;
+  width: 1250px;
+  background-color: #FFFFFF;
+}
+
+mat-slide-toggle {
+  margin: 8px 0;
+  display: block;
+}
+.pinmap-location {
+  height: 28px;
+  width: 21px;
+}
+.desktop-screen {
+  height: 22px;
+  width: 26px;
+}
+.profil-multi {
+  height: 26px;
+  width: 32px;
+}
+
+
+
+
+
+
+
+
+

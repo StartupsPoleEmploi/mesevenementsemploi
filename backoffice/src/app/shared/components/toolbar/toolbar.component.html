@@ -1,0 +1,70 @@
+<div>
+  <mat-toolbar *ngIf="navbarService.visible">
+    <ng-container *ngIf="isWideScreen | async">
+      <div id="hamburger">
+        <button mat-icon-button (click)="onToggleSidenav()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="isSmallScreen | async">
+      <div class="tabs">
+        <div class="title">
+          <img *ngIf="navbarService.returnTab" alt="icone retour" appBackButton
+               src="./assets/img/circle-arrow-left.svg"/>
+          <span>{{navbarService.toolbarTitle}}</span>
+        </div>
+        <div class="buttons">
+          <button class="creation-btn"
+                  *ngIf="navbarService.createTab"
+                  [routerLink]="['/creer/evenement']"
+                  aria-label="Bouton creation evenement" >
+            <span class="creation-btn-label">{{createBtnLabel}}</span>
+          </button>
+          <button class="export-btn"
+                  *ngIf="navbarService.exportTab"
+                  [routerLink]="['']"
+                  (click)="exportEvents()"
+                  aria-label="Bouton export evenement" >
+            <span class="export-btn-label">{{exportBtnLabel}}</span>
+          </button>
+          <button class="save-draft-btn"
+                  *ngIf="navbarService.saveTab"
+                  (click)="toRegister()"
+                  aria-label="Bouton enregistrer brouillon" >
+            <span class="name">{{saveBtnLabel}}</span>
+          </button>
+          <button class="publish-btn"
+                  *ngIf="navbarService.publishTab"
+                  (click)="toPublish()"
+                  aria-label="Bouton publier" >
+            <img src="./assets/img/send_white_18dp.svg" alt="icone publier"/>
+            <span class="name">{{publishBtnLabel}}</span>
+          </button>
+          <span class="cancel-btn"
+                  *ngIf="navbarService.cancelTab"
+                  (click)="backClicked()"
+                  aria-label="Bouton annuler" >
+          </span>
+          <span class="register-btn"
+                  *ngIf="navbarService.registerTab"
+                  (click)="saveCandidat()"
+                  aria-label="Bouton enregister" >
+          </span>
+          <button class="record-candidate-btn"
+                  *ngIf="navbarService.recordTab"
+                  (click)="navigateToAddNewRegistered()" >
+            <span class="record-btn-label">{{recordBtnLabel}}</span>
+          </button>
+          <button class="export-registered-btn"
+                  *ngIf="navbarService.exportRegisterTab"
+                  (click)="exportCandidates()"
+                  aria-label="Bouton enregister" >
+            <span class="export-registered-btn-label">{{exportRegisteredBtnLabel}}</span>
+          </button>
+        </div>
+
+      </div>
+    </ng-container>
+  </mat-toolbar>
+</div>

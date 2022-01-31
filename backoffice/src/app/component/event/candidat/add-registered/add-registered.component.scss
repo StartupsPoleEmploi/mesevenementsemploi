@@ -1,0 +1,271 @@
+@import 'src/sass/styles';
+
+.rectangle {
+  height: 100px;
+  width: 100%;
+  background-color: #22333B;
+  box-shadow: 0 4px 16px 0 rgb(167 175 183 / 33%);
+
+  .rectangle-noir {
+    display: flex;
+    width: 50%;
+    margin-left: 7em;
+    padding-top: 0.7rem;
+  }
+
+  .back {
+    padding-left: 16%;
+    margin-top: 1rem;
+    cursor: pointer;
+  }
+
+  .inscrire-candidat {
+    color: #FFFFFF;
+    margin-left: 3%;
+    margin-top: 1.2rem;
+    font-family: $poppins;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 0;
+    line-height: 35px;
+  }
+}
+
+.buttons {
+  justify-content: space-between;
+  float: right;
+  margin-top: -2%;
+  margin-right: 15.2%;
+  right: 0;
+  top: 9rem;
+
+  .enregistrer {
+    height: 40px;
+    width: 245px;
+    background-color: #4833E3;
+  }
+
+  .annuler {
+    margin-right: 1.4rem;
+    height: 40px;
+    width: 245px;
+    background-color: transparent;
+    border-color: white;
+  }
+
+  .img-header {
+    vertical-align: top;
+    margin-right: 1rem;
+    cursor: pointer;
+  }
+
+  .text {
+    color: white;
+    font-family: $rubik;
+    font-size: 16px;
+    letter-spacing: 0;
+    line-height: 29px;
+    text-align: center;
+    margin-left: -0.8rem;
+    box-sizing: border-box;
+    height: 41px;
+    width: 276px;
+    border: 0;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px 0 rgb(78 36 188 / 40%);
+  }
+}
+
+.alert-danger {
+  position: absolute;
+  left: 0;
+  color: #AE170D;
+  font-family: $rubik;
+  font-size: 1.2rem;
+  letter-spacing: 0;
+  line-height: 1.4;
+  background-color: #FCF6F6;
+  width: 100%;
+  padding: 17px 0;
+  display: flex;
+
+  img {
+    margin: 0 1rem 0 17rem;
+  }
+}
+
+.container {
+  border: 3px solid #fff;
+  padding: 1.43rem;
+  width: 77rem;
+  margin: 4rem auto 2rem;
+  background-color: #FFFFFF;
+  box-shadow: 0 2px 2px 0 rgb(0 0 0 / 24%);
+  height: 35.7rem;
+
+  .float-container {
+    form {
+      flex-direction: column;
+      max-width: 100%;
+
+      .infos {
+        margin-left: 8rem;
+        margin-bottom: -6rem;
+
+        span {
+          color: $mention-color;
+          font-size: $mention;
+          line-height: 1rem;
+          font-family: $rubik;
+          margin-bottom: 43px;
+        }
+      }
+
+      .float-child {
+        float: left;
+        padding: 8rem;
+        width: 27%;
+
+        mat-label {
+          font-size: 1.1rem;
+          font-family: $rubik;
+          font-weight: 500;
+          padding-right: 3rem;
+          margin-bottom: 0.57rem;
+        }
+
+        mat-form-field {
+          background: #ebedf8;
+          line-height: 1.5;
+
+          ::ng-deep .mat-form-field-wrapper {
+            margin: auto;
+            padding: inherit;
+          }
+        }
+
+        ::ng-deep .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick {
+          color: #AE170D;
+        }
+
+        mat-error {
+          padding-top: 0.7rem;
+          color: #AE170D;
+
+        }
+
+        .civilte-candidat {
+          display: flex;
+          flex-direction: column;
+          padding-top: 2.2rem;
+
+          .civilite-label {
+            margin-top: -1rem;
+          }
+
+          mat-radio-group {
+            padding-bottom: 1rem;
+
+            mat-radio-button {
+              padding-right: 3rem;
+            }
+            ::ng-deep .mat-radio-outer-circle{
+              border-color: #45467A;
+            }
+
+          }
+
+          ::ng-deep .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+            border-color: #4833E3;
+          }
+
+          ::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle, .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple), .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple, .mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
+            background-color: #4833E3;
+          }
+        }
+
+        .nom-candidat {
+          display: flex;
+          flex-direction: column;
+          padding-top: 2.28rem;
+          padding-bottom: 1rem;
+          width: 26rem;
+        }
+
+        .nom-candidat-right {
+          display: flex;
+          flex-direction: column;
+          padding-top: 0.75rem;
+          padding-bottom: 1rem;
+          width: 26rem;
+        }
+
+        .date-naissance {
+          display: inline;
+          flex-direction: column;
+          padding-top: 0.8rem;
+          padding-bottom: 1rem;
+          width: 26rem;
+
+          mat-label {
+            font-weight: 500;
+            margin-bottom: 2rem;
+            margin-right: 7rem;
+          }
+
+          mat-form-field {
+            width: 5rem;
+            margin-right: 1rem;
+            margin-top: 0.75rem;
+            padding: initial;
+
+            ::ng-deep .mat-form-field-wrapper {
+              margin: auto;
+              padding: inherit;
+            }
+          }
+
+          mat-error {
+            padding-top: 0.7rem;
+            color: #AE170D;
+          }
+
+          .year-field {
+            width: 6rem;
+          }
+        }
+
+        .modalite {
+          display: flex;
+          flex-direction: column;
+          padding-top: 4rem;
+          width: 36rem;
+
+          mat-radio-group {
+            padding-bottom: 1rem;
+
+            mat-radio-button {
+              padding-right: 3rem;
+            }
+          }
+
+          ::ng-deep .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+            border-color: #4833E3;
+          }
+
+          ::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle, .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple), .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple, .mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
+            background-color: #4833E3;
+          }
+        }
+      }
+    }
+  }
+}
+
+::ng-deep .mat-form-field.ng-invalid.ng-touched .mat-form-field-wrapper .mat-form-field-flex .mat-form-field-outline {
+  background-color: #fcf6f6;
+}
+
+::ng-deep .mat-input-element {
+  caret-color: #FCF6F6;
+}

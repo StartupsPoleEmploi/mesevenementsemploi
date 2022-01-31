@@ -1,0 +1,84 @@
+@import 'src/sass/styles';
+
+form {
+  .recruiter-form {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    .recruiter-info {
+      display: flex;
+      align-items: center;
+      width: 50%;
+      margin-bottom: 10px;
+      .recruiter-name {
+        margin-right: 2%;
+      ::ng-deep .mat-form-field-wrapper {
+        padding-bottom: 0em!important;
+        font-size: $mention!important;
+      }
+      .alert-danger {
+        color: $danger;
+      }
+      mat-form-field {
+       min-width: 354px;
+       ::ng-deep .mat-form-field-outline {
+         width: 354px;
+         border: 1px solid $input-color;
+         background-color: $input-color;
+       }
+     }
+    }
+    .recruiter-url {
+      ::ng-deep .mat-form-field-wrapper {
+        padding-bottom: 0em!important;
+        font-size: $mention!important;
+      }
+      mat-form-field {
+        min-width: 354px;
+        ::ng-deep .mat-form-field-outline {
+          width: 354px;
+          border: 1px solid $input-color;
+          background-color: $input-color;
+        }
+      }
+      .alert-danger {
+        color: red;
+      }
+    }
+    mat-form-field {
+      min-width: 354px;
+    }
+    button {
+     background: $blue-app;
+     box-shadow: 0 2px 4px 0 rgba(78,36,188,0.4);
+     color: $white;
+     margin-left: 4%;
+     min-width: 100px;
+   }
+  }
+
+  }
+  .recruiter-added {
+    display: flex;
+    mat-chip-list {
+      mat-chip {
+        background-color: $blue-app;
+        border-radius: 12px;
+        font-family: $rubik;
+        font-size: 16px;
+        padding: 30px 20px 30px 20px;
+        span {
+          min-width: fit-content;
+        }
+        mat-icon {
+          background: transparent;
+          margin-left: 2%;
+          border: 1px white solid;
+          border-radius: 50%;
+          color: $white;
+        }
+      }
+    }
+  }
+}
+

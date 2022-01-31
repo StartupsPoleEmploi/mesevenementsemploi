@@ -1,0 +1,20 @@
+<div class="closing">
+  <img (click)="closeDialog()" alt="icone de fermeture de popin" class="img-close" src="../../../../assets/img/remove.svg" />
+  <span (click)="closeDialog()" class="close">Fermer</span>
+</div>
+<h2 mat-dialog-title>{{title}}</h2>
+<mat-dialog-content>{{message}}</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <img *ngIf="!this.candidatConnected.isLoggedIn()"
+       (click)="onClickButtonSeConnecterAvecPE()"
+       class="img-pe-connect"
+       src="../../../../assets/img/pe-connect-barre-nav-b.svg"
+       alt="boutton connexion PE"/>
+  <div>
+    <button *ngIf="this.candidatConnected.isLoggedIn()" class="cancel" mat-dialog-close mat-raised-button
+            tabindex="-1">{{cancelButtonText}}</button>
+    <button (click)="onConfirmClick()" *ngIf="this.candidatConnected.isLoggedIn()" class="confirm" color="primary"
+            mat-raised-button
+            tabindex="1">{{confirmButtonText}}</button>
+  </div>
+</mat-dialog-actions>

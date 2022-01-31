@@ -1,0 +1,78 @@
+@import 'src/styles';
+
+.container {
+  height: 301px;
+  width: 545px;
+  background-color: #FFFFFF;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24);
+  padding: 1.2rem 2.1rem 5.3rem 5.8rem;
+  position: absolute;
+  top: 300px;
+  left: 600px;
+
+  img {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    cursor: pointer;
+  }
+
+  h2 {
+    margin-top: 10%;
+    font-family: $rubik;
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: $no-space;
+    line-height: 28px;
+  }
+
+  mat-dialog-content {
+    p {
+      font-family: $poppins;
+      font-size: $label;
+      letter-spacing: $no-space;
+      line-height: 24px;
+      margin-bottom: 33px;
+      max-width: 35rem;
+      font-weight: $semi-bold;
+    }
+  }
+
+  mat-dialog-actions {
+    justify-content: start;
+
+    .confirm {
+      font-size: 1rem;
+      font-family: $rubik;
+    }
+
+    ::ng-deep .mat-focus-indicator.confirm {
+      height: 41px;
+      min-width: 14rem;
+      border-radius: 4px;
+      background-color: #4833E3;
+      box-shadow: 0 2px 4px 0 rgba(78, 36, 188, 0.4);
+      margin-right: 30px;
+    }
+
+    ::ng-deep .mat-focus-indicator.cancel {
+      box-sizing: border-box;
+      height: 41px;
+      min-width: 91px;
+      border: 1px solid #4833E3;
+      border-radius: 4px;
+      background-color: #FFFFFF;
+      box-shadow: 0 2px 4px 0 rgba(78, 36, 188, 0.4);
+
+      ::ng-deep .mat-button-wrapper {
+        color: #4833E3;
+        font-family: $rubik;
+        font-size: $label;
+        letter-spacing: $no-space;
+        line-height: 29px;
+        text-align: center;
+      }
+    }
+
+  }
+}

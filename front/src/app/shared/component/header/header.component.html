@@ -1,0 +1,23 @@
+<header [ngClass]="{'header': true, 'header--minified': minified}" role="banner">
+    <div [ngClass]="{'container': !minified, 'container-xl': minified}">
+        <div class="block-logo">
+            <img class="logo-republique-francaise"
+                src="../../../../assets/img/logo-marianne.svg"
+                alt="logo République Française" />
+            <a (click)="backHome()" href="#" title="Accueil - Pôle Emploi Action's" class="logo-pe-actions">
+                <img src="../../../../assets/img/logo-pole-emploi-action.svg"
+                alt="" />
+            </a>
+        </div>
+        <div *ngIf="this.candidatConnected.isLoggedIn()" class="block-deconnexion" >
+            <button (click)="signOut()" class="logout-link">
+                <img src="../../../../assets/img/deconnexion.svg"
+                    alt="" />
+                <span>Se déconnecter</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+
+

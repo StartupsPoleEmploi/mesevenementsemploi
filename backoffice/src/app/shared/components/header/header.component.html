@@ -1,0 +1,17 @@
+<div class="header">
+  <mat-toolbar>
+    <img
+      class="peactions"
+      routerLink="evenements"
+      src="./assets/img/PEACTIONS-2020_violet.svg"
+      alt="logo Pole emploi actions">
+    <div class="right-elements">
+      <img class="agent-identifiant" src="./assets/img/building.svg" alt="logo agence" />
+      <p class="agence-name">Agence {{libelle}}</p>
+      <img (click)="signOut()" class="logout-icon" src="./assets/img/deconnexion.svg" alt="logo deconnexion" />
+    </div>
+  </mat-toolbar>
+</div>
+
+
+

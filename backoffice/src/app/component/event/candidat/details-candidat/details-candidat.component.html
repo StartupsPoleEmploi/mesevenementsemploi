@@ -1,0 +1,23 @@
+<td *ngIf="candidat">
+  <p>{{candidat.identifiantRci}}</p>
+</td>
+<td *ngIf="candidat">
+  <p>{{candidat.nom}}</p>
+</td>
+<td *ngIf="candidat">
+  <p>{{candidat.prenom}}</p>
+</td>
+<td *ngIf="candidat">
+  <p class="email">{{candidat.email}}</p>
+</td>
+<td *ngIf="candidat" class="align-center">
+  <span *ngIf="candidat.modaliteAccesId"><img src="./assets/img/pinmap-location.svg"/></span>
+  <span *ngIf="!candidat.modaliteAccesId"><img src="./assets/img/desktop-screen.svg"/></span>
+</td>
+<td *ngIf="candidat" class="align-center">
+  <mat-slide-toggle (change)="change($event)" [checked]="checked"
+                    color="primary"></mat-slide-toggle>
+</td>
+<td *ngIf="candidat" class="align-center">
+  <img (click)="deleteCandidat()" class="img-align" src="./assets/img/delete.svg"/>
+</td>

@@ -1,0 +1,20 @@
+<div class="offer">
+  <h3 class="offer-title" >Offre(s) d'emploi</h3>
+  <p class="sub-title">Saisissez le n° de l'offre d'emploi rattachée à votre évènement</p>
+  <form class="offer-form" [formGroup]="offerForm">
+    <mat-form-field appearance="outline">
+      <input formControlName="offer" type="text" onKeyPress="if(this.value.length==7) return false;" matInput />
+    </mat-form-field>
+    <button mat-button (click)="addOffer()" >AJOUTER</button>
+  </form>
+  <span class="error" *ngIf="errorMessage">{{errorMessage}}</span>
+  <div class="offer-selected">
+    <mat-chip-list>
+      <mat-chip *ngFor="let offer of offersList" selected>
+        {{offer.intitule}} - {{offer.id}}
+        <mat-icon (click)="removeOffer(offer)">clear</mat-icon>
+      </mat-chip>
+    </mat-chip-list>
+  </div>
+</div>
+

@@ -1,0 +1,85 @@
+<div class="prerequisites">
+  <div *ngIf="validationState" class="alert">
+    <img src="./assets/img/error_outline_red_18dp.svg" alt="icone champs requis" />
+    <span>Vous devez renseigner au moins 2 pré-requis sur l'ensemble des catégories</span>
+  </div>
+  <h2 class="sub-title">*Pré-requis des participants</h2>
+  <p>Vous devez cocher au minimum 2 pré-requis sur l'ensemble des catégories</p>
+  <ul>
+    <li>
+      <a (click)="displayDiploma()" [ngClass]="isDiploma ? 'selected' : 'not-selected'">Diplôme</a>
+    </li>
+    <li>
+      <a (click)="displayAgeAndLicence()" [ngClass]="isAgeAndLicence ? 'selected' : 'not-selected'">Age et permis</a>
+    </li>
+    <li>
+      <a (click)="displaySkills()" [ngClass]="isSkills ? 'selected' : 'not-selected'">Savoir-être</a>
+    </li>
+    <li>
+      <a (click)="displayConstraint()" [ngClass]="isConstraint ? 'selected' : 'not-selected'">Contraintes</a>
+    </li>
+  </ul>
+  <hr>
+  <div *ngFor="let category of prerequisitesCategoriesList" class="prerequisites-form">
+    <div *ngIf="category.id == DIPLOME_CATEGORY_ID && isDiploma">
+      <div class="box" *ngFor="let diplomaOption of prerequisitesByDiploma" >
+        <mat-checkbox
+          [checked]="isSelected(diplomaOption.id)"
+          (change)="onChange($event)"
+          [value]="diplomaOption.id">
+          {{diplomaOption.libelle}}
+        </mat-checkbox>
+      </div>
+    </div>
+    <div *ngIf="category.id == AGE_CATEGORY_ID && isAgeAndLicence" class="age">
+      <div class="age-label">
+        <mat-label>{{category.libelle}}</mat-label>
+      </div>
+      <div class="age-radio-button">
+        <div class="box" *ngFor="let ageOption of prerequisitesByAge; let i = index">
+          <mat-checkbox
+            [checked]="isSelected(ageOption.id)"
+            (change)="onChange($event)"
+            [value]="ageOption.id">
+            {{ageOption.libelle}}
+          </mat-checkbox>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="category.id == LICENCE_CATEGORY_ID && isAgeAndLicence" class="licence">
+      <div class="licence-label">
+        <mat-label>{{category.libelle}}</mat-label>
+      </div>
+      <div class="licence-select">
+        <div class="box" *ngFor="let licenceOption of prerequisitesByLicence; let i = index">
+          <mat-checkbox
+            [checked]="isSelected(licenceOption.id)"
+            (change)="onChange($event)"
+            [value]="licenceOption.id">
+            {{licenceOption.libelle}}
+          </mat-checkbox>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="category.id == SKILLS_CATEGORY_ID && isSkills">
+      <div class="box" *ngFor="let softSkillOption of prerequisitesBySoftSkill; let i = index">
+        <mat-checkbox
+          (change)="onChange($event)"
+          [checked]="isSelected(softSkillOption.id)"
+          [value]="softSkillOption.id">
+          {{softSkillOption.libelle}}
+        </mat-checkbox>
+      </div>
+    </div>
+    <div *ngIf="category.id == CONSTRAINT_CATEGORY_ID && isConstraint">
+      <div class="box" *ngFor="let constraintOption of prerequisitesByConstraint; let i = index">
+        <mat-checkbox
+          (change)="onChange($event)"
+          [checked]="isSelected(constraintOption.id)"
+          [value]="constraintOption.id">
+          {{constraintOption.libelle}}
+        </mat-checkbox>
+      </div>
+    </div>
+  </div>
+</div>

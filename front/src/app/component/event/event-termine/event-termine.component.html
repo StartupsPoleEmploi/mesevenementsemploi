@@ -1,0 +1,24 @@
+<app-header [minified]="true"></app-header>
+<body>
+<nav aria-label="Breadcrumb" class="breadcrumb">
+    <ul>
+        <li><a [routerLink]="['/evenements']" href="">Accueil</a></li>
+    </ul>
+</nav>
+<div class="content">
+    <img class="happy-bunch-party-of-three" src="./assets/img/KO.svg"/>
+    <div class="element-flex-social">
+        <img class="hands-denied" src="./assets/img/Hands%20-%20Denied.svg"/>
+        <p class="validez-les-pre-requ">Ouuuups !</p>
+    </div>
+    <div class="rectangle">
+        <p class="malheureusement-nous">Cet événement est terminé.
+            <br/><br/>Nous vous invitons à effectuer une nouvelle recherche qui vous correspond mieux</p>
+    </div>
+    <br/><br/>
+    <button [routerLink]="['/evenements']" class="bg"><span class="text">Effectuer une nouvelle recherche</span>
+    </button>
+</div>
+<app-footer class="footer"></app-footer>
+</body>
+

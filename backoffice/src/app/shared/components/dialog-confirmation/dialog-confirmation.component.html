@@ -1,0 +1,15 @@
+<div class="container">
+  <img src="./assets/img/remove.svg" alt="icone de fermeture de popin" (click)="closeDialog()" />
+  <h2 mat-dialog-title>{{title}}</h2>
+  <mat-dialog-content>
+    <p>
+      {{message}}
+    </p>
+  </mat-dialog-content>
+  <mat-dialog-actions align="center">
+    <button mat-raised-button mat-dialog-close class="cancel" tabindex="-1">{{cancelButtonText}}</button>
+    <button (click)="onConfirmClick()" class="confirm" color="primary" mat-raised-button
+            tabindex="1">{{confirmButtonText}}</button>
+  </mat-dialog-actions>
+</div>
+

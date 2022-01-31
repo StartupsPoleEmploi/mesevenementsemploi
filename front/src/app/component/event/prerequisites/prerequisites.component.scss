@@ -1,0 +1,188 @@
+@import "../../../sass/component-imports.scss";
+
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: #EBEDF8;
+  height: auto;
+  @include rwd(overflow-x, hidden, ($mobile: hidden, $tablet: auto, $desktop: auto));
+  @include rwd(overflow-y, auto, ($mobile: auto, $tablet: auto, $desktop: auto));
+
+  .accueil-reunion-d {
+    height: 14px;
+    color: $texte;
+    font-family: $rubik;
+    font-size: 13px;
+    letter-spacing: 0;
+    line-height: 14px;
+    margin-bottom: -4%;
+    padding-top: 1%;
+    @include rwd(margin-left, 0, ($mobile: 0, $tablet: 13.5%, $desktop: 13.5%));
+  }
+
+  .breadcrumb {
+    @include rwd(display, none, ($mobile: none, $tablet: block, $desktop: block));
+    ul {
+      display: flex;
+      list-style-type: none;
+    }
+
+    li {
+      a {
+        text-decoration: none;
+        margin: 0;
+        color: $texte;
+        font-family: $rubik;
+        font-size: 13px;
+      }
+    }
+
+    li::before {
+      content: " > ";
+    }
+
+    li:first-child::before {
+      content: "";
+    }
+
+    .margin-li {
+      margin-right: 0.2%;
+
+      span {
+        margin: 0;
+        color: $texte;
+        font-family: $rubik;
+        font-size: 13px;
+      }
+    }
+  }
+
+  .content {
+    flex: 1 0 auto;
+    margin: 8% 10% 3% 10%;
+    @include rwd(margin, 10% 10% 3% 10%, ($mobile: 10% 10% 3% 10%, $tablet: 8% 10% 3% 10%, $desktop: 8% 10% 3% 10%));
+
+    .happy-bunch-party-of-three {
+      margin-top: 0;
+      @include rwd(height, 211px, ($mobile: 211px, $tablet: 152px, $desktop: 152px));
+      @include rwd(width, 483px, ($mobile: 483px, $tablet: 186.55px, $desktop: 186.55px));
+      @include rwd(margin-left, -26%, ($mobile: -26%, $tablet: 41%, $desktop: 41%));
+    }
+
+    .validez-les-pre-requ {
+      margin-top: 1%;
+      color: $texte;
+      font-family: $poppins;
+      font-weight: $bold;
+      letter-spacing: 0;
+      line-height: 36px;
+      text-align: center;
+      @include rwd(font-size, 23px, ($mobile: 23px, $tablet: 28px, $desktop: 28px));
+    }
+
+    .pour-participer-a-ce {
+      height: 36px;
+      color: $texte;
+      font-family: $rubik;
+      font-weight: 600;
+      letter-spacing: 0;
+      line-height: 36px;
+      text-align: center;
+      @include rwd(font-size, 18px, ($mobile: 18px, $tablet: 21px, $desktop: 21px));
+      @include rwd(padding-top, 4px, ($mobile: 4px, $tablet: 0, $desktop: 0));
+      @include rwd(padding-bottom, 5%, ($mobile: 5%, $tablet: 0, $desktop: 0));
+    }
+
+    .margin-form {
+      padding: 0 16px;
+      max-width: 550px;
+      @include rwd(margin, 19% auto 50px auto, ($mobile: 19% auto 50px auto, $tablet: 50px auto, $desktop: 50px auto));
+      @include rwd(padding, 0, ($mobile: 0, $tablet: 0 16px, $desktop: 0 16px));
+    }
+
+    .form-check {
+      position: relative;
+      margin-bottom: 1rem;
+
+      label {
+        display: block;
+        padding: 1.688rem 2rem 1.688rem 3.5rem;
+        color: $violet;
+        cursor: pointer;
+        overflow: hidden;
+        border: 1px solid transparent;
+        border-radius: 0.75rem;
+        background-color: #fff;
+        transition: all 0.3s ease;
+
+        &::before {
+          content: "";
+          position: absolute;
+          left: 2rem;
+          top: 50%;
+          display: inline-flex;
+          height: 1.125rem;
+          width: 1.125rem;
+          margin-right: 0.5rem;
+          background-color: transparent;
+          border: 2px solid $violet;
+          border-radius: 2px;
+          transform: translateY(-50%);
+          opacity: 0.5;
+          transition: all 0.3s ease;
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          left: 2rem;
+          top: 50%;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          height: 1.125rem;
+          width: 1.125rem;
+          background: url("../../../../assets/img/check.svg") no-repeat center center;
+          background-size: 1rem 1rem;
+          color: #ffffff;
+          transform: translateY(-50%);
+          opacity: 0;
+          transition: all 0.3s ease;
+        }
+      }
+
+      input {
+        position: absolute;
+        left: 0;
+        z-index: -1;
+        width: 1rem;
+        height: 1.25rem;
+        opacity: 0;
+        &:checked + label {
+          border: 1px solid;
+          &::before {
+            opacity: 1;
+            background-color: $violet;
+          }
+          &::after {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}
+
+::ng-deep .mat-checkbox {
+  .mat-checkbox-ripple .mat-ripple-element {
+    background-color: $violet !important;
+  }
+
+  .mat-checkbox-frame {
+    border-color: $violet !important;
+  }
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color: $violet;
+}

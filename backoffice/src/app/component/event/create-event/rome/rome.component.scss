@@ -1,0 +1,42 @@
+@import 'src/sass/styles';
+
+.rome {
+  .sub-title {
+    color: $black;
+    font-family: $rubik;
+    font-size: $label;
+    font-weight: $semi-bold;
+    letter-spacing: 0;
+    line-height: 19px;
+    margin-bottom: 0;
+  }
+  .rome-form {
+    mat-form-field {
+      width: 55%;
+
+      ::ng-deep .mat-form-field-outline {
+        width: 476px;
+        border: 1px solid $input-color;
+        background-color: $input-color;
+      }
+
+      ::ng-deep .mat-form-field-wrapper {
+        padding-bottom: 0;
+      }
+    }
+
+    .mat-form-field.ng-invalid.ng-touched {
+      ::ng-deep .mat-form-field-wrapper {
+        ::ng-deep .mat-form-field-flex {
+          ::ng-deep .mat-form-field-outline {
+            background-color: $danger-background;
+          }
+        }
+      }
+    }
+
+    span {
+      color: $danger;
+    }
+  }
+}

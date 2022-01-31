@@ -1,0 +1,56 @@
+<app-header [minified]="true"></app-header>
+<body>
+
+<div class="content">
+    <img class="confitmation-img" src="./assets/img/Confirmation.svg" alt="image de confirmation"/>
+    <h1 class="confitmation-text">Nous vous confirmons votre inscription<br/>à cette rencontre à distance !</h1>
+    <div class="rectangle">
+        <div *ngIf="event" class="sous-rectangle">
+            <h2 class="titre">{{event.titre}}</h2>
+            <div class="element-flex-social display-date ">
+                <img class="calendar-distance" src="./assets/img/calendar.svg" alt="calendrier"/>
+                <p class="date-distance">{{event.dateEvenement}}</p>
+                <img class="calendar-distance-horloge" src="./assets/img/clock.svg" alt="calendrier distant"/>
+                <p class="date-distance-horloge">{{event.heureDebut}} - {{event.heureFin}}</p>
+            </div>
+            <div class="element-flex-social rectangle-mail">
+                <img class="shape" src="./assets/img/clock.svg" alt="horloge"/>
+                <p class="le-lien-de-la-reunio"> Le lien de la réunion en ligne vous sera communiqué par mail la veille
+                    de cette rencontre.</p>
+            </div>
+            <div class="social-networks">
+                <p class="share-label">Partager cet événement</p>
+                <button
+                   class="social-link"
+                   (click)="shareWithTwitter()"
+                   onclick="window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=700');return false;"
+                   rel="nofollow"
+                   title="Twitter">
+                    <img alt="icone Twitter" src="./assets/img/ant-design_twitter-circle-filled.svg"/>
+                </button>
+                <button
+                   class="social-link"
+                   (click)="shareWithLinkedin()"
+                   onclick="window.open(this.href, '','menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=450,width=650');return false;"
+                   rel="nofollow"
+                   title="Linkedin">
+                    <img alt="icone Linkedin" src="./assets/img/linkedin.svg"/>
+                </button>
+                <button
+                   class="social-link"
+                   (click)="shareWithFacebook()"
+                   onclick="window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=500,width=700');return false;"
+                   rel="nofollow"
+                   title="Facebook">
+                    <img alt="icone Facebook" src="./assets/img/bx_bxl-facebook-circle.svg"/>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/><br/>
+    <button [routerLink]="['/evenements']" class="bg"><span class="text">Effectuer une nouvelle recherche</span>
+    </button>
+
+</div>
+<app-footer class="footer"></app-footer>
+</body>

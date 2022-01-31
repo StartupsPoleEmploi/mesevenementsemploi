@@ -1,0 +1,31 @@
+<form #formDirective="ngForm" (ngSubmit)="addRecruiter(recruiterForm, formDirective)" [formGroup]="recruiterForm">
+  <div class="recruiter-form">
+    <div class="recruiter-info">
+      <div class="recruiter-name">
+        <mat-form-field appearance="outline">
+          <mat-label>*Nom de l'entreprise/organisme</mat-label>
+          <input formControlName="recruiterName" matInput/>
+        </mat-form-field>
+      </div>
+      <div class="recruiter-url">
+        <mat-form-field appearance="outline">
+          <mat-label >Url de l'entreprise/organisme</mat-label>
+          <input formControlName="recruiterUrl" type="url" matInput />
+        </mat-form-field>
+        <span class="alert-danger" *ngIf="recruiterForm.controls['recruiterUrl'].hasError('pattern')" >
+          Format d'url non conforme
+        </span>
+      </div>
+      <button mat-button type="submit">AJOUTER</button>
+    </div>
+  </div>
+  <div class="recruiter-added" *ngIf="isRecruiters()" >
+    <mat-chip-list>
+      <mat-chip *ngFor="let recruiter of recruiters" selected>
+        <span>{{recruiter.libelle}}<br>{{recruiter.siteWeb}}</span>
+        <mat-icon (click)="deleteRecruiter(recruiter)">clear</mat-icon>
+      </mat-chip>
+    </mat-chip-list>
+  </div>
+</form>
+

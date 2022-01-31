@@ -1,0 +1,200 @@
+@import 'src/styles';
+body {
+  height: 1000px;
+  display: flex;
+  flex-direction: column;
+  background-color: #EBEDF8;
+  @include rwd(overflow-x, hidden, ($mobile: hidden, $tablet: auto, $desktop: auto));
+  @include rwd(overflow-y, hidden, ($mobile: hidden, $tablet: auto, $desktop: auto));
+  @include rwd(overflow-y, height, ($mobile: 1300px, $tablet: 1050px, $desktop: 1050px));
+
+  .breadcrumb {
+    @include rwd(display, none, ($mobile: none, $tablet: block, $desktop: block));
+    margin-left: 4%;
+
+    ul {
+      display: flex;
+      list-style-type: none;
+      margin-left: 10%;
+      margin-top: 3%;
+
+      li {
+        a {
+          text-decoration: none;
+          margin: 0%;
+          color: #1B2B67;
+          font-family: $rubik;
+          font-size: 13px;
+        }
+      }
+
+      li::before {
+        content: " > ";
+      }
+
+      li:first-child::before {
+        content: "";
+      }
+
+      .margin-li {
+        margin-right: 0.2%;
+        color: #1B2B67;
+
+        span {
+          margin: 0%;
+          color: #1B2B67;
+          font-family: $rubik;
+          font-size: 13px;
+        }
+      }
+    }
+  }
+
+  .content {
+    flex: 1 0 auto;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 2%;
+    margin-bottom: 3%;
+
+    .happy-bunch-party-of-three {
+      height: 211px;
+      width: 483px;
+      @include rwd(margin-left, -17%, ($mobile: -17%, $tablet: 33%, $desktop: 33%));
+      @include rwd(height, 185px, ($mobile: 185px, $tablet: 211px, $desktop: 211px));
+      @include rwd(width, 432px, ($mobile: 432px, $tablet: 483px, $desktop: 483px));
+    }
+
+    .finaliser-votre-insc {
+      color: #1B2B67;
+      @include rwd(font-size, 20px, ($mobile: 20px, $tablet: 28px, $desktop: 28px));
+      @include rwd(font-family, $poppins, ($mobile: $poppins, $tablet: $rubik, $desktop: $rubik));
+      font-weight: bold;
+      letter-spacing: 0;
+      line-height: 36px;
+      text-align: center;
+    }
+
+    .il-existe-2-modalite {
+      height: 36px;
+      color: #1B2B67;
+      font-family: $rubik;
+      @include rwd(font-size, 16px, ($mobile: 16px, $tablet: 21px, $desktop: 21px));
+      @include rwd(line-height, O, ($mobile: 0, $tablet: 36px, $desktop: 36px));
+      font-weight: 600;
+      letter-spacing: 0;
+      text-align: center;
+    }
+
+    .element-flex {
+      @include rwd(display, block, ($mobile: 12px, $tablet: flex, $desktop: flex));
+      @include rwd(display, 5%, ($mobile: 5%, $tablet: 34%, $desktop: 34%));
+      @include rwd(margin-top, -2rem, ($mobile: -2rem, $tablet: 0, $desktop:0));
+
+      .bg {
+        height: 54px;
+        width: 250px;
+        border-radius: 4px;
+        background-color: #4833E3;
+        box-shadow: 0 2px 4px 0 rgba(72, 51, 227, 0.4);
+        border-color: transparent;
+        cursor: pointer;
+        @include rwd(margin-bottom, 6%, ($mobile: 6%, $tablet: 0, $desktop: 0));
+        @include rwd(margin-left, 0%, ($mobile: 0%, $tablet: 32%, $desktop: 32%));
+      }
+
+      .text {
+        height: 29px;
+        width: 196px;
+        color: #FFFFFF;
+        font-family: $rubik;
+        font-size: 16px;
+        font-weight: bold;
+        letter-spacing: 0;
+        line-height: 29px;
+        text-align: center;
+      }
+
+      .bg-grise {
+        height: 54px;
+        width: 250px;
+        border-radius: 4px;
+        background-color: #DDDDFF;
+        box-shadow: 0 2px 4px 0 rgba(72, 51, 227, 0.4);
+        cursor: pointer;
+        @include rwd(margin-bottom, 6%, ($mobile: 6%, $tablet: 0, $desktop: 0));
+        @include rwd(margin-left, 0%, ($mobile: 0%, $tablet: 32%, $desktop: 32%));
+      }
+
+      .bg2 {
+        cursor: pointer;
+        box-sizing: border-box;
+        height: 55px;
+        width: 250px;
+        border: 1px solid #4833E3;
+        border-radius: 4px;
+        background-color: #4833E3;
+        box-shadow: 0 2px 4px 0 rgba(72, 51, 227, 0.4);
+      }
+
+      .bg2-grise {
+        cursor: pointer;
+        box-sizing: border-box;
+        height: 55px;
+        width: 250px;
+        border: 1px solid #4833E3;
+        border-radius: 4px;
+        background-color: #DDDDFF;
+        box-shadow: 0 2px 4px 0 rgba(72, 51, 227, 0.4);
+      }
+
+      .text-bg {
+        height: 29px;
+        width: 177px;
+        color: white;
+        font-family: $rubik;
+        font-size: 16px;
+        font-weight: bold;
+        letter-spacing: 0;
+        line-height: 29px;
+        text-align: center;
+      }
+    }
+
+    .element-flex-social {
+      margin-left: 37%;
+      margin-top: 2%;
+      display: flex;
+
+      .hands-denied {
+        height: 32px;
+        width: 32px;
+        margin-right: 1%;
+      }
+
+      .il-ne-reste-plus-de {
+        height: 36px;
+        width: 325px;
+        color: #AE170D;
+        font-family: $rubik;
+        font-size: 16px;
+        letter-spacing: 0;
+        line-height: 36px;
+        text-align: center;
+      }
+    }
+  }
+
+  .footer {
+    flex-shrink: 0;
+  }
+}
+
+
+
+
+
+
+
+
+

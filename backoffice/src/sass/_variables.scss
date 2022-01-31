@@ -1,0 +1,15 @@
+/* Variable SASS : pour garder la simplicité de la syntaxe du SASS, $variable vs var(--variable) en CSS 3 */
+$sans-serif: 'Rubik', sans-serif;
+$rubik: 'Rubik';
+$poppins: 'Poppins', sans-serif;
+$normal: 400;
+$semi-bold: 500;
+$bold: 900;
+$block-title: 24px;
+$mention: 14px;
+$label: 16px;
+$no-space: 0;
+
+// Couleurs
+$texte: var(--texte);
+$pagination: var(--grey)

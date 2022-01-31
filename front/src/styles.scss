@@ -1,0 +1,32 @@
+/* Settings */
+// used with preprocessors and contain font, colors definitions, etc.
+@import "./app/sass/colors";
+@import "./app/sass/fonts";
+@import "./app/sass/variables";
+
+/* Tools */
+// globally used mixins and functions. It’s important not to output any CSS in the first 2 layers
+@import "./app/sass/mixin";
+
+/* Generic */
+// reset and/or normalize styles, box-sizing definition, etc. This is the first layer which generates actual CSS
+@import "./app/sass/reset";
+
+/* Elements */
+// styling for bare HTML elements (like H1, A, etc.). These come with default styling from the browser so we can redefine them here
+@import "./app/sass/elements";
+
+/* Objects */
+// class-based selectors which define undecorated design patterns, for example the media object known from OOCSS
+@import "./app/sass/objects";
+
+/* Components */
+// specific UI components. This is where most of our work takes place. We often compose UI components of Objects and Components
+@import "./app/sass/header";
+@import "./app/sass/footer";
+@import "./app/sass/button";
+@import "./app/sass/breadcrumb";
+
+/* Utilities */
+// utilities and helper classes with ability to override anything which goes before in the triangle, e.g. hide helper class
+@import "./app/sass/utilities";

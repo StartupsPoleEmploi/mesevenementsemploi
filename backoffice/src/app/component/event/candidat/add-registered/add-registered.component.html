@@ -1,0 +1,153 @@
+<app-header></app-header>
+<app-toolbar (saveCandidatEvent)="saveCandidat()"></app-toolbar>
+
+<div *ngIf="validationForm" class="alert-danger">
+  <img alt="icone champs requis" src="./assets/img/error_outline_red_18dp.svg"/>
+  <span>Inscription incomplète. Vous devez renseigner les informations obligatoires</span>
+</div>
+<div *ngIf="candidatDejaInscrit" class="alert-danger">
+  <img alt="icone champs requis" src="./assets/img/error_outline_red_18dp.svg"/>
+  <span>Ce candidat est déjà inscrit à cet événement</span>
+</div>
+<div *ngIf="eventComplet" class="alert-danger">
+  <img alt="icone champs requis" src="./assets/img/error_outline_red_18dp.svg"/>
+  <span>L’inscription à l’événement n’est pas disponible car il est complet.</span>
+</div>
+<div class="container">
+  <div class="float-container">
+    <form (ngSubmit)="onSubmit()" [formGroup]="addCandidatForm" type="submit">
+      <div class="infos">
+        <span>Les champs marqués d'un * sont obligatoires</span>
+      </div>
+      <div class="float-child">
+        <div class="civilte-candidat">
+          <mat-label class="civilite-label">* Civilité</mat-label>
+          <mat-radio-group [value]="candidatCivilte" formControlName="civilte">
+            <mat-radio-button value="Monsieur">Monsieur</mat-radio-button>
+            <mat-radio-button value="Madame">Madame</mat-radio-button>
+          </mat-radio-group>
+          <mat-error
+            *ngIf="isCivilite && checkError('civilte', 'required')">
+            Ce champ est requis
+          </mat-error>
+        </div>
+
+        <div class="nom-candidat">
+          <mat-label>* Nom</mat-label>
+          <mat-form-field appearance="outline">
+            <input
+              [value]="candidatNom"
+              formControlName="nom"
+              matInput
+              required type="text"/>
+          </mat-form-field>
+          <mat-error
+            *ngIf="addCandidatForm.controls['nom'].touched
+                &&
+                addCandidatForm.controls['nom'].hasError('required')">
+            Ce champ est requis
+          </mat-error>
+        </div>
+        <div class="nom-candidat">
+          <mat-label>* Email</mat-label>
+          <mat-form-field appearance="outline">
+            <input
+              [value]="candidatEmail"
+              formControlName="email"
+              matInput
+              required type="email"/>
+          </mat-form-field>
+          <mat-error
+            *ngIf="addCandidatForm.controls['email'].touched
+                &&
+                addCandidatForm.controls['email'].hasError('required')">
+            Ce champ est requis
+          </mat-error>
+          <mat-error
+            *ngIf="!isEmail && addCandidatForm.controls['email'].errors?.pattern">
+            Email non valide
+          </mat-error>
+        </div>
+        <div *ngIf="event?.modeAcceesList?.length == 2" class="modalite">
+          <mat-label>* Modalité de participation à l'événement</mat-label>
+          <mat-radio-group [value]="candidatModalite" formControlName="modaliteAccesId">
+            <mat-radio-button value=1>En présentiel</mat-radio-button>
+            <mat-radio-button value=0>A distance</mat-radio-button>
+          </mat-radio-group>
+          <mat-error
+            *ngIf="isModaliteAccesId && checkError('modaliteAccesId', 'required')">
+            Ce champ est requis
+          </mat-error>
+        </div>
+      </div>
+      <div class="float-child">
+        <div class="nom-candidat-right">
+          <mat-label>* Identifiant (BNI)</mat-label>
+          <mat-form-field appearance="outline">
+            <input (keypress)="numericOnly($event)"
+                   [value]="candidatIdRci"
+                   formControlName="identifiantRci"
+                   matInput
+                   maxlength="10"
+                   required type="text"/>
+          </mat-form-field>
+          <mat-error
+            *ngIf="addCandidatForm.controls['identifiantRci'].touched
+                &&
+                addCandidatForm.controls['identifiantRci'].hasError('required')">
+            Ce champ est requis
+          </mat-error>
+        </div>
+        <div class="nom-candidat-right">
+          <mat-label>* Prénom</mat-label>
+          <mat-form-field appearance="outline">
+            <input
+              [value]="candidatPrenom"
+              formControlName="prenom"
+              matInput
+              id="prenom"
+              name="prenom"
+              required
+              type="text"
+            />
+          </mat-form-field>
+          <mat-error
+            *ngIf="addCandidatForm.controls['prenom'].touched
+                &&
+                addCandidatForm.controls['prenom'].hasError('required')">
+            Ce champ est requis
+          </mat-error>
+        </div>
+        <br/>
+        <div class="date-naissance">
+          <br/>
+          <mat-label>* Date de naissance</mat-label>
+          <mat-form-field appearance="outline">
+            <mat-select (selectionChange)="selectedDayValue($event)" formControlName="day" placeholder="JJ" type="text"
+                        [required]="addCandidatForm.get('day').required" value="candidatDay">
+              <mat-option *ngFor="let day of days; let index = index;" value="candidatDay">{{index + 1}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-select (selectionChange)="selectedMonthValue($event)" formControlName="month" placeholder="MM"
+                        [required]="addCandidatForm.get('month').required" value="candidatMonth">
+              <mat-option *ngFor="let month of months" value="candidatMonth">{{month.id}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="year-field">
+            <mat-select (selectionChange)="selectedYearValue($event)" formControlName="year" placeholder="AAAA"
+                        [required]="addCandidatForm.get('year').required" value="candidatYear">
+              <mat-option *ngFor="let year of years" value="candidatYear">{{year}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-error
+            *ngIf="addCandidatForm.controls['day'].touched && addCandidatForm.controls['day'].hasError('required')
+                  || addCandidatForm.controls['month'].touched && addCandidatForm.controls['month'].hasError('required')
+                  || addCandidatForm.controls['year'].touched && addCandidatForm.controls['year'].hasError('required')">
+            Ce champ est requis
+          </mat-error>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

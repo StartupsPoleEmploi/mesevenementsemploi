@@ -1,0 +1,63 @@
+{
+  "codeAgence": "31096",
+  "dateEvenement": "30-04-2021",
+  "heureDebut": "10:00",
+  "heureFin": "18:00",
+  "description": "description de l'evt",
+  "estApublier": true,
+  "etatId": 1,
+  "lieu": "lieu de l'evt",
+  "nafCode": "3443",
+  "objectifId": 1,
+  "timeZone": "Europe/Paris",
+  "titre": "titre de l'evt",
+  "typeEvenementId": 1,
+  "romeId": "999",
+  "candidats": [
+    {
+      "civilite": "civilite",
+      "identifiantCrypter": "identifiantCrypter",
+      "nom": "nom du candidat",
+      "prenom": "prenom du candidat"
+    }
+  ],
+  "modeAceesList": [
+    {
+      "modaliteAcces": {
+        "id": 0
+      },
+      "nombreInscrit": 4,
+      "nombrePlace": 3,
+      "nombrePresent": 2
+    }
+  ],
+  "offres": [
+    {
+      "identifiant": "463456743"
+    },
+    {
+      "identifiant": "456235464"
+    }
+  ],
+  "prerequis": [
+    {
+      "id": 0,
+      "indispensable": true,
+      "libelle": "libellePrerequis"
+    }
+  ],
+  "tags": [
+    {
+      "id": 0,
+      "libelle": "libelleTag",
+      "typeTagId": 0
+    }
+  ],
+  "intervenants": [
+    {
+      "libelle": "int1",
+      "contact": "contact@test.fr",
+      "siteWeb": "www.site.fr"
+    }
+  ]
+}

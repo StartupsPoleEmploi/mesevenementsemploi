@@ -1,0 +1,33 @@
+<footer class="footer" role="contentinfo">
+  <div class="footer__top">
+    <div class="container">
+      <div class="footer__links">
+        <a href="mailto:{{ contactEmail }}" attr.aria-label="Envoyer un email à {{ contactEmail }}">Contactez-nous</a>
+        <a [routerLink]="['/accessibilite']" attr.aria-label="Accessibilité du site">Accessibilité</a>
+        <a [routerLink]="['/cgu']">Conditions générales d'utilisation</a>
+      </div>
+      <div class="footer__logos">
+        <a href="http://www.fse.gouv.fr/" target="_blank" title="Site du Fonds Social Européen" aria-label="Site du Fonds Social Européen - ouvre une nouvelle fenêtre">
+          <img src="../../../../assets/img/logo_fonds_social_europeen.svg" alt="" />
+        </a>
+        <a href="https://www.pole-emploi.fr/accueil/" target="_blank" title="Site de Pôle emploi" aria-label="Site de Pôle emploi - ouvre une nouvelle fenêtre">
+          <img src="../../../../assets/img/logo-pole-emploi.svg" alt="" />
+        </a>
+        <a href="https://europa.eu/european-union/index_fr" target="_blank" title="Site officiel de l'Union européenne" aria-label="Site officiel de l'Union européenne - ouvre une nouvelle fenêtre">
+          <img src="../../../../assets/img/logo-ue.svg" alt="" />
+        </a>
+        <p class="affirmation">
+          Ce dispositif est cofinancé par le Fonds Social<br />
+          Européen dans le cadre du Programme<br />
+          opérationnel national "Emploi et inclusion"<br />
+          2014-2020
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <div class="container text-center">
+      <p>Copyright 2021 © propulsé par PÔLE EMPLOI</p>
+    </div>
+  </div>
+</footer>

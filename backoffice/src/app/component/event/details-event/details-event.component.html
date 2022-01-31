@@ -1,0 +1,71 @@
+<td *ngIf="event && event.titre" class="event-title">
+  {{ (event.titre.length > 50) ? (event?.titre | slice:0:50) + '..' : (event?.titre) }}
+</td>
+<td class="event-type">
+  <p *ngFor="let tag of getTagsTypologie()" class="tag-box" >
+    <span class="tag-label">{{tag !== undefined ? tag?.libelle : ' '}}</span>
+  </p>
+</td>
+<td class="event-date">
+  <p>{{event?.dateEvenement}}</p>
+</td>
+<td class="event-hour"> {{event?.heureDebut}}</td>
+<td class="event-modality">
+  <p *ngFor="let modAcces of event?.modeAcceesList">
+    <span *ngIf="modAcces.nombrePlace > 0">
+      <span class="registered"> {{getNombreInscrits(modAcces)}}</span>
+      /  {{modAcces?.nombrePlace}}
+      <span>{{modAcces?.modaliteAcces?.libelle}}</span>
+    </span>
+  </p>
+</td>
+<td class="event-status">
+  <div *ngIf="event" class="td-state">
+    <p [class.draft]="event.statut === 'Brouillon'"
+       [class.private]="event.statut === 'Privé'"
+       [class.published]="event.statut === 'Publié'"
+       [class.done]="event.statut === 'Terminé'"
+       class="dot-status">
+    </p>
+    <span>{{event?.statut}}</span>
+  </div>
+</td>
+<td class="event-actions">
+  <button class="btn-menu" [matMenuTriggerFor]="menu" attr.aria-label="Afficher le menu">
+    <img src="../../../../assets/img/more_horiz_black_24dp.svg" alt="icône Menu">
+  </button>
+</td>
+
+<mat-menu #menu="matMenu" xPosition="before" class="menu">
+  <button class="menu__closeBtn">
+    <img src="../../../../assets/img/close.svg" alt="icône Fermer">
+  </button>
+  <button *ngIf="event && event.statut !== 'Brouillon'" [routerLink]="['/candidats/', event.id]" mat-menu-item class="menu__btn">
+    <img class="menu__icon" src="./assets/img/profil-valid.svg" alt=""/>
+    <span class="menu__label">Liste des inscrits</span>
+  </button>
+  <button *ngIf="event && event.statut === 'Brouillon'" mat-menu-item class="menu__btn" disabled>
+    <img class="menu__icon" src="./assets/img/profil-valid.svg" alt=""/>
+    <span class="menu__label">Liste des inscrits</span>
+  </button>
+  <button *ngIf="event && event.statut !== 'Brouillon' && !isEventFull(event)" [routerLink]="['/addInscrit/', event.id]" mat-menu-item class="menu__btn">
+    <img class="menu__icon" src="./assets/img/profil-valid.svg" alt=""/>
+    <span class="menu__label">Ajouter un inscrit</span>
+  </button>
+  <button *ngIf="event && (event.statut === 'Brouillon' || isEventFull(event))" mat-menu-item class="menu__btn" disabled>
+    <img class="menu__icon" src="./assets/img/profil-valid.svg" alt=""/>
+    <span class="menu__label">Ajouter un inscrit</span>
+  </button>
+  <button (click)="exportCandidats()" mat-menu-item class="menu__btn">
+    <img class="menu__icon" src="./assets/img/exporter.svg" alt=""/>
+    <span class="menu__label">Exporter les inscrits</span>
+  </button>
+  <button (click)="updateEvent(event)" mat-menu-item class="menu__btn">
+    <img class="menu__icon" src="./assets/img/editer.svg" alt=""/>
+    <span class="menu__label">Modifier</span>
+  </button>
+  <button (click)="onDeleteEvent()" mat-menu-item class="menu__btn">
+    <img class="menu__icon" src="./assets/img/delete.svg" alt=""/>
+    <span class="menu__label">Supprimer</span>
+  </button>
+</mat-menu>

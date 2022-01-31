@@ -1,0 +1,30 @@
+.btn {
+  display: inline-flex;
+  flex-shrink: 0;
+  padding: 1rem 3.125rem;
+  font-family: $rubik;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.188rem;
+  border-radius: 0.25rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  color: white;
+  background-color:$violet;
+  box-shadow: $violet-shadow;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: $violet-hover;
+  }
+  &:disabled {
+    cursor: not-allowed;
+    /* pointer-events: none; */
+    background-color: $rouge;
+    &:hover {
+      background-color: $rouge;
+    }
+  }
+}

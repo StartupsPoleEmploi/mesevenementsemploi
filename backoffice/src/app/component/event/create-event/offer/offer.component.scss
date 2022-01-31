@@ -1,0 +1,50 @@
+@import 'src/sass/styles';
+
+.offer {
+  margin-bottom: 50px;
+  margin-top: 50px;
+  .offer-title {
+    font-family: $rubik;
+    font-size: 16px;
+    font-weight: $semi-bold;
+    letter-spacing: 0;
+    line-height: 19px;
+  }
+  .sub-title {
+    color: $mention-color;
+    font-family: $rubik;
+    font-size: 16px;
+    letter-spacing: 0;
+    line-height: 24px;
+  }
+  .offer-form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    mat-form-field {
+      ::ng-deep .mat-form-field-wrapper {
+        padding-bottom: 0;
+      }
+    }
+    button {
+      background: $blue-app;
+      box-shadow: 0 2px 4px 0 rgba(78,36,188,0.4);
+      padding: 0 15px 0 15px;
+      color: $white;
+      margin-left: 10%;
+    }
+  }
+  .error {
+    color: red;
+  }
+  offer-selected {
+    mat-chip-list {
+      ::ng-deep .mat-chip-list-wrapper {
+        margin-top: 20px;
+      }
+    }
+  }
+}
+
+
+

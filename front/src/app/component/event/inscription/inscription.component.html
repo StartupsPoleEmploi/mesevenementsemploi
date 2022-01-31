@@ -1,0 +1,50 @@
+<app-header [minified]="true"></app-header>
+    <body>
+    <nav *ngIf="event" aria-label="Breadcrumb" class="breadcrumb">
+        <ul>
+            <li><a [routerLink]="['/evenements']" href="">Accueil</a></li>
+            <li><a [routerLink]="['/evenement/', event.id]" href="">{{event.titre}}</a></li>
+            <li><a [routerLink]="['/prerequis/']" href="">Pré-requis</a></li>
+            <li class="margin-li">
+                <span aria-current="page"></span>Inscription
+            </li>
+        </ul>
+    </nav>
+    <div class="content">
+        <img class="happy-bunch-party-of-three" src="./assets/img/Inscription.svg" alt="image de background" />
+        <p class="finaliser-votre-insc">Finaliser votre inscription</p>
+        <p class="il-existe-2-modalite">Il existe 2 modalités pour participer à cette rencontre
+        </p>
+        <p class="il-existe-2-modalite">choisissez celle que vous préférez</p>
+
+        <br/><br/>
+        <div style="text-align: center">
+            <div class="element-flex">
+                <button (click)="confirmerInscriptionEnLigne()" *ngIf="nbEplaceEnLigne && nbEplaceEnLigne > 0" class="bg">
+                    <span class="text">Je participe à distance</span>
+                </button>
+                <button *ngIf="nbEplaceEnLigne === 0" class="bg-grise">
+                    <span class="text">Je participe à distance</span>
+                </button>
+                <button (click)="confirmerInscriptionSurPlace()" *ngIf="nbEplaceEnPhisique && nbEplaceEnPhisique > 0"
+                        class="bg2" style="margin-left: 2%">
+                    <span class="text-bg">Je participe en présentiel</span>
+                </button>
+                <button *ngIf="nbEplaceEnPhisique === 0" class="bg2-grise" style="margin-left: 2%">
+                    <span class="text-bg">Je participe en présentiel</span>
+                </button>
+            </div>
+        </div>
+        <div *ngIf="nbEplaceEnLigne === 0"
+             class="element-flex-social">
+            <img class="hands-denied" src="./assets/img/Hands%20-%20Denied.svg" alt="icone croix" />
+            <p class="il-ne-reste-plus-de">Il ne reste plus de place pour cette modalité</p>
+        </div>
+        <div *ngIf="nbEplaceEnPhisique === 0"
+             class="element-flex-social">
+            <img class="hands-denied" src="./assets/img/Hands%20-%20Denied.svg" alt="icone croix" />
+            <p class="il-ne-reste-plus-de">Il ne reste plus de place pour cette modalité</p>
+        </div>
+    </div>
+    <app-footer class="footer"></app-footer>
+</body>

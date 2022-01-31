@@ -1,0 +1,260 @@
+@import 'src/sass/styles';
+
+.rectangle {
+  height: 900px;
+  width: 720px;
+  background-color: #DDDDFF;
+}
+
+body {
+  position: fixed;
+}
+
+.login-main {
+  margin-top: 10%;
+  margin-left: 28%;
+  margin-right: 44%;
+}
+
+.bienvenue {
+  height: 102px;
+  color: #000000;
+  font-family: $poppins;
+  font-size: 36px;
+  font-weight: bold;
+  letter-spacing: 0;
+  line-height: 55px;
+  text-align: center;
+  padding-left: 0%;
+  margin-top: -12%;
+}
+
+.bienvenue-sur {
+  height: 102px;
+  color: #000000;
+  font-family: $poppins;
+  font-size: 36px;
+  font-weight: bold;
+  letter-spacing: 0;
+  line-height: 55px;
+  text-align: center;
+  padding-top: 4%;
+  padding-left: 0%;
+}
+
+mat-card {
+  min-width: 40%;
+  width: 50%;
+}
+
+.identifiant {
+  font-weight: 600;
+  color: black;
+  font-family: sans-serif;
+  font-size: 18px;
+}
+
+.mot-de-passe {
+  font-weight: 600;
+  color: black;
+  font-family: sans-serif;
+  font-size: 18px;
+}
+
+
+.mot-de-passe-oublie {
+  color: #22343C;
+  font-size: 16px;
+  text-align: center;
+}
+
+.group-2 {
+  width: 50%;
+  height: 981px;
+  background-color: #DDDDFF
+}
+
+.alert {
+  background-color: white;
+  color: red;
+  text-align: center;
+}
+
+.is-invalid {
+  border-color: red;
+}
+
+.flex {
+  display: flex;
+}
+
+.card {
+  width: 50%;
+}
+
+.peactions {
+  height: 80px;
+  width: 297.3px;
+  margin-left: 15%;
+}
+
+.bienvenue-sur-pole-e {
+  height: 102px;
+  color: #000000;
+  font-family: $poppins;
+  font-size: 36px;
+  font-weight: bold;
+  letter-spacing: 0;
+  line-height: 55px;
+  text-align: center;
+}
+
+.alert-required {
+  position: relative;
+  padding: .75rem 1.25rem;
+  margin-bottom: 1rem;
+  border-radius: .25rem;
+  color: red;
+  text-align: center;
+}
+/*::ng-deep input {
+  background-color: white;
+}*/
+
+.connectez-vous-pour {
+  height: 44px;
+  width: 492px;
+  color: #22343C;
+  font-family: $rubik;
+  font-size: 18px;
+  letter-spacing: 0;
+  line-height: 22px;
+  text-align: center;
+  align-self: center;
+}
+
+.card-container {
+  padding: 5% 12% 6% 7%;
+  border: none;
+}
+
+.se-connecter {
+  background-color: #4833E3;
+  height: 3.2rem;
+}
+
+.logo-pe {
+  height: 82px;
+  width: 109px;
+}
+
+.logo-peactions-responsive {
+  display: none;
+}
+
+.logo-pe-responsive {
+  display: none;
+}
+
+.form {
+  margin: 30px;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+.form-control {
+  height: 3.6875rem;
+}
+@media screen and (max-width: 1024px) {
+  .group-2 {
+    width: 66%;
+    height: 980px;
+    background-color: #DDDDFF;
+    margin-left: -11%;
+  }
+  card-container {
+    padding: 13% 8% 9% 5%;
+    border: none;
+  }
+
+  .card {
+    width: 47%;
+  }
+
+  .form {
+    margin-left: -7%;
+    margin-right: -35%;
+  }
+  .bienvenue-sur-pole-e {
+    margin-left: -25%;
+  }
+  .connectez-vous-pour {
+    margin-left: -21%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .group-2 {
+    display: none;
+  }
+  .peactions {
+    display: block;
+  }
+  .card-container {
+    padding: 33% 0% 11% 7%;
+    border: none;
+    margin-top: 26%;
+    margin-left: -65%;
+  }
+  .flex {
+    padding: 0% 6% 0% 9%;
+    overflow: hidden;
+  }
+  .connectez-vous-pour {
+    width: 153%;
+    color: #22343C;
+    font-family: $rubik;
+    font-size: 18px;
+    letter-spacing: 0px;
+    line-height: 20px;
+    text-align: center;
+    margin-left: -24%;
+    margin-top: -11%;
+  }
+  .bienvenue-sur-pole-e {
+    width: 105%;
+    color: #000000;
+    font-family: $poppins;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0;
+    line-height: 55px;
+    text-align: center;
+    margin-left: -4%;
+  }
+  .card {
+    width: 109%;
+  }
+  .logo-peactions-responsive {
+    display: block;
+    height: 88px;
+    width: 110px;
+  }
+  .logo-pe-responsive {
+    display: block;
+    height: 61px;
+    width: 83px;
+    margin-left: 59%;
+    margin-top: 8%;
+
+  }
+  .flex-responsive {
+    display: flex;
+    margin-top: 3%;
+  }
+  .form {
+    margin: 0px;
+  }
+}

@@ -1,0 +1,197 @@
+@import "src/sass/component-imports.scss";
+
+.mat-progress-spinner {
+  float: right;
+  width: 24px;
+}
+
+table {
+  width: 80rem;
+  margin: 0 auto 2rem;
+  border-collapse: separate;
+  border-spacing: 0 15px;
+  thead {
+    tr {
+      th {
+        color: #22333B;
+        font-family: $rubik;
+        font-weight: normal;
+        font-size: 1.1rem;
+        letter-spacing: 0;
+        text-align: inherit;
+      }
+      th:nth-child(1) {
+        padding-left: 4.1rem;
+      }
+      th:nth-child(2) {
+        padding-left: 0;
+        min-width: 7rem;
+      }
+      th:nth-child(3) {
+        padding-left: 0;
+      }
+      th:nth-child(4) {
+        padding-left: 0;
+      }
+      th:nth-child(5) {
+        padding-left: 0;
+        .registered {
+          margin-right: 41px;
+        }
+        .placeTotales {
+          white-space: nowrap;
+          display: inline;
+        }
+      }
+      th:nth-child(6) {
+        padding-left: 0;
+      }
+      th:nth-child(7) {
+        padding-left: 0;
+      }
+    }
+  }
+  .e-card {
+    background-color: #FFFFFF;
+  }
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+  width: 80rem;
+  margin: 0 auto;
+  position: relative;
+  .pagination {
+    color: $pagination;
+    font-family: $rubik;
+    font-size: 1.28rem;
+    ::ng-deep .ngx-pagination {
+      padding-inline-start: inherit;
+      display: flex;
+      align-items: center;
+      list-style: none;
+
+      a {padding: 0;}
+
+      .pagination-actual-page {
+        color: $pagination;
+        font-size: 1.125rem;
+      }
+
+      li.pagination-previous,
+      li.pagination-next {
+        display: inline-flex;
+        align-items: center;
+        color: $pagination;
+        cursor: pointer!important;
+        &::before, &::after {
+          content: none;;
+        }
+        &.disabled {
+          opacity: 0.6;
+        }
+        .ng-star-inserted {
+          color: $pagination;
+          font-size: 1.125rem;
+        }
+      }
+
+      li.pagination-previous {
+        padding-left: 0;
+        padding-right: 5.5rem;
+        .ng-star-inserted {
+          display: inline-flex;
+          align-items: center;
+          color: $pagination;
+          &::before {
+            content: "";
+            display: inline-flex;
+            width: 1.875rem;
+            height: 1.875rem;
+            margin-right: 0.625rem;
+            background: url("../../../../assets/img/circle-arrow-left-black.svg") no-repeat left center;
+            background-size: contain;
+          }
+        }
+      }
+
+      li.pagination-next {
+        padding-right: 0;
+        padding-left: 5.5rem;
+        cursor: pointer;
+        .ng-star-inserted {
+          display: inline-flex;
+          align-items: center;
+          color: $pagination;
+          &::after {
+            content: "";
+            display: inline-flex;
+            width: 1.875rem;
+            height: 1.875rem;
+            margin-left: 0.625rem;
+            background: url("../../../../assets/img/circle-arrow-right-black.svg") no-repeat right center;
+            background-size: contain;
+          }
+        }
+      }
+    }
+
+    .pagination-search {
+      position: absolute;
+      right: 0;
+      top: 0.9rem;
+      .label-search-page {}
+      .pagination-search-input {
+        max-width: 1.2rem;
+        height: 1.2rem;
+        background-color: #FFFFFF;
+        border-color: transparent;
+        border-radius: 4px;
+        padding: 0.5rem;
+        color: $pagination;
+        font-size: 1.28rem;
+        margin-left: 0.57rem;
+      }
+      .pagination-search-input:focus {
+        outline: none;
+      }
+    }
+  }
+}
+
+
+
+/* Responsive layout - makes a one column layout instead of a two-column layout */
+@media screen and (max-width: 1024px) {
+  #candidats {
+    width: 0;
+    margin: 0;
+  }
+  .agence {
+    width: 60%;
+  }
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  .button-exporter {
+    background-color: #EBEDF8;
+    box-sizing: border-box;
+    margin-left: 12%;
+    height: 5em;
+    width: 55%;
+    border: 1px solid #4833E3;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px 0 rgb(78 36 188 / 40%);
+  }
+  .button {
+    margin-left: 40% !important;
+    height: 5em;
+    width: 55%;
+    background-color: #4833E3;
+    display: flex;
+  }
+}

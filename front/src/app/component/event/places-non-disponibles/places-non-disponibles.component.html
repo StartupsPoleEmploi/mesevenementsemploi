@@ -1,0 +1,23 @@
+<app-header [minified]="true"></app-header>
+<body>
+
+
+<div class="content">
+
+    <img class="happy-bunch-party-of-three" src="./assets/img/KO.svg"/>
+    <div class="element-flex-social">
+        <img class="hands-denied" src="./assets/img/Hands%20-%20Denied.svg"/>
+        <p class="validez-les-pre-requ">Réunion d’information complète !</p>
+    </div>
+    <div class="rectangle">
+        <p class="malheureusement-nous">Nous n’avons malheureusement pas pu valider votre inscription
+            car il ne reste plus de place…
+            <br/><br/>Nous vous invitons à effectuer une nouvelle recherche..</p>
+    </div>
+    <br/><br/>
+    <button [routerLink]="['/evenements']" class="bg"><span class="text">Effectuer une nouvelle recherche</span>
+    </button>
+</div>
+<app-footer class="footer"></app-footer>
+</body>
+

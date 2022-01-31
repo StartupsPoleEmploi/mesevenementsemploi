@@ -1,0 +1,19 @@
+<div class="naf">
+  <h2 class="sub-title">*Code NAF</h2>
+  <form class="naf-form" [formGroup]="nafForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Sélectionnez le code NAF rattaché à l'évènement</mat-label>
+      <mat-select #nafSelect (ngModelChange)="onChangeValue(nafSelect.value)" formControlName="naf">
+        <mat-option *ngFor="let item of nafList" [value]="item.code">
+          {{item.code}} - {{item.libelle}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-error
+      *ngIf="nafForm.controls['naf'].touched
+      &&
+      nafForm.controls['naf'].hasError('required')">
+      Ce champ est requis
+    </mat-error>
+  </form>
+</div>

@@ -1,0 +1,626 @@
+@import 'src/styles';
+
+.banner {
+  display: flex;
+  margin: 0 auto;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  @include rwd(flex-direction, column, ($mobile: column, $tablet: row, $desktop: row));
+  @include rwd(width, 96%, ($mobile: 96%, $tablet: 100%, $desktop: 66rem));
+  .banner-left {
+    display: flex;
+    align-items: flex-end;
+    @include rwd(margin-left, 0, ($mobile: 0, $tablet: 3%, $desktop: 0));
+    @include rwd(margin-right, 0, ($mobile: 0, $tablet: 5%, $desktop: 1rem));
+    @include rwd(width, 100%, ($mobile: 100%, $tablet: 10%, $desktop: 7rem));
+    @include rwd(flex-direction, row, ($mobile: row, $tablet: column, $desktop: column));
+    @include rwd(padding-top, 3%, ($mobile: 3%, $tablet: 0, $desktop: 0));
+    @include rwd(justify-content, flex-start, ($mobile: flex-start, $tablet: unset, $desktop: space-around));
+    .back-link {
+      margin-right: 2%;
+      margin-left: 2%;
+      font-size: 0.9rem;
+      font-family: $rubik;
+      text-decoration: none;
+    }
+    .event-date {
+      display: flex;
+      border-radius: 4px;
+      background-color: $vert;
+      @include rwd(flex-direction, row, ($mobile: row, $tablet: column, $desktop: column));
+      @include rwd(height, 1.6rem, ($mobile: 1.6rem, $tablet: 5.6rem, $desktop: 5.6rem));
+      @include rwd(width, 5.3rem, ($mobile: 5.3rem, $tablet: 5.6rem, $desktop: 5.6rem));
+      @include rwd(align-items, center, ($mobile: center, $tablet: center, $desktop: center));
+      @include rwd(justify-content, center, ($mobile: center, $tablet: center, $desktop: center));
+      .event-day {
+        color: $texte;
+        font-family: $poppins;
+        font-weight: bold;
+        letter-spacing: 0;
+        line-height: 1;
+        text-align: center;
+        margin-top: 0;
+        margin-bottom: 0;
+        @include rwd(font-size, 0.75rem, ($mobile: 0.75rem, $tablet: 1.9rem, $desktop: 2.25rem));
+        @include rwd(margin-right, 0.2em, ($mobile: 0.2em, $tablet: 0, $desktop: 0));
+      }
+      .event-month {
+        color: $texte;
+        font-family: $poppins;
+        font-weight: bold;
+        letter-spacing: 0;
+        line-height: 1;
+        text-align: center;
+        @include rwd(font-size, 0.7rem, ($mobile: 0.7rem, $tablet: 1rem, $desktop: 1rem));
+      }
+      .event-month:first-letter {
+        text-transform: uppercase;
+      }
+    }
+    .banner-logo {
+      @include rwd(height, 0, ($mobile: 0, $tablet: 79px, $desktop: 79px));
+      img {
+        @include rwd(width, 4.35rem, ($mobile: 4.35rem, $tablet: 5.7rem, $desktop: 5.7rem));
+        @include rwd(height, 1.86rem, ($mobile: 1.86rem, $tablet: 2.8rem, $desktop: 2.8rem));
+      }
+    }
+  }
+  .banner-center {
+    margin-right: 2.31rem;
+    @include rwd(padding-top, 0, ($mobile: 0, $tablet: 0, $desktop: 0));
+    @include rwd(width, 80%, ($mobile: 80%, $tablet: 84%, $desktop: 77rem));
+    @include rwd(padding, 2%, ($mobile: 2%, $tablet: 0, $desktop: 0));
+    @include rwd(margin-left, 0, ($mobile: 0, $tablet: 0, $desktop: 0));
+    .event-title {
+      color: $texte;
+      font-weight: bold;
+      line-height: 1.5;
+      font-family: $poppins;
+      text-transform: lowercase;
+      margin-top: 0;
+      margin-bottom: 0;
+      @include rwd(font-size, 1.1rem, ($mobile: 1.1rem, $tablet: 2rem, $desktop: 2rem));
+      @include rwd(padding-top, 1rem, ($mobile: 0, $tablet: 0, $desktop: 0));
+      @include rwd(padding-bottom, 1rem, ($mobile: 0, $tablet: 0, $desktop: 0));
+    }
+    .event-title:first-letter {
+       text-transform: uppercase;
+     }
+    .tags-container {
+      margin-left: 0;
+      margin-top: 0.5rem;
+      display: inline-flex;
+      margin-right: 0.7rem;
+      .tags {
+        display: inline-block;
+        padding: 0.625rem 1.25rem;
+        border-radius: 1.25rem;
+        color: $violet;
+        font-family: $rubik;
+        text-align: center;
+        background-color: $background;
+        @include rwd(line-height, 0.875rem, ($mobile: 0.875rem, $tablet: 1rem, $desktop: 1.188rem));
+        @include rwd(font-size, 0.75rem, ($mobile: 0.75rem, $tablet: 0.875rem, $desktop: 1rem));
+      }
+    }
+  }
+  .banner-right {
+    justify-content: center;
+    width: 30rem;
+    @include rwd(display, none, ($mobile: none, $tablet: none, $desktop: flex));
+    @include rwd(align-items, none, ($mobile: none, $tablet: none, $desktop: center));
+
+    .btn-annulation {
+      display: inline-flex;
+      flex-shrink: 0;
+      padding: 1rem 3.125rem;
+      font-family: $rubik;
+      font-weight: 500;
+      font-size: 1rem;
+      line-height: 1.188rem;
+      border-radius: 0.25rem;
+      border: 1px solid $violet;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      user-select: none;
+      color: $violet;
+      background-color: white;
+      box-shadow: $violet-shadow;
+      transition: background-color 0.3s ease;
+    }
+
+    .annulationConfirmation {
+      background-image: url('../../../../assets/img/shape.svg');
+      background-repeat: no-repeat;
+      font-family: $rubik;
+      font-weight: $medium;
+      color: #0F7C46;
+      font-size: 1.2rem;
+      margin-top: 7rem;
+      background-position: left center;
+      background-size: 1rem 1rem;
+      position: absolute;
+      display: flex;
+      padding-left: 1.5rem;
+    }
+
+    .registration-btn {
+      border-color: transparent;
+      cursor: pointer;
+      height: 3.375rem;
+      width: 12.25rem;
+      border-radius: 4px;
+      background-color: $violet;
+      box-shadow: 0 2px 4px 0 rgba(72, 51, 227, 0.4);
+      @include rwd(margin, 3.75rem 0 0 3rem, ($mobile: 3.75rem 0 0 3rem, $tablet: 30% 0 0 5%, $desktop: auto));
+
+      .registration-btn-label {
+        color: #FFFFFF;
+        font-family: $rubik;
+        font-size: 1.3125rem;
+        font-weight: $medium;
+        letter-spacing: 0;
+        line-height: 0.82758621;
+        text-align: center;
+      }
+    }
+    .registration-btn-disabled {
+      cursor: not-allowed;
+      border-color: transparent;
+      height: 3.375rem;
+      width: 12.25rem;
+      border-radius: 4px;
+      background-color: #AE170D;
+      @include rwd(margin, 3.75rem 0 0 3rem, ($mobile: 3.75rem 0 0 3rem, $tablet: 30% 0 0 5%, $desktop: auto));
+
+      .registration-btn-label {
+        width: 112px;
+        color: #FFFFFF;
+        font-family: $rubik;
+        font-size: 21px;
+        font-weight: $medium;
+        letter-spacing: 0;
+        line-height: 29px;
+        text-align: center;
+      }
+    }
+  }
+}
+
+body {
+  position: relative;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  background-color: $background;
+  @include rwd(width, 100%, ($mobile: 100%, $tablet: 100%, $desktop: 100%));
+  @include rwd(left, 0, ($mobile: 0, $tablet: 0, $desktop: 0));
+  nav {
+    color: $texte;
+    font-family: $rubik;
+    font-size: 1rem;
+    letter-spacing: 0;
+    line-height: 1rem;
+    padding-top: 1%;
+    margin: auto;
+    @include rwd(width, 100%, ($mobile: 100%, $tablet: 100%, $desktop: 66rem));
+    .breadcrumb-trail {
+      display: flex;
+      list-style-type: none;
+      padding-left: 0;
+      .first-thread {
+        a {
+          text-decoration: none;
+          margin: -8%;
+          color: $texte;
+          font-family: $rubik;
+          font-size: 1rem;
+        }
+      }
+      .second-thread::before {
+         content: " > ";
+       }
+      .second-thread {
+        .span {
+          margin: 0;
+          color: $texte;
+          font-family: $rubik;
+          font-size: 13px;
+        }
+      }
+    }
+  }
+  .content-details {
+    display: flex;
+    margin: auto;
+    padding-bottom: 3rem;
+    @include rwd(width, 100%, ($mobile: 100%, $tablet: 100%, $desktop: 66rem));
+    @include rwd(flex-direction, column-reverse, ($mobile: column-reverse, $tablet: column-reverse, $desktop: unset));
+
+    .inscription-mobile {
+      position: sticky;
+      bottom: 0;
+      display: flex;
+      justify-content: center;
+      padding: 1rem 0;
+      background-color: white;
+    }
+
+    .main-content {
+      height: fit-content;
+      border-radius: 4px;
+      background-color: #FFFFFF;
+      padding: 2% 0 0 0;
+      @include rwd(width, 100%, ($mobile: 100%, $tablet: 100%, $desktop: 54rem));
+      @include rwd(margin-top, 10%, ($mobile: 10%, $tablet: 5%, $desktop: 0));
+      @include rwd(margin-right, 0, ($mobile: 0, $tablet: 2.31rem, $desktop: 2.31rem));
+      div {
+        margin-bottom: 20px;
+        margin-left: 15%;
+        margin-right: 15%;
+        .img-objectif {
+          width: 100%;
+          @include rwd(margin-top, 0, ($mobile: 0, $tablet: 0, $desktop: 0));
+        }
+      }
+      .subtitles {
+        color: #000000;
+        font-family: $poppins;
+        font-weight: bold;
+        letter-spacing: 0;
+        line-height: 2rem;
+        padding-left: 15%;
+        padding-bottom: 2%;
+        font-size: 1.2rem;
+        @include rwd(margin-bottom, 0, ($mobile: 0, $tablet: 30px, $desktop: 0));
+      }
+      .public-labels {
+        display: flex;
+        justify-content: flex-start;
+        margin-left: 15%;
+        flex-wrap: wrap;
+        width: 80%;
+        @include rwd(flex-direction, column, ($mobile: column, $tablet: column, $desktop: unset));
+        p {
+          .labels {
+            color: $violet;
+            font-family: $rubik;
+            font-size: 1.1rem;
+            font-weight: 500;
+            letter-spacing: 0;
+            line-height: 2rem;
+            text-align: center;
+          }
+        }
+      }
+      .description-label {
+        height: fit-content;
+        width: 70%;
+        color: #000000;
+        font-family: $rubik;
+        font-size: 1.1rem;
+        letter-spacing: 0;
+        line-height: 2rem;
+        margin-left: 15%;
+        margin-bottom: 3%;
+      }
+      .benefices-container {
+        box-sizing: border-box;
+        height: fit-content;
+        width: 70%;
+        border: 1px solid $background;
+        border-radius: 4px;
+        background-color: $background;
+        padding: 10px;
+        .subtitles {
+          padding-left: 0;
+          padding-bottom: 2%;
+        }
+        .benefices-items {
+          height: fit-content;
+          width: 100%;
+          color: #000000;
+          font-family: $rubik;
+          font-size: 1rem;
+          font-weight: 500;
+          letter-spacing: 0;
+          line-height: 2rem;
+          margin-left: 0;
+          .item {
+            background-image: url('../../../../assets/img/shape.svg');
+            background-repeat: no-repeat;
+            background-position: left center;
+            background-size: 1rem 1rem;
+            margin-bottom: 0.7rem !important;
+            margin-left: 0;
+            margin-right: 0;
+            display: flex;
+            align-items: center;
+            padding-left: 0.5rem;
+            .benefices-img {
+              width: 0.875em;
+              height: 0.875em;
+            }
+            .benefices-labels {
+              margin-top: 0;
+              margin-left: 1rem;
+            }
+          }
+        }
+      }
+      div {
+        .recruiter-name {
+          width: fit-content;
+          color: #000000;
+          font-family: $rubik;
+          font-size: 1.1rem;
+          letter-spacing: 0;
+          line-height: 2rem;
+        }
+        .link-zone {
+          background-image: url('../../../../assets/img/circle-arrow-right_violet.svg');
+          background-repeat: no-repeat;
+          background-position: left center;
+          background-size: 1.4rem 1.4rem;
+          color: #000000;
+          font-family: $rubik;
+          font-size: 1.1rem;
+          letter-spacing: 0;
+          padding-left: 2rem;
+          line-height: 2rem;
+          margin-left: 0;
+          .link-label {
+            cursor: pointer;
+            width: fit-content;
+            color: $violet;
+            text-decoration: underline;
+          }
+        }
+      }
+      .offers {
+        height: fit-content;
+        padding-top: 3%;
+        padding-bottom: 3%;
+        background-color: #FFFFFF;
+        box-shadow: 0 2px 4px 0 rgba(183, 177, 177, 0.5);
+        @include rwd(width, 90%, ($mobile: 90%, $tablet: 90%, $desktop: 75%));
+        @include rwd(margin-left, 5%, ($mobile: 5%, $tablet: 15%, $desktop: 15%));
+        .titre-offre-emploi.titre-bold {
+          margin-left: 23px;
+          padding-top: 1%;
+          color: #000000;
+          font-family: $rubik;
+          font-size: 17px;
+          font-weight: 600;
+        }
+        .titre-offre-emploi {
+          margin-left: 23px;
+          padding-top: 1%;
+          color: #000000;
+          font-family: $rubik;
+          font-size: 1.2rem;
+          .dureeContrat {
+            margin-left: 2%;
+          }
+        }
+        .img-offer {
+          margin-left: 3%;
+          margin-top: 3%;
+        }
+        .voir-loffre-demplo {
+          cursor: pointer;
+          width: 144px;
+          color: $violet;
+          font-family: $rubik;
+          font-size: 1.2rem;
+          letter-spacing: 0;
+          line-height: 2rem;
+          text-decoration: underline;
+          margin-left: 22px;
+        }
+      }
+      .video-link {
+        display: flex;
+        align-items: flex-end;
+        img {
+          margin-left: 0;
+        }
+        .video-link {
+          cursor: pointer;
+          color: $violet;
+          font-family: $rubik;
+          letter-spacing: 0;
+          line-height: 1.2rem;
+          text-decoration: underline;
+          margin-left: 1%;
+          @include rwd(font-size, 1.1rem, ($mobile: 1.1rem, $tablet: 1.2rem, $desktop: 1.2rem));
+        }
+      }
+      
+      .social-media-container {
+        display: flex;
+        align-items: center;
+        @include rwd(flex-direction, column, ($mobile: column, $tablet: column, $desktop: unset));
+        @include rwd(margin-top, 20%, ($mobile: 20%, $tablet: 5%, $desktop: 10%));
+        @include rwd(margin-top, 0, ($mobile: 0, $tablet: 10%, $desktop: 0));
+
+        .social-media-title {
+          height: 19px;
+          color: $texte;
+          font-family: $rubik;
+          font-size: 1.3rem;
+          font-weight: 500;
+          letter-spacing: 0;
+          line-height: 2rem;
+          @include rwd(margin-bottom, 10%, ($mobile: 10%, $tablet: 0, $desktop: 0));
+          @include rwd(width, fit-content, ($mobile: fit-content, $tablet: fit-content, $desktop: 50%));
+        }
+        .social-media-icons {
+          width: 50%;
+          margin-left: 0;
+          margin-bottom: 0;
+          @include rwd(text-align, center, ($mobile: center, $tablet: center, $desktop: center));
+          @include rwd(margin-right, 0, ($mobile: 0, $tablet: 0, $desktop: 0));
+          @include rwd(margin-top, 0, ($mobile: 0, $tablet: 10%, $desktop: 0));
+          .social-media-link {
+            margin-left: 4%;
+            border-color: transparent;
+            background: none;
+            cursor: pointer;
+            img {
+              width: 2.1rem;
+            }
+          }
+        }
+      }
+    }
+    .side-content {
+      flex-direction: column;
+      @include rwd(width, 100%, ($mobile: 100%, $tablet: 100%, $desktop: 22rem));
+      @include rwd(display, flex, ($mobile: flex, $tablet: flex, $desktop: block));
+      @include rwd(align-items, unset, ($mobile: unset, $tablet: baseline, $desktop: unset));
+      .general-informations {
+        border-radius: 4px;
+        background-color: #FFFFFF;
+        height: fit-content;
+        padding: 10% 5% 10% 10%;
+        @include rwd(margin-top, 0, ($mobile: 0, $tablet: 5%, $desktop: 0));
+        @include rwd(width, 85%, ($mobile: 85%, $tablet: 85%, $desktop: 100%));
+        .subtitles {
+          color: #000000;
+          font-family: $poppins;
+          font-size: 1.2rem;
+          font-weight: bold;
+          letter-spacing: 0;
+          line-height: 2rem;
+          @include rwd(margin-bottom, 2%, ($mobile: 2%, $tablet: 30px, $desktop: 1rem));
+          @include rwd(margin-top, 0, ($mobile: 0, $tablet: 0, $desktop: 0));
+        }
+        .info-date {
+          background-image: url('../../../../assets/img/clock.svg');
+          background-repeat: no-repeat;
+          background-position: 2% 17%;
+          background-size: 1.4rem;
+          display: flex;
+          flex-direction: column;
+          padding-left: 3rem;
+          font-size: 1.2rem;
+          .date {
+            color: #000000;
+            font-family: $rubik;
+            letter-spacing: 0;
+            line-height: 1.8rem;
+          }
+          .time {
+             color: #000000;
+             font-family: $rubik;
+             letter-spacing: 0;
+            line-height: 1.8rem;
+           }
+        }
+        .event-location {
+          background-image: url('../../../../assets/img/pinmap-location.svg');
+          background-repeat: no-repeat;
+          background-position: 2% 4%;
+          background-size: 1.1rem 1.5rem;
+          display: flex;
+          flex-direction: column;
+          padding-left: 3rem;
+          font-size: 1.2rem;
+          margin-top: 1rem;
+          .location-label {
+            color: #000000;
+            font-family: $rubik;
+            letter-spacing: 0;
+            line-height: 1.8rem;
+          }
+        }
+        .availability {
+          background-image: url('../../../../assets/img/profil-multi.svg');
+          background-repeat: no-repeat;
+          background-position: 0 17%;
+          background-size: 1.6rem 1.3rem;
+          display: flex;
+          flex-direction: column;
+          padding-left: 3rem;
+          font-size: 1.2rem;
+          margin-top: 1rem;
+          .availability-label {
+            font-weight: bold;
+            color: #000000;
+            font-size: 1.2rem;
+            letter-spacing: 0;
+            line-height: 1.8rem;
+          }
+        }
+      }
+      .prerequisites {
+        height: fit-content;
+        border-radius: 4px;
+        background-color: #FFFFFF;
+        padding: 10% 5% 10% 10%;
+        @include rwd(width, 85%, ($mobile: 85%, $tablet: 85%, $desktop: 100%));
+        @include rwd(margin-top, 10%, ($mobile: 10%, $tablet: 5%, $desktop: 10%));
+        .subtitles {
+          color: #000000;
+          font-family: $poppins;
+          font-weight: bold;
+          letter-spacing: 0;
+          line-height: 2rem;
+          font-size: 1.2rem;
+          margin-bottom: 1rem;
+        }
+        .prerequisites-bloc {
+          background-image: url('../../../../assets/img/circle-arrow-right_vert.svg');
+          background-repeat: no-repeat;
+          background-position: left center;
+          background-size: 1.2rem 1.2rem;
+          color: #000000;
+          font-family: $rubik;
+          font-size: 1.1rem;
+          letter-spacing: 0;
+          padding-left: 2rem;
+          line-height: 2rem;
+        }
+      }
+      .process {
+        height: fit-content;
+        border-radius: 4px;
+        background-color: #FFFFFF;
+        padding: 10% 5% 10% 10%;
+        @include rwd(width, 85%, ($mobile: 85%, $tablet: 85%, $desktop: 100%));
+        @include rwd(margin-top, 10%, ($mobile: 10%, $tablet: 5%, $desktop: 10%));
+        .subtitles {
+          color: #000000;
+          font-family: $poppins;
+          font-weight: bold;
+          letter-spacing: 0;
+          line-height: 2rem;
+          font-size: 1.2rem;
+          @include rwd(margin-bottom, 0, ($mobile: 0, $tablet: 2.1rem, $desktop: 0));
+        }
+        .process-details {
+          height: fit-content;
+          color: #000000;
+          font-family: $rubik;
+          font-size: 1.1rem;
+          letter-spacing: 0;
+          line-height: 2rem;
+          word-wrap: break-word;
+          margin-bottom: 0;
+          white-space: pre-wrap;
+        }
+      }
+    }
+  }
+  .footer {
+    width: 100%;
+    @include rwd(display, flex, ($mobile: flex, $tablet: flex, $desktop: block));
+  }
+}
+
+.breadcrumb li:first-child::before {
+  content: "";
+}
+

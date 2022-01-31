@@ -1,0 +1,679 @@
+@import 'src/sass/styles';
+
+.alert-danger {
+  position: absolute;
+  top: 160px;
+  left: 0;
+  color: #AE170D;
+  font-family: $rubik;
+  font-size: 18px;
+  letter-spacing: 0;
+  line-height: 22px;
+  background-color: #FCF6F6;
+  width: 100%;
+  padding: 15px 0;
+  display: flex;
+
+  img {
+    margin: 0 1%;
+  }
+}
+
+.container {
+  margin: 3.5rem auto;
+  width: 80rem;
+  display: flex;
+  justify-content: space-between;
+  .menu {
+    list-style: none;
+    padding-right: 2%;
+    padding-left: 0;
+    margin-right: 5px;
+    min-width: fit-content;
+
+    li {
+      margin-bottom: 2.5rem;
+
+      a {
+        text-decoration: none;
+        color: $mention-color;
+        text-align: left;
+        font-size: 18px;
+        line-height: 22px;
+        font-family: $sans-serif;
+        padding: 15px 10px 15px 10px;
+        cursor: pointer;
+      }
+    }
+  }
+  .form-container {
+    position: relative;
+    mat-progress-spinner {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      z-index: 10;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      max-width: 100%;
+      .general-settings {
+        .general-information {
+          height: fit-content;
+          width: 60rem;
+          background-color: $white;
+          box-shadow: $shadow;
+          padding: 20px;
+          margin-bottom: 30px;
+
+          .infos {
+            margin-bottom: 47px;
+
+            .sub-title {
+              line-height: 28px;
+              color: $black;
+              font-family: $sans-serif;
+              font-size: $block-title;
+              font-weight: $bold;
+            }
+            span {
+              color: $mention-color;
+              font-size: $mention;
+              line-height: 17px;
+              font-family: $sans-serif;
+              margin-bottom: 43px;
+            }
+          }
+          .event-title {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 4%;
+
+            ::placeholder {
+              color: $placeholder-color;
+              font-family: $rubik;
+            }
+
+            mat-form-field {
+              margin-bottom: 10px;
+            }
+
+            ::ng-deep .mat-form-field-wrapper {
+              padding-bottom: 0 !important;
+              font-size: $mention;
+            }
+
+            .mat-form-field.ng-invalid.ng-touched {
+              ::placeholder {
+                color: $danger;
+                font-family: $rubik;
+              }
+
+              ::ng-deep .mat-form-field-wrapper {
+                ::ng-deep .mat-form-field-flex {
+                  ::ng-deep .mat-form-field-outline {
+                    background-color: $danger-background;
+                  }
+                }
+              }
+            }
+
+            .labels {
+              font-weight: $semi-bold;
+              font-size: $label;
+              line-height: 19px;
+              font-family: $sans-serif;
+              color: $black;
+            }
+
+            span {
+              color: $danger;
+            }
+          }
+          mat-form-field {
+            ::ng-deep .mat-form-field-outline {
+              background: $input-color;
+              height: 60px;
+              width: 100%;
+              border: 1px solid $input-color;
+            }
+          }
+          .date-and-hours {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4%;
+
+            .event-date {
+              display: flex;
+              flex-direction: column;
+              min-width: 40%;
+
+              ::placeholder {
+                color: $placeholder-color;
+                font-family: $rubik;
+              }
+
+              .date-label {
+                font-family: $sans-serif;
+              }
+
+              mat-form-field {
+                ::ng-deep .mat-form-field-outline {
+                  margin-right: 4%;
+                  background: $input-color;
+                }
+
+                ::ng-deep .mat-form-field-wrapper {
+                  padding-bottom: 0;
+                }
+              }
+
+              .mat-form-field.ng-invalid.ng-touched {
+                ::placeholder {
+                  color: $danger;
+                  font-family: $rubik;
+                }
+
+                ::ng-deep .mat-form-field-wrapper {
+                  ::ng-deep .mat-form-field-flex {
+                    ::ng-deep .mat-form-field-outline {
+                      background-color: $danger-background;
+                    }
+                  }
+                }
+              }
+
+              span {
+                color: $danger;
+              }
+            }
+            .event-start-hour {
+              display: flex;
+              flex-direction: column;
+              text-align: left;
+              .start-hour-label {
+                font-family: $sans-serif;
+                margin-bottom: 5px;
+              }
+              ngx-timepicker-field {
+                ::ng-deep .ngx-timepicker {
+                  border-bottom: none;
+
+                  ::ng-deep .ngx-timepicker-control__input.ng-invalid {
+                    background-color: red;
+                  }
+                }
+                ::ng-deep .ngx-timepicker-control__input {
+                  background: $input-color;
+                  min-width: 55px;
+                  color: $placeholder-color;
+                }
+                ::ng-deep .ngx-timepicker-control {
+                  height: 60px;
+                  width: 80px;
+                }
+                ::ng-deep .ngx-timepicker-control__arrows {
+                  top: 15px;
+                  right: 10px;
+                }
+                ::ng-deep ngx-material-timepicker-content {
+
+                }
+              }
+              mat-form-field {
+                ::ng-deep .mat-form-field-outline {
+                  margin-right: 4%;
+                  background: $input-color;
+                }
+              }
+            }
+            .event-end-hour {
+              display: flex;
+              flex-direction: column;
+              text-align: left;
+              ::placeholder {
+                color: $placeholder-color;
+                font-family: $rubik;
+              }
+              .end-hour-label {
+                font-family: $sans-serif;
+                margin-bottom: 5px;
+              }
+              ngx-timepicker-field {
+                ::ng-deep .ngx-timepicker {
+                  border-bottom: none;
+                }
+                ::ng-deep .ngx-timepicker-control__input {
+                  background: $input-color;
+                  min-width: 55px;
+                }
+                ::ng-deep .ngx-timepicker-control {
+                  height: 60px;
+                  width: 80px;
+                }
+                ::ng-deep .ngx-timepicker-control__arrows {
+                  top: 15px;
+                  right: 10px;
+                }
+              }
+              mat-form-field {
+                ::ng-deep .mat-form-field-outline {
+                  // margin-right: 4%;
+                  background: $input-color;
+                }
+              }
+            }
+          }
+          .event-address {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 4%;
+
+            ::placeholder {
+              color: $placeholder-color;
+              font-family: $rubik;
+            }
+
+            .address-label {
+              font-family: $sans-serif;
+            }
+          }
+          .event-address-city {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4%;
+
+            .postal-code {
+              display: flex;
+              flex-direction: column;
+
+              ::placeholder {
+                color: $placeholder-color;
+                font-family: $rubik;
+              }
+
+              .postal-code-label {
+                font-family: $sans-serif;
+              }
+
+              /* Chrome, Safari, Edge, Opera */
+              input::-webkit-outer-spin-button,
+              input::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+              }
+              /* Firefox */
+              input[type=number] {
+                -moz-appearance: textfield;
+              }
+            }
+            .city {
+              display: flex;
+              flex-direction: column;
+              min-width: 70%;
+
+              ::placeholder {
+                color: $placeholder-color;
+                font-family: $rubik;
+              }
+
+              .city-label {
+                font-family: $sans-serif;
+              }
+            }
+          }
+
+          .rome {
+            margin-bottom: 4%;
+          }
+        }
+        .modalities {
+          position: relative;
+          height: fit-content;
+          width: 60rem;
+          background-color: $white;
+          box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24);
+          padding: 20px;
+          margin-bottom: 30px;
+
+          .alert-danger {
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: #AE170D;
+            font-family: $rubik;
+            font-size: 18px;
+            letter-spacing: 0;
+            line-height: 22px;
+            background-color: #FCF6F6;
+            width: 100%;
+            padding: 20px 0;
+            display: flex;
+
+            img {
+              margin: 0 2%;
+
+            }
+          }
+
+          .modality-title {
+            font-family: $sans-serif;
+            font-weight: $bold;
+            font-size: $block-title;
+            margin-top: 50px;
+          }
+
+          .modality-alert-sub-title {
+            color: $mention-color;
+            font-size: $mention;
+            line-height: 17px;
+            font-family: $sans-serif;
+            margin-bottom: 43px;
+          }
+          .modality-info-sub-title {
+            color: $black;
+            font-family: $rubik;
+            font-size: 16px;
+            letter-spacing: 0;
+            line-height: 19px;
+            margin-bottom: 5%;
+          }
+          .modality-access {
+            display: flex;
+            flex-direction: column-reverse;
+            margin-bottom: 30px;
+
+            input[type=number]::-webkit-inner-spin-button {
+              opacity: 1
+            }
+
+            #modality {
+              display: flex;
+              flex-direction: column;
+
+              .first-block-modality {
+                width: 620px;
+                display: flex;
+                align-items: baseline;
+                margin-top: 5%;
+
+                ::ng-deep mat-checkbox {
+                  margin-right: 3%;
+                }
+              }
+              .second-block-modality {
+                display: flex;
+                justify-content: flex-start;
+                width: 610px;
+                height: 4.5rem;
+                mat-form-field {
+                  ::ng-deep .mat-form-field-outline {
+                    width: 760px;
+                    border: 1px solid $input-color;
+                    background-color: $input-color;
+                  }
+                  ::ng-deep .mat-form-field-flex {
+                    width: 760px;
+                  }
+                }
+              }
+              span {
+                color: $danger;
+              }
+            }
+            ::ng-deep .mat-checkbox .mat-checkbox-frame {
+              border-color: $blue-app;
+            }
+            ::ng-deep .mat-checkbox-checked .mat-checkbox-background {
+              background-color: $blue-app;
+            }
+            ::ng-deep .mat-checkbox-layout {
+              border: 1px solid $blue-app;
+              border-radius: 12px;
+              width: 263px;
+              height: 40px;
+              padding: 10px;
+              margin-bottom: 10px;
+              display: flex !important;
+              align-items: center;
+              color: $blue-app;
+            }
+            ::ng-deep .mat-checkbox-inner-container {
+              margin-left: 10%;
+              color: $blue-app;
+            }
+            ::ng-deep .mat-checkbox-layout .mat-checkbox-label {
+              margin-left: 22.5px;
+            }
+            ::ng-deep .ng-star-inserted {
+              display: flex;
+              margin-right: 2%;
+              align-items: baseline;
+            }
+
+            ::ng-deep .mat-checkbox-layout {
+              display: block;
+            }
+            ::ng-deep .mat-form-field-outline {
+              background: $input-color;
+            }
+            ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+              color: transparent;
+            }
+            ::ng-deep .mat-form-field-wrapper {
+              width: 75px;
+            }
+            ::ng-deep .mat-form-field-wrapper {
+              width: 75px;
+            }
+            mat-form-field:nth-child(3) {
+              ::ng-deep .mat-form-field-wrapper {
+                width: 200px;
+              }
+            }
+          }
+        }
+        .visibility {
+          display: none;
+          height: 205px;
+          width: 859px;
+          background-color: $white;
+          box-shadow: 0 2px 2px 0 rgba(0,0,0,0.24);
+          padding: 20px;
+          .visibility-title {
+            font-family: $sans-serif;
+            font-weight: $bold;
+            font-size: $block-title;
+          }
+          p {
+            font-family: $sans-serif;
+          }
+          ::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+            background-color: #B4A8D9;
+          }
+          ::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+            background-color: $blue-app;
+          }
+        }
+      }
+      .features {}
+      .requirements {}
+      .details {
+        height: fit-content;
+        width: 60rem;
+        background-color: $white;
+        box-shadow: 0 2px 2px 0 rgba(0,0,0,0.24);
+        padding: 20px;
+        .infos {
+          .sub-title {
+            font-family: $sans-serif;
+          }
+          p {
+            font-family: $sans-serif;
+            font-size: $mention;
+          }
+        }
+        .description {
+          margin-bottom: 20px;
+          .description-title {
+            color: $black;
+            font-family: $sans-serif;
+            font-size: $label;
+            font-weight: $semi-bold;
+            letter-spacing: 0;
+            line-height: 19px;
+          }
+
+          textarea {
+            height: 200px;
+            width: 737px;
+            background-color: $input-color;
+            padding: 2%;
+            resize: none;
+            margin-bottom: 5px;
+          }
+
+          textarea.ng-invalid.ng-touched {
+            border: 1px solid $danger;
+            background-color: $danger-background;
+          }
+        }
+        .course {
+          margin-bottom: 50px;
+
+          .course-title {
+            color: $black;
+            font-family: $sans-serif;
+            font-size: $label;
+            font-weight: $semi-bold;
+            letter-spacing: 0;
+            line-height: 19px;
+          }
+
+          textarea {
+            height: 200px;
+            width: 737px;
+            background-color: $input-color;
+            padding: 2%;
+            resize: none;
+
+            ::placeholder {
+              color: $placeholder-color;
+              font-family: $rubik;
+            }
+          }
+        }
+        .recruiter {
+          margin-bottom: 50px;
+
+          .recruiter-title {
+            color: $black;
+            font-family: $rubik;
+            font-size: $label;
+            font-weight: 500;
+            letter-spacing: 0;
+            line-height: 19px;
+          }
+        }
+        .offer {
+          margin-bottom: 50px;
+
+          .offer-title {
+            color: $black;
+            font-family: $sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: 0;
+            line-height: 19px;
+          }
+
+          mat-form-field {
+            width: 33%;
+          }
+
+          ::ng-deep .mat-form-field-outline {
+            width: 263px;
+            border: 1px solid $input-color;
+            background-color: $input-color;
+          }
+          mat-icon {
+            background: $blue-app;
+            box-shadow: 0 0 6px 0 rgba(0,0,0,0.12), 0 6px 6px 0 rgba(0,0,0,0.24);
+            padding: 15px;
+            border-radius: 50%;
+            color: $white;
+            margin-left: 10%;
+          }
+        }
+        ::ng-deep .mat-form-field-outline {
+          width: 761px;
+          border: 1px solid $input-color;
+          background-color: $input-color;
+        }
+        .job-discovery {
+          .discovery-title {
+            color: $black;
+            font-family: $sans-serif;
+            font-size: $label;
+            font-weight: 500;
+            letter-spacing: 0;
+            line-height: 19px;
+          }
+
+          .video-sub-title {
+            color: #22333B;
+            font-family: $rubik;
+            font-size: 16px;
+            letter-spacing: 0;
+            line-height: 19px;
+          }
+
+          mat-form-field {
+            ::ng-deep .mat-form-field-infix {
+              width: 740px;
+            }
+            ::ng-deep .mat-form-field-flex {
+              max-width: 63%;
+            }
+          }
+
+          .title {
+            ::ng-deep .mat-form-field-outline {
+              width: 481px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.checked {
+  ::ng-deep .mat-checkbox-layout {
+    background: $blue-app;
+  }
+}
+.unchecked {
+  ::ng-deep .mat-checkbox-layout {
+    background: transparent;
+  }
+}
+
+.selected {
+  color: $blue-app !important;
+  background: white;
+  border-left: solid 5px $blue-app;
+  min-width: 50px;
+}
+
+.not-selected {
+  color: $black;
+  font-weight: $normal;
+}
+
+.isNotComplete {
+  color: $danger !important;
+  background: none;
+  border: none;
+}

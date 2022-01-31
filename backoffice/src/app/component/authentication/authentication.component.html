@@ -1,0 +1,85 @@
+<body>
+<link
+  crossorigin="anonymous"
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+  integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+  rel="stylesheet"
+/>
+
+<div class="col-md-12" class="flex">
+  <div class="group-2">
+    <br/><br/>
+    <img class="peactions" src="./assets/img/PEACTIONS-2020_violet.svg">
+    <img class="logo-pe" src="./assets/img/logo_pole_emploi.png">
+    <img class="img-login" src="./assets/img/login.svg" style="padding: 15%;">
+
+  </div>
+  <div class="card card-container">
+    <h1 class="bienvenue-sur">Bienvenue sur</h1><br/>
+    <h1 class="bienvenue">Pôle emploi Action's</h1>
+    <h2 class="connectez-vous-pour">Connectez vous pour créer ou gérer vos événements</h2>
+    <div *ngIf="error" class="alert">{{errorMessage}}</div>
+    <form
+      *ngIf="!isLoggedIn"
+      name="form"
+      (ngSubmit)="f.form.valid && signIn()"
+      #f="ngForm"
+      class="form"
+      novalidate>
+      <div class="form-group">
+        <label class="identifiant" for="identifier">Identifiant</label>
+        <input
+          type="text"
+          class="form-control"
+          name="username"
+          [ngClass]="{ 'is-invalid': submitted && form.identifier.errors }" id="identifier"
+          [(ngModel)]="form.identifier" placeholder="Renseigner le code Safir de votre établissement"
+          required
+          #identifier="ngModel"/>
+        <div
+          class="alert-required"
+          role="alert"
+          *ngIf="identifier.errors && f.submitted">
+          Identifiant requis !
+        </div>
+      </div>
+      <br/>
+      <div class="form-group">
+        <label class="mot-de-passe" for="password">Mot de passe</label>
+        <input
+          type="password"
+          class="form-control"
+          name="motDePasse"
+          placeholder="Renseigner le mot de passe envoyé"
+          id="password"
+          [(ngModel)]="form.password"
+          [ngClass]="{ 'is-invalid': submitted && form.password.errors }" required
+          #motDePasse="ngModel"/>
+        <div
+          class="alert-required"
+          role="alert"
+          *ngIf="motDePasse.errors && f.submitted">
+          <div *ngIf="motDePasse.errors.required">Mot de passe requis !</div>
+        </div>
+      </div>
+      <br/>
+      <div class="form-group">
+        <button class="btn btn-primary btn-block se-connecter">
+          SE CONNECTER
+        </button>
+      </div>
+      <div class="form-group">
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="f.submitted && isLoginFailed">
+          Login failed: {{ errorMessage }}
+        </div>
+      </div>
+    </form>
+    <a class="mot-de-passe-oublie" href="mailto:{{ contactEmail }}">Mot de passe oublié?</a>
+
+  </div>
+</div>
+</body>
+

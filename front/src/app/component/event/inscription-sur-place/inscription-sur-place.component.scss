@@ -1,0 +1,145 @@
+@import 'src/styles';
+
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: #EBEDF8;
+  @include rwd(overflow-x, hidden, ($mobile: hidden, $tablet: auto, $desktop: auto));
+  @include rwd(overflow-y, hidden, ($mobile: hidden, $tablet: auto, $desktop: auto));
+  .content {
+    margin: 1.25rem auto 13rem auto;
+    @include rwd(width, 22.6rem, ($mobile: 22.6rem, $tablet: 42.5rem, $desktop: 42.6rem));
+    background-image: url('../../../../assets/img/Confirmation.svg');
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: 14.25rem 11.625rem;
+
+    .confirmation-text {
+      color: $texte;
+      font-family: $poppins;
+      padding-bottom: 0.5rem;
+      margin-top: 13.438rem;
+      @include rwd(font-size, 1.125rem, ($mobile: 1.125rem, $tablet: 1.75rem, $desktop: 1.75rem));
+      @include rwd(line-height, 1.688rem, ($mobile: 1.688rem, $tablet: 2.625rem, $desktop: 2.625rem));
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .rectangle {
+      @include rwd(max-width, 19rem, ($mobile: 19rem, $tablet: 100%, $desktop: 100%));
+      @include rwd(padding, 2rem, ($mobile: 2rem, $tablet: 2rem 2rem 2rem 4rem, $desktop: 2rem 2rem 2rem 4rem));
+      border-radius: 4px;
+      background-color: #FFFFFF;
+      font-family: $rubik;
+      margin-bottom: 2rem;
+
+      .titre {
+        color: #000000;
+        @include rwd(font-size, 1rem, ($mobile: 1rem, $tablet: 1.5rem, $desktop: 1.5rem));
+        font-weight: $medium;
+        @include rwd(line-height, 1.188rem, ($mobile: 1.188rem, $tablet: 1.75rem, $desktop: 1.75rem));
+        padding-bottom: 1.2rem;
+      }
+
+      .calendar {
+        @include rwd(margin-left, 6%, ($mobile: 6%, $tablet: 16%, $desktop: 16%));
+        @include rwd(margin-bottom, -0.75rem, ($mobile: -0.75rem, $tablet: 0, $desktop: 0));
+        @include rwd(margin-top, 2rem, ($mobile: 2rem, $tablet: 4%, $desktop: 4%));
+      }
+
+      .info-date {
+        background-image: url('../../../../assets/img/calendar.svg');
+        background-repeat: no-repeat;
+        padding-left: 2rem;
+        font-size: 1.2rem;
+        background-size: 1.4rem;
+        background-position: center left;
+
+        .date {
+          font-size: 1.2rem;
+          line-height: 2;
+        }
+      }
+
+      .info-time {
+        background-image: url('../../../../assets/img/clock.svg');
+        background-repeat: no-repeat;
+        font-size: 1.2rem;
+        background-size: 1.4rem;
+        padding-left: 2rem;
+        background-position: center left;
+
+        .time {
+          font-size: 1.2rem;
+          line-height: 2;
+        }
+      }
+
+      .info-adresse {
+        background-image: url('../../../../assets/img/pinmap-location.svg');
+        background-repeat: no-repeat;
+        font-size: 1.2rem;
+        background-size: 1.4rem;
+        padding-left: 2rem;
+        margin-bottom: 2rem;
+        background-position: center left;
+
+        .adresse {
+          font-size: 1.2rem;
+          line-height: 2;
+        }
+      }
+
+      .social-networks {
+        width: 28rem;
+        margin: auto;
+        font-family: $rubik;
+        color: #1B2B67;
+        font-weight: 500;
+        align-items: center;
+        @include rwd(display, block, ($mobile: block, $tablet: flex, $desktop: flex));
+
+        .share-label {
+          @include rwd(font-size, 1.2rem, ($mobile: 1.2rem, $tablet: 1.1rem, $desktop: 1.1rem));
+          line-height: 2;
+          margin-bottom: 0;
+          @include rwd(margin-right, 0, ($mobile: 0, $tablet: 3rem, $desktop: 3rem));
+        }
+
+        .social-link {
+          @include rwd(margin-right, 0, ($mobile: 0, $tablet: 1rem, $desktop: 1rem));
+          @include rwd(margin-left, 3rem, ($mobile: 3rem, $tablet: 0, $desktop: 0));
+
+          img {
+            width: 2.2rem;
+          }
+        }
+      }
+    }
+    .bg {
+      height: 54px;
+      min-width: 18.8rem;
+      border-radius: 4px;
+      background-color: #4833E3;
+      box-shadow: 0 2px 4px 0 rgba(72, 51, 227, 0.4);
+      border-color: transparent;
+      cursor: pointer;
+      margin: auto;
+      display: flex;
+      align-items: center;
+
+      .text {
+        width: 100%;
+        color: #FFFFFF;
+        font-family: $rubik;
+        font-size: 1.2rem;
+        font-weight: bold;
+        letter-spacing: 0;
+        text-align: center;
+      }
+    }
+  }
+  .footer {
+    flex-shrink: 0;
+  }
+}

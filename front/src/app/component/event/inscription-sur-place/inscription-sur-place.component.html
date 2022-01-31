@@ -1,0 +1,46 @@
+<app-header [minified]="true"></app-header>
+<body>
+<div class="content">
+    <h1 class="confirmation-text">Nous vous confirmons votre inscription<br/>à cette rencontre en présentiel !</h1>
+    <div *ngIf="event" class="rectangle">
+        <h2 class="titre">{{event.titre}}</h2>
+        <div class="info-date">
+            <span class="date">{{event.dateEvenement}}</span>
+        </div>
+        <div class="info-time">
+            <span class="time">{{event.heureDebut}} - {{event.heureFin}}</span>
+        </div>
+        <div class="info-adresse">
+            <span class="adresse">{{event.adresse}} {{event.codePostal}} {{event.ville}}</span>
+        </div>
+        <div class="social-networks">
+            <p class="share-label">Partager cet événement</p>
+            <a class="social-link" href="https://twitter.com/share?url=https://bit.ly/2sI7H3v"
+               onclick="window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=700');return false;"
+               rel="nofollow" target="_blank" title="Twitter">
+                <img alt="icone Twitter" src="./assets/img/ant-design_twitter-circle-filled.svg"/>
+            </a>
+            <a class="social-link"
+               href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{shareUrl}}"
+               onclick="window.open(this.href, '','menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=450,width=650');return false;"
+               rel="nofollow" target="_blank"
+               title="Linkedin">
+                <img alt="icone Linkedin" src="./assets/img/linkedin.svg"/>
+            </a>
+            <a class="social-link"
+               href="https://www.facebook.com/sharer.php?u={{shareUrl}}"
+               onclick="window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=500,width=700');return false;"
+               rel="nofollow" target="_blank"
+               title="Facebook">
+                <img alt="icone Facebook" src="./assets/img/bx_bxl-facebook-circle.svg"/>
+            </a>
+        </div>
+    </div>
+    <div class="text-center">
+        <button [routerLink]="['/evenements']" class="btn">
+            Effectuer une nouvelle recherche
+        </button>
+    </div>
+</div>
+<app-footer class="footer"></app-footer>
+</body>

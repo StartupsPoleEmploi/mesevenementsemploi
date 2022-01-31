@@ -1,0 +1,293 @@
+<app-header></app-header>
+<app-toolbar #toolbarComponent (newStateIdEvent)="saveTo($event)" ></app-toolbar>
+<div *ngIf="validationState || validationDraftState" class="alert-danger">
+  <img src="./assets/img/error_outline_red_18dp.svg" alt="icone champs requis" />
+  <span>Evènement incomplet. Vous devez renseigner les informations obligatoires</span>
+</div>
+<div class="container">
+  <ul class="menu">
+    <li>
+      <a (click)="displaySettings()"
+         [class.isNotComplete]="settingsControl"
+         [ngClass]="isSettings ? 'selected' : 'not-selected'">
+        {{settingsTitle}}
+      </a>
+    </li>
+    <li>
+      <a (click)="displayFeatures()"
+         [ngClass]="isFeatures ? 'selected' : 'not-selected'"
+         [class.isNotComplete]="featuresControl">
+        {{featuresTitle}}
+      </a>
+    </li>
+    <li>
+      <a (click)="displayRequirements()"
+         [ngClass]="isRequirements ? 'selected' : 'not-selected'"
+         [class.isNotComplete]="prerequisiteEventControl">
+        {{requirementsTitle}}
+      </a>
+    </li>
+    <li>
+      <a (click)="displayDetails()"
+         [ngClass]="isDetails ? 'selected' : 'not-selected'"
+         [class.isNotComplete]="descriptionControl">
+        {{detailsTitle}}
+      </a>
+    </li>
+  </ul>
+  <div class="form-container">
+    <mat-progress-spinner *ngIf="isLoading" mode="indeterminate" value="100"></mat-progress-spinner>
+    <form (ngSubmit)="onSubmit(stateId, isPublished)" [formGroup]="createEventForm" >
+      <div class="general-settings" *ngIf="isSettings" >
+        <div class="general-information" >
+          <div class="infos" >
+            <h2 class="sub-title" >Paramètres généraux</h2>
+            <span>Les champs marqués d'un * sont obligatoires</span>
+          </div>
+          <div class="event-title">
+            <mat-label class="labels">* Nom de l'événement</mat-label>
+            <mat-form-field appearance="outline" class="event-title">
+              <input
+                [value]="eventTitle"
+                (change)="setSettingsControl($event)"
+                formControlName="titre"
+                matInput maxlength="301"
+                placeholder="300 caractères max" />
+            </mat-form-field>
+            <mat-error
+              *ngIf="createEventForm.controls['titre'].touched && createEventForm.controls['titre'].hasError('required')">
+              Ce champ est requis
+            </mat-error>
+          </div>
+          <div class="date-and-hours" >
+            <div class="event-date">
+              <mat-label class="date-label labels">*Date de l'évènement</mat-label>
+              <mat-form-field appearance="outline" class="date">
+                <input
+                  [value]="eventDate"
+                  formControlName="dateEvenement"
+                  placeholder="JJ/MM/AAAA"
+                  [min]="minDate"
+                  [matDatepicker]="picker"
+                  [matDatepickerFilter]="disableWeekend"
+                  (change)="setSettingsControl($event)"
+                  matInput >
+                <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+              <mat-error
+                *ngIf="createEventForm.controls['dateEvenement'].touched && createEventForm.controls['dateEvenement'].hasError('required')">
+                Ce champ est requis
+              </mat-error>
+            </div>
+            <div class="event-start-hour">
+              <mat-label class="start-hour-label">*Heure de début</mat-label>
+              <ngx-timepicker-field
+                (change)="setSettingsControl($event)"
+                [controlOnly]="true"
+                [defaultTime]="'00:00'"
+                [format]="24"
+                formControlName="heureDebut">
+              </ngx-timepicker-field>
+              <mat-error
+                *ngIf="createEventForm.controls['heureDebut'].touched
+                &&
+                createEventForm.controls['heureDebut'].hasError('required')">
+                Ce champ est requis
+              </mat-error>
+            </div>
+            <div class="event-end-hour">
+              <mat-label class="end-hour-label">*Heure de fin</mat-label>
+              <ngx-timepicker-field
+                [controlOnly]="true"
+                [defaultTime]="'00:00'"
+                [format]="24"
+                (change)="setSettingsControl($event)"
+                formControlName="heureFin">
+              </ngx-timepicker-field>
+              <mat-error
+                *ngIf="createEventForm.controls['heureFin'].touched
+                &&
+                createEventForm.controls['heureFin'].hasError('required')">
+                Ce champ est requis
+              </mat-error>
+            </div>
+          </div>
+          <div class="event-address" >
+            <mat-label class="address-label" >Adresse de l'évènement</mat-label>
+            <mat-form-field appearance="outline" >
+              <input formControlName="adresse" placeholder="Ex: Pole Emploi Blagnac, 11 Mail Louis Aragon" matInput />
+            </mat-form-field>
+          </div>
+          <div class="event-address-city" >
+            <div class="postal-code" >
+              <mat-label class="postal-code-label" >Code postal</mat-label>
+              <mat-form-field appearance="outline" >
+                <input #postalCode formControlName="codePostal" matInput maxlength="5" name="cp"
+                       onKeyPress="if(this.value.length==5) return false;"
+                       oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');"
+                       placeholder="Ex: 31700" type="text"/>
+              </mat-form-field>
+            </div>
+            <div class="city" >
+              <mat-label class="city-label" >Ville</mat-label>
+              <mat-form-field appearance="outline" >
+                <input formControlName="ville" placeholder="Ex: Blagnac" matInput />
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="rome">
+            <app-rome #romeComponent (newRomeEvent)="addRome($event)"></app-rome>
+          </div>
+          <div class="naf">
+            <app-naf #nafComponent (newNafEvent)="addNaf($event)"></app-naf>
+          </div>
+        </div>
+        <div class="modalities">
+          <div *ngIf="modalityControl" class="alert-danger">
+            <img src="./assets/img/error_outline_red_18dp.svg" alt="icone champs requis" />
+            <span>Vous devez renseigner une modalité</span>
+          </div>
+          <h2 class="modality-title">Modalités</h2>
+          <p class="modality-alert-sub-title">Les champs marqués d'un * sont obligatoires</p>
+          <p class="modality-info-sub-title">*Nombre de places disponibles</p>
+          <div class="modality-access">
+            <div *ngFor="let modality of modalityAccessList">
+              <ng-template class="modality" [ngIf]="modality.id == 1">
+                <mat-checkbox
+                  formControlName="onSiteModality"
+                  required
+                  value="checked"
+                  [ngClass]="{'unchecked' : !(checked===true)}"
+                  (change)="checkboxOnSiteVisibility($event.checked)" >
+                  {{modality.libelle}}
+                </mat-checkbox>
+                <mat-form-field appearance="outline" *ngIf="onSiteChecked" >
+                  <input class="modalityPlaces" formControlName="availableOnSitePlaces" matInput min="0"
+                         placeholder="00" type="number"/>
+                </mat-form-field>
+                <mat-error
+                  *ngIf="createEventForm.controls['onSiteModality'].touched && createEventForm.controls['availableOnSitePlaces'].hasError('required')">
+                  Ce champ est requis
+                </mat-error>
+              </ng-template>
+              <ng-template [ngIf]="modality.id == 0" >
+                <div id="modality" >
+                  <div class="first-block-modality">
+                    <mat-checkbox
+                      (change)="checkboxRemoteVisibility($event.checked)"
+                      formControlName="remoteModality"
+                      required
+                      value="checked">
+                      {{modality.libelle}}
+                    </mat-checkbox>
+                    <mat-form-field appearance="outline" *ngIf="remoteChecked">
+                      <input type="number" formControlName="availableRemotePlaces" class="modalityPlaces" min="0"
+                             matInput placeholder="00"/>
+                    </mat-form-field>
+                    <mat-error
+                      *ngIf="createEventForm.controls['remoteModality'].touched && createEventForm.controls['availableRemotePlaces'].hasError('required')">
+                      Ce champ est requis
+                    </mat-error>
+                  </div>
+                  <div class="second-block-modality" >
+                    <mat-form-field appearance="outline" *ngIf="remoteChecked" >
+                      <input formControlName="urlParticipation" matInput maxlength="1500"
+                             placeholder="URL de participation..."
+                             type="url"/>
+
+                    </mat-form-field>
+                  </div>
+                  <span *ngIf="createEventForm.controls['urlParticipation'].hasError('maxlength')" >
+                    1500 caractères maximum
+                  </span>
+                </div>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+        <div class="visibility">
+          <h2 class="visibility-title" >Visibilité de cet évènement</h2>
+          <p>Souhaitez-vous rendre visible cet évènement auprès des candidats ?</p>
+          <mat-slide-toggle formControlName="estApublier" value="checked" (change)="checkboxEventVisibility()" >
+            {{isPrivate ? 'Oui' : 'Non'}}
+          </mat-slide-toggle>
+        </div>
+      </div>
+      <div class="features" *ngIf="isFeatures">
+        <app-tags
+          #tagsComponent
+          (newTagsEvent)="addTags($event)"
+          (tagEventControl)="fillTag($event)"
+          (setTagControlEvent)="validateTagControl($event)"
+          [validationState]="featuresControl">
+        </app-tags>
+      </div>
+      <div class="requirements" *ngIf="isRequirements">
+        <app-prerequisites
+          #prerequisComponent
+          (newPrerequisitesEvent)="addPrerequisites($event)"
+          (prerequisiteEventControl)="fillPrerequisites($event)"
+          [validationState]="prerequisiteEventControl">
+        </app-prerequisites>
+      </div>
+      <div *ngIf="isDetails" class="details">
+        <div class="infos">
+          <h2 class="sub-title">Détails de l'événement</h2>
+          <p>Les champs marqués d'un * sont obligatoires</p>
+        </div>
+        <div class="description">
+          <h3 class="description-title">*Description de l'événement</h3>
+          <textarea
+            formControlName="description"
+            maxlength="1001"
+            placeholder="Rédigez ici la description de votre évènement (1000 caractères max)"
+            (change)="setDescriptionControl($event)"
+            matInput>
+          </textarea>
+          <mat-error *ngIf="createEventForm.controls['description'].hasError('maxlength')">
+            1000 caractères maximum
+          </mat-error>
+          <mat-error
+            *ngIf="createEventForm.controls['description'].touched && createEventForm.controls['description'].hasError('required')">
+            Ce champ est requis
+          </mat-error>
+        </div>
+        <div class="course">
+          <h3 class="course-title" >Déroulé de l'évènement</h3>
+          <textarea
+            formControlName="deroulement"
+            maxlength="1001"
+            placeholder="Rédigez ici le déroulé de votre évènement (1000 caractères max)"
+            matInput>
+          </textarea>
+          <span *ngIf="createEventForm.controls['deroulement'].hasError('maxlength')" >
+          1000 caractères maximum
+        </span>
+        </div>
+        <div class="recruiter" >
+          <h3 class="recruiter-title">Recruteur(s)/Intervenant(s) / (4 personnes max) </h3>
+          <app-recruiters #recruitersComponent (newRecruiterEvent)="addRecruiters($event)" ></app-recruiters>
+        </div>
+        <div class="offer" >
+          <app-offer #offerComponent (newOfferEvent)="addOffers($event)"
+                     (removeOfferEvent)="removeOffers($event)"></app-offer>
+        </div>
+        <div class="job-discovery" >
+          <h3 class="discovery-title" >Lien vidéo</h3>
+          <p class="video-sub-title">Titre de la video/nom du lien</p>
+          <mat-form-field class="title" appearance="outline">
+            <input formControlName="libelleLienPlusInformation"
+                   matInput placeholder="Ex: Découvrer la MRS"
+                   maxlength="100"
+                   type="text"/>
+          </mat-form-field>
+          <p class="video-sub-title">Url de la video</p>
+          <mat-form-field appearance="outline" >
+            <input formControlName="lienPlusInformation" matInput type="url"/>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

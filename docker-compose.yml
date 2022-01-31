@@ -1,0 +1,127 @@
+version: '3'
+
+services:
+
+  pe-actions-conseiller:
+    build:
+      context: ../pe-actions-conseiller
+    container_name: pe-actions-conseiller
+    environment:
+      - EMAIL_CONTACT=${EMAIL_CONTACT:-acme@nobody.here}
+    depends_on:
+      - pe-actions-domaine
+    ports:
+      - 80:80
+    networks:
+      - peactions
+
+  pe-actions-candidat:
+    build:
+      context: ../pe-actions-candidat
+    container_name: pe-actions-candidat
+    environment:
+      - DOMAINE_PATH=${DOMAINE_PATH:-HERE-URL-TO-BACKEND-ENDPOINT}
+      - EMAIL_CONTACT=${EMAIL_CONTACT:-acme@nobody.here}
+      - API_OFFRE_SCOPE=api_offresdemploiv2 o2dsoffre
+      - API_DATE_NAISSANCE_SCOPE=datenaissance api_peconnect-datenaissancev1
+      - ESD_CLIENT_ID=${ESD_CLIENT_ID:-GET-YOUR-ESD-ID}
+      - ESD_CLIENT_SECRET=${ESD_CLIENT_SECRET:-GET-YOUR-ESD-SECRET}
+      - API_ESD_TOKEN_ENTRYPOINT=${API_ESD_TOKEN_ENTRYPOINT:-HERE-ESD-URL-TOKEN-ENTRYPOINT}
+      - API_ESD_URL=${API_ESD_URL:-HERE-ESD-URL}
+      - URL_TAG_COMMANDER=${URL_TAG_COMMANDER:-HERE-TAG-COMMANDER-URL}
+      - API_PE_CONNECT_SCOPE=${API_PE_CONNECT_SCOPE:-HERE-API-SCOPE}
+      - URL_ACEES=${URL_ACEES:-HERE-APP-URL}
+      - PE_CONNECT_IDENTITY_SERVER_URL=${PE_CONNECT_IDENTITY_SERVER_URL:-HERE-PE-CONNECT-ID-URL}
+      - MAILJET_API_KEY=${MAILJET_API_KEY}
+      - MAILJET_API_SECRET_KEY=${MAILJET_API_SECRET_KEY}
+    ports:
+      - 4000:4000
+    networks:
+      - peactions
+
+  nginx:
+    container_name: nginx
+    image: nginx
+    volumes:
+      - ./nginx/conf/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - '81:80'
+    networks:
+      - peactions
+    depends_on:
+      - pe-actions-candidat
+
+  pe-actions-domaine:
+    build:
+      context: ../pe-actions-domaine
+    container_name: pe-actions-domaine
+    environment:
+      - DATA_SOURCE=jdbc:postgresql://pe-actions-base:5432/peactions
+      - DATA_SOURCE_USERNAME=peactions
+      - DATA_SOURCE_PASSWORD=peactions
+      - JWT_SECRET=peactionsSecretKey
+      - JWT_EXPIRATION_MS=86400000
+      - API_ESD_URL=${API_ESD_URL:-HERE-ESD-URL}
+      - API_OFFRE_SCOPE=${API_OFFRE_SCOPE:-HERE-API-OFFRE-SCOPE}
+      - API_ROME_SCOPE=${API_ROME_SCOPE:-HERE-API-ROME-SCOPE}
+      - API_DATE_NAISSANCE_SCOPE=${API_DATE_NAISSANCE_SCOPE:-HERE-API-DATE-NAISS-SCOPE}
+      - ESD_CLIENT_ID=${ESD_CLIENT_ID:-GET-YOUR-ESD-ID}
+      - ESD_CLIENT_SECRET=${ESD_CLIENT_SECRET:-GET-YOUR-ESD-SECRET}
+      - API_ESD_TOKEN_ENTRYPOINT=${API_ESD_TOKEN_ENTRYPOINT:-HERE-ESD-URL-TOKEN-ENTRYPOINT}
+      - HIBERNATE_LOG_LEVEL=DEBUG
+      - HIBERNATE_SQL_BINDER=TRACE
+      - LOG_LEVEL=DEBUG
+      - SITE_CANDIDAT_URL=http://localhost:4000
+    depends_on:
+      - flyway
+    ports:
+      - 8080:8080
+    networks:
+      - peactions
+
+  pe-actions-base:
+    build:
+      context: ../pe-actions-base
+    container_name: pe-actions-base
+    restart: always
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER:-test}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-test}
+      - POSTGRES_DB=${POSTGRES_DB}
+    ports:
+      - 5400:5432
+    volumes:
+      - pe-actions-base-data:/var/lib/postgresql/data
+    networks:
+      - peactions
+
+  flyway:
+    image: flyway/flyway:latest
+    container_name: pe-actions-flyway
+    environment:
+      - FLYWAY_USER=${FLYWAY_USER:-demo}
+      - FLYWAY_PASSWORD=${FLYWAY_PASSWORD:-demo}
+      - FLYWAY_URL=jdbc:postgresql://pe-actions-base:5432/peactions #add to env var ?
+      - FLYWAY_SCHEMAS=public
+      - FLYWAY_BASELINE_ON_MIGRATE=true
+      - FLYWAY_GROUP=true
+      - FLYWAY_LICENSE_KEY=community
+      - FLYWAY_EDITION=community
+    command: -connectRetries=60 migrate
+    volumes:
+      - ../pe-actions-base/sql:/flyway/sql
+    networks:
+      - peactions
+    depends_on:
+      - pe-actions-base
+
+
+volumes:
+  pe-actions-base-data:
+
+networks:
+  peactions:
+    ipam:
+      driver: default
+        #config:
+        #  - subnet: 172.18.1.0/24

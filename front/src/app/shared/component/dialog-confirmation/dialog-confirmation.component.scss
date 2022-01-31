@@ -1,0 +1,95 @@
+@import 'src/styles';
+
+::ng-deep .mat-dialog-container {
+  display: block;
+  border-radius: 4px;
+  margin: auto;
+  padding: 1rem;
+  overflow: hidden;
+  @include rwd(width, 100%, ($mobile: 100%, $tablet: 70%, $desktop: 70%));
+  @include rwd(position, absolute, ($mobile: absolute, $tablet: relative, $desktop: relative));
+  @include rwd(top, 0, ($mobile: 0, $tablet: 0, $desktop: 0));
+  @include rwd(left, 0, ($mobile: 0, $tablet: 0, $desktop: 0));
+
+  top: 0;
+  left: 0;
+}
+.closing {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  .img-close {
+    cursor: pointer;
+    margin-right: 0.5em;
+  }
+  .close {
+    cursor: pointer;
+    color: #1B2B67;
+    font-family: $rubik;
+    @include rwd(font-size, 0.8rem, ($mobile: 0.8rem, $tablet: 1rem, $desktop: 1rem));
+  }
+}
+h2 {
+  margin-top: 10%;
+  font-family: $rubik;
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: $no-space;
+  line-height: 28px;
+  .img-pe-connect {
+    width: 100%;
+    cursor: pointer;
+  }
+}
+mat-dialog-content {
+  color: #1B2B67;
+  font-family: $poppins;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.666667;
+  text-align: center;
+  overflow: hidden;
+  @include rwd(font-size, 1rem, ($mobile: 1rem, $tablet: 1.3125rem, $desktop: 1.3125rem));
+  @include rwd(margin, 3.125rem 0, ($mobile: 3.125rem 0, $tablet: 3.125rem 0, $desktop: 3.125rem 0));
+  @include rwd(padding, 0 4.625rem, ($mobile: 0 4.625rem, $tablet: 0 4.625rem, $desktop: 0 4.625rem));
+}
+mat-dialog-actions {
+  @include rwd(margin-left, 0, ($mobile: 0, $tablet: 0, $desktop: 0));
+  @include rwd(margin-bottom, 0, ($mobile: 0, $tablet: -9px, $desktop: -9px));
+  @include rwd(margin-top, 0, ($mobile: 0, $tablet: -3rem, $desktop: -3rem));
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+
+  ::ng-deep .mat-focus-indicator.confirm {
+    height: 41px;
+    min-width: 90px;
+    border-radius: 4px;
+    background-color: #4833E3;
+    box-shadow: 0 2px 4px 0 rgba(78, 36, 188, 0.4);
+    margin-right: 30px;
+  }
+  ::ng-deep .mat-focus-indicator.cancel {
+    box-sizing: border-box;
+    height: 41px;
+    min-width: 91px;
+    border: 1px solid #4833E3;
+    border-radius: 4px;
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 4px 0 rgba(78, 36, 188, 0.4);
+
+    ::ng-deep .mat-button-wrapper {
+      color: #4833E3;
+      font-family: $rubik;
+      font-size: $label;
+      letter-spacing: $no-space;
+      line-height: 29px;
+      text-align: center;
+    }
+  }
+  .img-pe-connect {
+    margin: 4% 0 6% 0;
+    cursor: pointer;
+    @include rwd(width, 16.4375rem, ($mobile: 16.4375rem, $tablet: 22.4375rem, $desktop: 22.4375rem));
+  }
+}

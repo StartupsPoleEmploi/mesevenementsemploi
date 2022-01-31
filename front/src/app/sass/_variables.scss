@@ -1,0 +1,34 @@
+/* Variable SASS : pour garder la simplicité de la syntaxe du SASS, tout en utilisant la flexibilité des variables en CSS 3 */
+
+// Couleurs
+$background: var(--background);
+$texte: var(--texte);
+$violet: var(--violet);
+$violet-shadow: var(--violet-shadow);
+$violet-hover: var(--violet-hover);
+$violet-placeholder: var(--violet-placeholder);
+$rouge: var(--rouge);
+$vert: var(--vert);
+$vert-clair: var(--vert-clair);
+$vert-tres-clair: var(--vert-tres-clair);
+$mauve: var(--mauve);
+
+
+// Fonts
+$arial: Arial, Helvetica, sans-serif;
+$rubik: 'Rubik', sans-serif;
+$poppins: 'Poppins', sans-serif;
+$normal: 400;
+$medium: 500;
+$semi-bold: 600;
+$bold: 700;
+$black: 900;
+$block-title: 24px;
+$mention: 14px;
+$label: 16px;
+$no-space: 0;
+
+// Breakpoints (paliers)
+$mobile: 480px;
+$tablet: 720px;
+$desktop: 900px;

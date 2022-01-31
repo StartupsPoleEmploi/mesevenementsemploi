@@ -1,0 +1,44 @@
+<app-header [minified]="true"></app-header>
+<body>
+
+    <nav *ngIf="event" aria-label="Breadcrumb" class="accueil-reunion-d breadcrumb">
+        <ul>
+            <li><a [routerLink]="['/evenements']" href="">Accueil</a></li>
+            <li><a [routerLink]="['/evenement/', event.id]" href="">{{event.titre}}</a></li>
+            <li class="margin-li"><span aria-current="page">Pré-requis</span></li>
+        </ul>
+    </nav>
+
+    <div *ngIf="event" [formGroup]="form" class="content">
+
+        <img class="happy-bunch-party-of-three" src="./assets/img/pre-requis.svg" alt=""/>
+        <p class="validez-les-pre-requ">Validez les pré-requis de participation</p>
+        <p class="pour-participer-a-ce">Pour participer à ce(tte)
+            <span *ngFor="let typeEvent of getTypeEvent(event)" >
+                <span>{{typeEvent.libelle}}, </span>
+            </span>
+        </p>
+        <p class="pour-participer-a-ce">confirmez-vous avoir les pré-requis demandés ?</p>
+
+        <form (ngSubmit)="submitForm()" *ngIf="this.prerequisiteForm" [formGroup]="prerequisiteForm" class="margin-form" novalidate>
+            <div class="mb-6">
+                <div *ngFor="let data of event.prerequis; let i=index" class="form-check">
+                    <input
+                        (change)="onCheckboxChange($event)"
+                        [value]="data.libelle"
+                        id="option{{i}}"
+                        name="option{{i}}"
+                        type="checkbox" />
+                    <label class="input-checkbox" for="option{{i}}">{{data.libelle}}</label>
+                </div>
+            </div>
+            <div class="text-center">
+                <button class="btn" type="submit" value="Submit">
+                    Valider mes réponses
+                </button>
+            </div>
+        </form>
+
+    </div>
+    <app-footer class="footer"></app-footer>
+</body>

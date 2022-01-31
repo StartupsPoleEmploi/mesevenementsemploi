@@ -1,0 +1,64 @@
+.footer {
+  background-color: $mauve;
+  &__top {
+    border-bottom: 1px solid #ffffff;
+    @include rwd(padding, 0.75rem 0, ($mobile: 0.75rem 0, $tablet: 0.75rem 0, $desktop: 2rem 0));
+    .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      @include rwd(flex-direction, column, ($mobile: column, $tablet: column, $desktop: row));
+    }
+  }
+
+  &__bottom {
+    padding: 0.75rem 0;
+    p {
+      margin: 0;
+      font-size: 0.75rem;
+    }
+  }
+
+  &__links {
+    display: flex;
+    @include rwd(flex-direction, column, ($mobile: column, $tablet: column, $desktop: row));
+    a {
+      color: $texte;
+      text-decoration: none;
+      text-align: center;
+      @include rwd(margin-bottom, 1rem, ($mobile: 1rem, $tablet: 1rem, $desktop: 0));
+      &:hover {
+        text-decoration: underline;
+      }
+      &:not(:last-child) {
+        @include rwd(margin-right, 0, ($mobile: 0, $tablet: 0, $desktop: 1rem));
+      }
+    }
+  }
+  
+  &__logos {
+    display: flex;
+    align-items: center;
+    a {
+      @include rwd(margin-right, 0.563rem, ($mobile: 0.563rem, $tablet: 0.75rem, $desktop: 0.75rem));
+      img {
+        display: block;
+        @include rwd(width, 3.375rem, ($mobile: 3.375rem, $tablet: 4rem, $desktop: 4rem));
+      }
+      &:first-child {
+        img {
+          @include rwd(width, 3.875rem, ($mobile: 3.875rem, $tablet: 4.625rem, $desktop: 4.625rem));
+        }
+      }
+    }
+
+    .affirmation {
+      color: $texte;
+      font-family: $arial;
+      font-size: 0.563rem;
+      line-height: 0.688rem;
+      margin: 0;
+      @include rwd(font-size, 0.5rem, ($mobile: 0.5rem, $tablet: 0.563rem, $desktop: 0.563rem));
+    }
+  }
+}

@@ -1,0 +1,48 @@
+<app-header></app-header>
+<app-toolbar (exportEvent)="exportEvents()"></app-toolbar>
+<mat-progress-spinner *ngIf="IsWait" mode="indeterminate"></mat-progress-spinner>
+<table>
+  <thead>
+    <tr>
+      <th scope="col">Nom événement</th>
+      <th scope="col">Type</th>
+      <th scope="col">Date</th>
+      <th scope="col">Heure</th>
+      <th scope="col">
+        <span class="registered">Inscrits/</span><br/>
+        <span class="total-seats">Places totales</span>
+      </th>
+      <th scope="col">Statut</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr (delete)="deleteEvent(event)" *ngFor="let event of events | paginate : {
+                itemsPerPage: 10,
+                currentPage: page,
+                totalItems: totalItems
+              };" [event]="event" app-details-event class="e-card">
+  </tbody>
+</table>
+<nav *ngIf="totalItems && totalItems > 0" class="pagination-container" aria-label="Pagination">
+  <pagination-template #p="paginationApi" class="pagination" (pageChange)="onTableDataChange($event)" >
+    <ul class="ngx-pagination">
+      <li class="pagination-previous" [class.disabled]="p.isFirstPage()">
+        <span class="ng-star-inserted" *ngIf="p.isFirstPage()">Précédent</span>
+        <a (click)="p.previous()" class="ng-star-inserted" *ngIf="!p.isFirstPage()" aria-label="Page précédente">Précédent</a>
+      </li>
+      <li class="pagination-actual-page">
+        Page {{p.getCurrent()}} sur {{p.getLastPage()}}
+      </li>
+      <li class="pagination-next" [class.disabled]="p.isLastPage()">
+        <span class="ng-star-inserted" *ngIf="p.isLastPage()">Suivant</span>
+        <a (click)="p.next()" class="ng-star-inserted" *ngIf="!p.isLastPage()" aria-label="Page suivante">Suivant</a>
+      </li>
+    </ul>
+    <div class="pagination-search">
+      <span class="label-search-page">Aller à la page</span>
+      <input class="pagination-search-input" type="text" (keyup.enter)="onSearchPage(pageNb, p.getLastPage(), p.getCurrent())" [(ngModel)]="pageNb" />
+    </div>
+  </pagination-template>
+</nav>
+

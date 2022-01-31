@@ -1,0 +1,131 @@
+<body>
+    <app-header></app-header>
+    <div class="content">
+        <div class="baseline-container">
+            <div class="titles">
+                <h1 class="baseline">
+                    <span>Emploi, formation, reconversion</span><span> à chaque besoin, une solution !</span>
+                </h1>
+                <h2 class="definition">
+                    <span>Ce nouveau service concerne pour le moment, <strong>la région Occitanie</strong> sauf l’Hérault.</span>
+                    <span>Il sera ouvert prochainement à d’autres régions.</span>
+                </h2>
+                <div class="filters">
+                    <mat-select class="filter-select"
+                            (ngModelChange)="getEventsBySelectedDept($event)"
+                            [(value)]="selectedDepartement"
+                            [formControl]="lieu"
+                            matInput
+                            disableOptionCentering 
+                            placeholder="Sélectionnez le département recherché en Occitanie">
+                        <mat-option></mat-option>
+                        <mat-option *ngFor="let departement of departementList" [value]="departement.code">
+                            {{departement.libelle}} <span *ngIf="departement.id !== -1">({{departement.code}})</span>
+                        </mat-option>
+                    </mat-select>
+                    <button class="removeSelected" (click)="reset()" *ngIf="selectedDepartement" >
+                        <img alt="clear icone" src="assets/img/close_black_24dp.svg"/>
+                    </button>
+                </div>
+            </div>
+            <h3 class="event-search-results">
+                <span class="events-number">{{totalItems}}</span> résultat(s) en cours
+            </h3>
+        </div>
+
+        <div class="event-list">
+            <div class="event-card"
+                 *ngFor=" let event of events | paginate : {itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems} ;"
+                 (click)="handleClickedCard(event.id)" >
+                <div class="event-time">
+                    <div class="date">
+                        <span class="day-label">{{event.dateISO | date: 'dd'}}</span>
+                        <span class="month-label">{{event.dateISO | date: 'MMM' : 'Europe/Paris' : 'fr' }}</span>
+                    </div>
+                    <div class="hour">
+                        <span class="hour-label">{{event.heureDebut}}-{{event.heureFin}}</span>
+                    </div>
+                </div>
+                <div class="event-content">
+                    <h4 class="event-title">{{event?.titre}}</h4>
+                    <div class="central-block">
+                        <div class="places">
+                            <p class="places-label">Places restantes</p>
+                            <ng-container *ngIf="isEventFull(event); then full; else available" ></ng-container>
+                            <ng-template #full >
+                                <p class="available-places" >Complet</p>
+                            </ng-template>
+                            <ng-template #available>
+                                <p class="available-places" *ngIf="getOnSitePlaces(event) > 0 && getRemotePlaces(event) === 0">
+                                    {{ getOnSitePlaces(event) }} en présentiel
+                                </p>
+                                <p class="available-places" *ngIf="getRemotePlaces(event) > 0 && getOnSitePlaces(event) === 0">
+                                    {{ getRemotePlaces(event) }} à distance
+                                </p>
+                                <p class="available-places" *ngIf="getOnSitePlaces(event) > 0 && getRemotePlaces(event) > 0">
+                                    {{ getOnSitePlaces(event) }} en présentiel / {{ getRemotePlaces(event) }} à distance
+                                </p>
+                            </ng-template>
+                        </div>
+                        <div class="location" *ngIf="this.getEventLocation(event)">
+                            <span class="location-label">{{this.getEventLocation(event)}}</span>
+                        </div>
+                    </div>
+                    <div class="public" *ngIf="isWideScreen | async">
+                        <p class="public-label">Public(s)</p>
+                        <div class="public-list">
+                            <p class="public-element"  *ngFor="let publicCible of getPublicTargetByEvent(event)">
+                                #{{publicCible.libelle}}
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+                <ng-container *ngIf="event?.statut !== 'Terminé'; then inProgess; else done"></ng-container>
+                <ng-template #inProgess>
+                    <button *ngIf="isWideScreen | async" class="event-btn" [routerLink]="['/evenement/', event.id]" >
+                        <span class="event-btn-label">Je découvre</span>
+                    </button>
+                    <img class="link-event-details"
+                      [routerLink]="['/evenement/', event.id]"
+                      src="./assets/img/circle-arrow-right_violet.svg"
+                      alt="icone en découvrir plus" />
+
+                </ng-template>
+                <ng-template #done>
+                    <button *ngIf="isWideScreen | async" class="event-btn" [routerLink]="['/EventTermine']" >
+                        <span class="event-btn-label">Je découvre</span>
+                    </button>
+                    <img class="link-event-details"
+                         [routerLink]="['/EventTermine']"
+                         src="./assets/img/circle-arrow-right_violet.svg"
+                         alt="icone en découvrir plus" />
+                </ng-template>
+            </div>
+        </div>
+
+        <nav *ngIf="totalItems && totalItems > 0" class="pagination-container" aria-label="Pagination">
+            <pagination-template #p="paginationApi" class="pagination" (pageChange)="onPageChange($event)">
+                <ul class="ngx-pagination">
+                    <li class="pagination-previous" [class.disabled]="p.isFirstPage()">
+                        <span class="ng-star-inserted" *ngIf="p.isFirstPage()">Précédent</span>
+                        <a (click)="p.previous()" class="ng-star-inserted" *ngIf="!p.isFirstPage()" aria-label="Page précédente">Précédent</a>
+                    </li>
+                
+                    <li class="pagination-actual-page">
+                        Page {{p.getCurrent()}} sur {{p.getLastPage()}}
+                    </li>
+                
+                    <li class="pagination-next" [class.disabled]="p.isLastPage()">
+                        <span class="ng-star-inserted" *ngIf="p.isLastPage()">Suivant</span>
+                        <a (click)="p.next()" class="ng-star-inserted" *ngIf="!p.isLastPage()" aria-label="Page suivante">Suivant</a>
+                    </li>
+                </ul>
+            </pagination-template>              
+        </nav>
+
+    </div>
+    <app-footer class="footer"></app-footer>
+</body>
+
+

@@ -1,0 +1,19 @@
+<div class="rome">
+  <h2 class="sub-title">*Code ROME</h2>
+  <form class="rome-form" [formGroup]="romeForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Sélectionnez le code ROME rattaché à l'évènement</mat-label>
+      <mat-select #romeSelect (ngModelChange)="onChangeValue(romeSelect.value)" formControlName="rome">
+        <mat-option *ngFor="let item of romeList" [value]="item.code">
+          {{item.code}} - {{item.libelle}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-error
+      *ngIf="romeForm.controls['rome'].touched
+      &&
+      romeForm.controls['rome'].hasError('required')">
+      Ce champ est requis
+    </mat-error>
+  </form>
+</div>

@@ -1,0 +1,47 @@
+<app-header></app-header>
+<app-toolbar (navigateToAddNewRegisteredEvent)="navigateToAddNewRegistered()" (exportCandidatesEvent)="exportCandidats()"></app-toolbar>
+<div *ngIf="event && isEventFull(event)" class="alert-danger">
+  <img alt="icone champs requis" src="./assets/img/error_outline_red_18dp.svg"/>
+  <span>L’inscription à l’événement n’est pas disponible car il est complet.</span>
+</div>
+<div class="rectangle-flex">
+  <h1 class="inscrits">Listes des inscrits</h1>
+  <div class="rectangle-modalite">
+      <span class="img-modalite">
+        <img alt="" class="img-location" src="./assets/img/pinmap-location.svg"/>
+        <p class="text-modalite">{{getNbInscritEnPhysique()}} inscrit(s) sur place</p>
+      </span>
+    <span class="img-modalite">
+        <img src="./assets/img/desktop-screen.svg" alt=""/>
+        <p class="text-modalite">{{getNbInscritEnLigne()}} inscrit(s) à distance</p>
+      </span>
+      <span class="img-modalite">
+        <img src="./assets/img/profil-multi.svg" alt=""/>
+        <p class="text-modalite">{{getNbParticipant()}} participant(s)</p>
+      </span>
+    </div>
+</div>
+<div class="table-center">
+  <table class="gfg" id="candidats">
+    <thead>
+    <tr>
+      <th scope="col" class="align-left">Identifiant (BNI)</th>
+      <th scope="col" class="align-left">Nom</th>
+      <th scope="col" class="align-left">Prénom</th>
+      <th scope="col" class="align-left">Email</th>
+      <th scope="col">Inscription</th>
+      <th scope="col">Présence</th>
+      <th scope="col">Supprimer</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr (delete)="deleteCandidat(candidat)"
+        (newPresenceEvent)="updatePresent($event)"
+        *ngFor="let candidat of candidats" [candidat]="candidat"
+        app-details-candidat class="e-card">
+    </tr>
+    </tbody>
+
+  </table>
+</div>
