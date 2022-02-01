@@ -6,7 +6,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "pe-actions-conseiller": {
+    "mee-conseiller": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/pe-actions-conseiller",
+            "outputPath": "dist/mee-conseiller",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -75,18 +75,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "pe-actions-conseiller:build"
+            "browserTarget": "mee-conseiller:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "pe-actions-conseiller:build:production"
+              "browserTarget": "mee-conseiller:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "pe-actions-conseiller:build"
+            "browserTarget": "mee-conseiller:build"
           }
         },
         "test": {
@@ -124,16 +124,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "pe-actions-conseiller:serve"
+            "devServerTarget": "mee-conseiller:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "pe-actions-conseiller:serve:production"
+              "devServerTarget": "mee-conseiller:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "pe-actions-conseiller"
+  "defaultProject": "mee-conseiller"
 }

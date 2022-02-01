@@ -9,7 +9,7 @@ import {UrlService} from "./shared/services/url.service";
   templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
-    title = 'pe-actions-candidat ';
+    title = 'mee-candidat ';
     mail = environment.emailContact;
     previousUrl: string = '';
     currentUrl: string = '';

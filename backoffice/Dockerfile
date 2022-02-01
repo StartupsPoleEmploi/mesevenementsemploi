@@ -9,7 +9,7 @@ RUN npm run build-prod
 
 FROM nginx:1.17-alpine
 LABEL Author="Team Monstreuils"
-LABEL Project="pe-actions-conseiller"
+LABEL Project="mee-conseiller"
 
 RUN echo 'http://dl-cdn.alpinelinux.org/alpine/v3.11/main/' > /etc/apk/repositories && \
     echo 'http://dl-cdn.alpinelinux.org/alpine/v3.11/community/' >> /etc/apk/repositories && \
@@ -23,7 +23,7 @@ RUN apk add --no-cache tzdata && \
     echo "Europe/Paris" >  /etc/timezone && \
     apk del tzdata
 
-COPY --from=builder /app/dist/pe-actions-conseiller /usr/share/nginx/html
+COPY --from=builder /app/dist/mee-conseiller /usr/share/nginx/html
 
 COPY conf /etc/nginx
 COPY conf/nginx.conf  /etc/nginx/conf.d/

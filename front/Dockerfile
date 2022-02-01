@@ -9,7 +9,7 @@ RUN npm run build:ssr:production
 #run stage
 FROM node:15.14.0-alpine
 LABEL Author="Team Monstreuils"
-LABEL Project="pe-actions-candidat"
+LABEL Project="mee-candidat"
 
 RUN echo 'http://dl-cdn.alpinelinux.org/alpine/v3.11/main/' > /etc/apk/repositories && \
     echo 'http://dl-cdn.alpinelinux.org/alpine/v3.11/community/' >> /etc/apk/repositories && \
@@ -34,9 +34,9 @@ COPY --from=builder /app/start-express.sh ./
 # Create node_module for external dependencies and update launch script chmod
 RUN mkdir -p node_modules && chmod +x start-express.sh
 # Create Dockerize template files
-RUN export NOM_DU_FICHIER_MAIN1=$(ls /app/dist/pe-actions-candidat/browser/main-es5*js) &&  cp ${NOM_DU_FICHIER_MAIN1} ${NOM_DU_FICHIER_MAIN1}.tmpl
-RUN export NOM_DU_FICHIER_MAIN2=$(ls /app/dist/pe-actions-candidat/browser/main-es2015*js) &&  cp ${NOM_DU_FICHIER_MAIN2} ${NOM_DU_FICHIER_MAIN2}.tmpl
-RUN export NOM_DU_FICHIER_MAIN3=$(ls /app/dist/pe-actions-candidat/server/main.js) &&  cp ${NOM_DU_FICHIER_MAIN3} ${NOM_DU_FICHIER_MAIN3}.tmpl
+RUN export NOM_DU_FICHIER_MAIN1=$(ls /app/dist/mee-candidat/browser/main-es5*js) &&  cp ${NOM_DU_FICHIER_MAIN1} ${NOM_DU_FICHIER_MAIN1}.tmpl
+RUN export NOM_DU_FICHIER_MAIN2=$(ls /app/dist/mee-candidat/browser/main-es2015*js) &&  cp ${NOM_DU_FICHIER_MAIN2} ${NOM_DU_FICHIER_MAIN2}.tmpl
+RUN export NOM_DU_FICHIER_MAIN3=$(ls /app/dist/mee-candidat/server/main.js) &&  cp ${NOM_DU_FICHIER_MAIN3} ${NOM_DU_FICHIER_MAIN3}.tmpl
 
 # Expose the port the app runs in
 EXPOSE 4000

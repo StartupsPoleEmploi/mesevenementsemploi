@@ -56,7 +56,7 @@ services:
       context: backend
     container_name: backend
     environment:
-      - DATA_SOURCE=jdbc:postgresql://pe-actions-base:5432/peactions
+      - DATA_SOURCE=jdbc:postgresql://database:5432/peactions
       - DATA_SOURCE_USERNAME=peactions
       - DATA_SOURCE_PASSWORD=peactions
       - JWT_SECRET=peactionsSecretKey

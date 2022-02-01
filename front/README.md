@@ -1,4 +1,4 @@
-# pe-actions-candidat
+# mee-candidat
 
 ## Mode developpement
 
@@ -25,14 +25,14 @@ Lancer `ng test` pour lancer les tests unitaire
 
 ## Architecture
 
-Dans le répertoire /home/docker/pe-actions-candidat on a le fichier pe-actions-candidat.yaml pour le docker-compose
+Dans le répertoire /home/docker/ on a le fichier docker-compose.yml pour le docker-compose
 et le fichier variables.env pour les variables d'environnement  
 
-Ce conteneur est connecté au conteneur proxy ngnix qui est dans le répertoire /home/docker/pe-actions-reverse-proxy
+Ce conteneur est connecté au conteneur proxy ngnix qui est dans le répertoire /home/docker/reverse-proxy
 
 ## les logs
 
-Pour avoir les 1000 dernières ligne de logs : `docker logs -n 1000 pe-actions-candidat`
+Pour avoir les 1000 dernières ligne de logs : `docker logs -n 1000 mee-candidat`
 
 ## déploiement
 

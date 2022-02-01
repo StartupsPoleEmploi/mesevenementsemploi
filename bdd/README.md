@@ -1,4 +1,4 @@
-# pe-actions-base
+# mee-base
 
 ## connection à la BDD avec pgadmin
 

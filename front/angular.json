@@ -6,7 +6,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "pe-actions-candidat": {
+    "mee-candidat": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/pe-actions-candidat/browser",
+            "outputPath": "dist/mee-candidat/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -72,18 +72,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "pe-actions-candidat:build"
+            "browserTarget": "mee-candidat:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "pe-actions-candidat:build:production"
+              "browserTarget": "mee-candidat:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "pe-actions-candidat:build"
+            "browserTarget": "mee-candidat:build"
           }
         },
         "test": {
@@ -121,18 +121,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "pe-actions-candidat:serve"
+            "devServerTarget": "mee-candidat:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "pe-actions-candidat:serve:production"
+              "devServerTarget": "mee-candidat:serve:production"
             }
           }
         },
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {
-            "outputPath": "dist/pe-actions-candidat/server",
+            "outputPath": "dist/mee-candidat/server",
             "main": "server.ts",
             "tsConfig": "tsconfig.server.json"
           },
@@ -153,21 +153,21 @@
         "serve-ssr": {
           "builder": "@nguniversal/builders:ssr-dev-server",
           "options": {
-            "browserTarget": "pe-actions-candidat:build",
-            "serverTarget": "pe-actions-candidat:server"
+            "browserTarget": "mee-candidat:build",
+            "serverTarget": "mee-candidat:server"
           },
           "configurations": {
             "production": {
-              "browserTarget": "pe-actions-candidat:build:production",
-              "serverTarget": "pe-actions-candidat:server:production"
+              "browserTarget": "mee-candidat:build:production",
+              "serverTarget": "mee-candidat:server:production"
             }
           }
         },
         "prerender": {
           "builder": "@nguniversal/builders:prerender",
           "options": {
-            "browserTarget": "pe-actions-candidat:build:production",
-            "serverTarget": "pe-actions-candidat:server:production",
+            "browserTarget": "mee-candidat:build:production",
+            "serverTarget": "mee-candidat:server:production",
             "routes": [
               "/"
             ]
@@ -186,5 +186,5 @@
       }
     }
   },
-  "defaultProject": "pe-actions-candidat"
+  "defaultProject": "mee-candidat"
 }

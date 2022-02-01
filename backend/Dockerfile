@@ -13,7 +13,7 @@ RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 # Run Stage
 FROM openjdk:11-slim
 LABEL MAINTAINER="Les Monstreuils"
-LABEL Project="pe-actions-domaine"
+LABEL Project="mee-domaine"
 
 ARG DEPENDENCY=/build/target/dependency
 
@@ -33,5 +33,5 @@ COPY --from=builder ${DEPENDENCY}/BOOT-INF/lib /app/lib
 COPY --from=builder ${DEPENDENCY}/META-INF /app/META-INF
 COPY --from=builder ${DEPENDENCY}/BOOT-INF/classes /app
 
-ENTRYPOINT ["java","-cp","app:app/lib/*","fr.pe.domaine.peactions.PeActionsDomaineApplication"]
+ENTRYPOINT ["java","-cp","app:app/lib/*","fr.pe.service.domaine.MeeDomaineApplication"]
 

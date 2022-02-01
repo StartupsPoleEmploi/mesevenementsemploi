@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
-  title = 'pe-actions-conseiller';
+  title = 'mee-conseiller';
 
   // I initialize the app-component.
   constructor() {}

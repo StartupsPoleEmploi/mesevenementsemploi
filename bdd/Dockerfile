@@ -1,7 +1,7 @@
 # pull official base image
 FROM postgres:12.2-alpine
 LABEL Author="Team Monstreuils"
-LABEL Project="pe-actions-base"
+LABEL Project="mee-base"
 
 #set french timezone
 RUN apk update && \

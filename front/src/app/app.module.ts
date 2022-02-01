@@ -80,7 +80,7 @@ registerLocaleData(frenchLocale);
         DialogAnnulationComponent
     ],
     imports: [
-        BrowserModule.withServerTransition({appId: 'pe-actions-candidat'}),
+        BrowserModule.withServerTransition({appId: 'mee-candidat'}),
         TransferHttpCacheModule,
         Ng2SearchPipeModule,
         HttpClientModule,
