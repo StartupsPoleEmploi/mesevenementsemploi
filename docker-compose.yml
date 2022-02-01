@@ -2,23 +2,23 @@ version: '3'
 
 services:
 
-  pe-actions-conseiller:
+  conseiller:
     build:
-      context: ../pe-actions-conseiller
-    container_name: pe-actions-conseiller
+      context: backoffice
+    container_name: backoffice
     environment:
       - EMAIL_CONTACT=${EMAIL_CONTACT:-acme@nobody.here}
     depends_on:
-      - pe-actions-domaine
+      - backend
     ports:
       - 80:80
     networks:
-      - peactions
+      - mee
 
-  pe-actions-candidat:
+  candidat:
     build:
-      context: ../pe-actions-candidat
-    container_name: pe-actions-candidat
+      context: front
+    container_name: front
     environment:
       - DOMAINE_PATH=${DOMAINE_PATH:-HERE-URL-TO-BACKEND-ENDPOINT}
       - EMAIL_CONTACT=${EMAIL_CONTACT:-acme@nobody.here}
@@ -37,7 +37,7 @@ services:
     ports:
       - 4000:4000
     networks:
-      - peactions
+      - mee
 
   nginx:
     container_name: nginx
@@ -47,14 +47,14 @@ services:
     ports:
       - '81:80'
     networks:
-      - peactions
+      - mee
     depends_on:
-      - pe-actions-candidat
+      - candidat
 
-  pe-actions-domaine:
+  backend:
     build:
-      context: ../pe-actions-domaine
-    container_name: pe-actions-domaine
+      context: backend
+    container_name: backend
     environment:
       - DATA_SOURCE=jdbc:postgresql://pe-actions-base:5432/peactions
       - DATA_SOURCE_USERNAME=peactions
@@ -77,31 +77,31 @@ services:
     ports:
       - 8080:8080
     networks:
-      - peactions
+      - mee
 
-  pe-actions-base:
+  database:
     build:
-      context: ../pe-actions-base
-    container_name: pe-actions-base
+      context: bdd
+    container_name: database
     restart: always
     environment:
       - POSTGRES_USER=${POSTGRES_USER:-test}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-test}
-      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_DB=${POSTGRES_DB:-mee}
     ports:
       - 5400:5432
     volumes:
-      - pe-actions-base-data:/var/lib/postgresql/data
+      - database:/var/lib/postgresql/data
     networks:
-      - peactions
+      - mee
 
   flyway:
     image: flyway/flyway:latest
-    container_name: pe-actions-flyway
+    container_name: flyway
     environment:
       - FLYWAY_USER=${FLYWAY_USER:-demo}
       - FLYWAY_PASSWORD=${FLYWAY_PASSWORD:-demo}
-      - FLYWAY_URL=jdbc:postgresql://pe-actions-base:5432/peactions #add to env var ?
+      - FLYWAY_URL=jdbc:postgresql://database:5432/mee #add to env var ?
       - FLYWAY_SCHEMAS=public
       - FLYWAY_BASELINE_ON_MIGRATE=true
       - FLYWAY_GROUP=true
@@ -109,18 +109,18 @@ services:
       - FLYWAY_EDITION=community
     command: -connectRetries=60 migrate
     volumes:
-      - ../pe-actions-base/sql:/flyway/sql
+      - ./bdd/sql:/flyway/sql
     networks:
-      - peactions
+      - mee
     depends_on:
-      - pe-actions-base
+      - database
 
 
 volumes:
-  pe-actions-base-data:
+  database:
 
 networks:
-  peactions:
+  mee:
     ipam:
       driver: default
         #config:
