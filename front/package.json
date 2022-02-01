@@ -1,5 +1,5 @@
 {
-  "name": "pe-actions-candidat",
+  "name": "mee-candidat",
   "version": "1.0.1",
   "scripts": {
     "ng": "ng",
@@ -9,11 +9,11 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "dev:ssr": "ng run pe-actions-candidat:serve-ssr",
-    "serve:ssr": "node dist/pe-actions-candidat/server/main.js",
-    "build:ssr": "ng build && ng run pe-actions-candidat:server",
-    "build:ssr:production": "ng build --prod && ng run pe-actions-candidat:server:production",
-    "prerender": "ng run pe-actions-candidat:prerender",
+    "dev:ssr": "ng run mee-candidat:serve-ssr",
+    "serve:ssr": "node dist/mee-candidat/server/main.js",
+    "build:ssr": "ng build && ng run mee-candidat:server",
+    "build:ssr:production": "ng build --prod && ng run mee-candidat:server:production",
+    "prerender": "ng run mee-candidat:prerender",
     "sonar": "sonar-scanner"
   },
   "private": true,
