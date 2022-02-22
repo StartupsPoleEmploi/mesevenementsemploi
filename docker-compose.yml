@@ -113,7 +113,7 @@ services:
     environment:
       - FLYWAY_USER=${FLYWAY_USER:-peactions}
       - FLYWAY_PASSWORD=${FLYWAY_PASSWORD:-peactions}
-      - FLYWAY_URL=jdbc:postgresql://database:5432/peactions #add to env var ?
+      - FLYWAY_URL=jdbc:postgresql://database:5432/peactions
       - FLYWAY_SCHEMAS=public
       - FLYWAY_BASELINE_ON_MIGRATE=true
       - FLYWAY_GROUP=true
