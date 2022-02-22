@@ -9,6 +9,10 @@ Mes événements emploi permet à tous les candidats et partenaires de l’emplo
 
 A tout moment, 24H/24H, 7j/7j, un candidat peut rechercher et s’inscrire en ligne à des événements adaptés à ses critères de recherche, dans l’objectif de trouver un emploi ou d’accéder à une formation et se préparer à un événement de recrutement.
 
+Installation
+------------
+
+Cloner le projet et lancer `docker-compose up -d`
 
 
 License
